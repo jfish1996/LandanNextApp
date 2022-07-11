@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 import { Provider, createClient } from "urql";
+import AppLayout from "../components/AppLayout/AppLayout";
 
 const client = createClient({
   url: "https://shielded-sea-51712.herokuapp.com/graphql",
@@ -8,7 +9,9 @@ const client = createClient({
 function MyApp({ Component, pageProps }) {
   return (
     <Provider value={client}>
-      <Component {...pageProps} />
+      <AppLayout>
+        <Component {...pageProps} />
+      </AppLayout>
     </Provider>
   );
 }
