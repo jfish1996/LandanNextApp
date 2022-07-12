@@ -8,6 +8,8 @@ export const StyledSidebar = styled.div`
   background-color: #ececed;
   overflow: scroll;
   padding: 75px;
-  margin-right: 75px;
+  /* margin-right: 75px; */
+  position: fixed;
+  /* padding-right: 425px; */
   /* align-items: flex-end; */
 `;
