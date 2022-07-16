@@ -1,16 +1,17 @@
 import React from "react";
 import { useQuery } from "urql";
 import { PRODUCT_SECTION_QUERY } from "../../lib/query";
+import { returnShopSectionData } from "../../lib/returnData";
 import { returnPosts } from "../../lib/returnposts";
+import RichTextParagraph from "../../components/atoms/RichTextParagraph/RichTextParagraph";
 
-export default function Posters() {
-  const [results] = useQuery({
-    query: PRODUCT_SECTION_QUERY,
-    variables: { start: 0, limit: 100, name: "Soft Goods.shop" },
-  });
-  const { data, fetching, error } = results;
-  if (fetching) return <p>fetching...</p>;
-  if (error) return <p>error {error}</p>;
-  const products = data?.sectionNames.data[0]?.attributes?.products.data;
-  return returnPosts(products);
+export default function Posters({ feedView }) {
+  const SECTION_NAME = "Posters.shop";
+  const { products, richText } = returnShopSectionData(SECTION_NAME);
+  return (
+    <>
+      <RichTextParagraph markup={richText} />
+      {returnPosts(products, feedView)}
+    </>
+  );
 }

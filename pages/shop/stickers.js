@@ -1,18 +1,39 @@
-import React from "react";
-import { useQuery } from "urql";
-
-import { PRODUCT_SECTION_QUERY } from "../../lib/query";
+import React, { useRef } from "react";
 import { returnPosts } from "../../lib/returnposts";
-
-export default function Stickers() {
-  const [results] = useQuery({
-    query: PRODUCT_SECTION_QUERY,
-    variables: { start: 0, limit: 100, name: "Stickers.shop" },
-  });
-  const { data, fetching, error } = results;
-  if (fetching) return <p>fetching...</p>;
-  if (error) return <p>error {error}</p>;
-  const products = data.sectionNames.data[0].attributes.products.data;
-
-  return returnPosts(products);
+import { returnShopSectionData } from "../../lib/returnData";
+import RichTextParagraph from "../../components/atoms/RichTextParagraph/RichTextParagraph";
+import Header from "../../components/atoms/ListItem/Header";
+import PostBar from "../../components/molecules/PostBar/PostBar";
+import { useIntersectionArray } from "../../hooks/useIntersectionArray";
+export default function Stickers({ feedView, currentId }) {
+  const SECTION_NAME = "Stickers.shop";
+  const SECTION = "stickers";
+  const { products, markup } = returnShopSectionData(SECTION_NAME);
+  const ref = useRef([]);
+  const addToRefs = (el) => {
+    if (el && !ref.current.includes(el)) {
+      ref.current.push(el);
+    }
+  };
+  useIntersectionArray(ref, feedView, currentId.setCurrentIdInView);
+  return (
+    <>
+      <Header
+        textAlign={"left"}
+        padding={"16px 0 0 0"}
+        fontWeight={"700"}
+        color={"black"}
+      >
+        {SECTION.toUpperCase()}
+      </Header>
+      <PostBar
+        gridRow={3}
+        feedView={feedView}
+        posts={products}
+        currentId={currentId.currentIdInView}
+      />
+      <RichTextParagraph markup={markup} />
+      {returnPosts(products, feedView, addToRefs)}
+    </>
+  );
 }

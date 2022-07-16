@@ -1,17 +1,40 @@
-import React from "react";
-import { useQuery } from "urql";
-import { SECTION_QUERY } from "../../lib/query";
+import React, { useRef } from "react";
 import { returnPosts } from "../../lib/returnposts";
+import { returnSectionData } from "../../lib/returnData";
+import RichTextParagraph from "../../components/atoms/RichTextParagraph/RichTextParagraph";
+import Header from "../../components/atoms/ListItem/Header";
+import PostBar from "../../components/molecules/PostBar/PostBar";
+import { useIntersectionArray } from "../../hooks/useIntersectionArray";
 
-export default function Thestrange() {
-  const [results] = useQuery({
-    query: SECTION_QUERY,
-    variables: { start: 0, limit: 100, name: "The Strange.social" },
-  });
-  const { data, fetching, error } = results;
-  if (fetching) return <p>fetching...</p>;
-  if (error) return <p>error {error}</p>;
-  const posts = data.sectionNames.data[0].attributes.posts.data;
-  console.log(posts);
-  return returnPosts(posts);
+export default function Thestrange({ feedView, currentId }) {
+  const SECTION_NAME = "The Strange.social";
+  const SECTION = "The Strange";
+  const { posts, markup } = returnSectionData(SECTION_NAME);
+  const ref = useRef([]);
+  const addToRefs = (el) => {
+    if (el && !ref.current.includes(el)) {
+      ref.current.push(el);
+    }
+  };
+  useIntersectionArray(ref, feedView, currentId.setCurrentIdInView);
+  return (
+    <>
+      <Header
+        textAlign={"left"}
+        padding={"16px 0 0 0"}
+        fontWeight={"700"}
+        color={"black"}
+      >
+        {SECTION.toUpperCase()}
+      </Header>
+      <PostBar
+        gridRow={3}
+        feedView={feedView}
+        posts={posts}
+        currentId={currentId.currentIdInView}
+      />
+      <RichTextParagraph markup={markup} />
+      {returnPosts(posts, feedView, addToRefs)}
+    </>
+  );
 }

@@ -10,7 +10,11 @@ const StyledGrid = styled.div`
   margin: ${(props) => props.margin};
   row-gap: ${(props) => props.rowGap};
   column-gap: ${(props) => props.columnGap};
-  overflow: scroll;
+  overflow: ${(props) => props.overflow};
+  padding: ${(props) => props.padding};
+  @media (min-width: 850px) {
+    margin: ${(props) => props.bigScreenMargin};
+  }
 `;
 
 export default function Grid({
@@ -22,16 +26,21 @@ export default function Grid({
   rowGap,
   columnGap,
   children,
+  padding,
+  overflow,
+  bigScreenMargin,
 }) {
   return (
     <StyledGrid
       gridColumns={gridColumns}
       width={width}
+      overFlow={overflow}
       maxWidth={maxWidth}
       minWidth={minWidth}
       margin={margin}
       rowGap={rowGap}
       columnGap={columnGap}
+      bigScreenMargin={bigScreenMargin}
     >
       {children}
     </StyledGrid>

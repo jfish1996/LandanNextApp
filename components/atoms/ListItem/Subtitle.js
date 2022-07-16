@@ -3,16 +3,20 @@ import styled from "styled-components";
 
 const StyledSubTitle = styled.li`
   color: #434343;
-  border: 1px solid black;
+
   padding: 10px 0%;
   text-align: right;
   font-weight: ${(props) => (props.active ? "bold" : null)};
-  &:hover {
+  /* &:hover {
     color: #fff100;
     cursor: pointer;
-  }
+  } */
 `;
 
-export default function Subtitle({ children, active }) {
-  return <StyledSubTitle active={active}>{children}</StyledSubTitle>;
+export default function Subtitle({ children, active, onClick }) {
+  return (
+    <StyledSubTitle onClick={onClick} active={active}>
+      {children}
+    </StyledSubTitle>
+  );
 }
