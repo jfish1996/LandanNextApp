@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useStateContext } from "../../../lib/context";
 
 const StyledFilterListItem = styled.li`
   margin: 0;
@@ -8,7 +9,7 @@ const StyledFilterListItem = styled.li`
   display: inline-block;
   width: ${(props) => props.width};
   font-style: italic;
-  color: grey;
+  color: ${(props) => (props.darkMode ? props.theme.dark.font : "grey")};
   text-decoration: ${(props) => (props.active ? "underline" : null)};
   text-shadow: ${(props) =>
     props.active
@@ -22,9 +23,11 @@ const StyledFilterListItem = styled.li`
 `;
 
 export default function FilterItem({ onClick, children, active }) {
+  const { darkMode } = useStateContext();
   return (
     <StyledFilterListItem
       active={active}
+      darkMode={darkMode}
       datatype="data-text"
       onClick={onClick}
     >

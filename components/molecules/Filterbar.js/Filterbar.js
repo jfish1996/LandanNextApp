@@ -6,13 +6,15 @@ import { SUB_SECTION_TITLES } from "../../../lib/query";
 import FilterItem from "../../atoms/List-Items/FilterItem";
 import Grid from "../../atoms/Styled-Containers/Grid/Grid";
 import { MAX_WINDOW_WIDTH, TOP_NAV_HEIGHT } from "../../../styles/constants";
+import { useStateContext } from "../../../lib/context";
 
 const StyledUL = styled.ul`
   margin: 0;
   display: flex;
   grid-column: 1/-1;
   overflow-x: scroll;
-  background-color: white;
+  background-color: ${(props) =>
+    props.darkMode ? props.theme.dark.body : props.theme.light.body};
   border-top: 1px solid lightgrey;
   border-bottom: 1px solid lightgrey;
   padding: 10px 0;
@@ -29,6 +31,7 @@ export default function Filterbar({
   filtering,
   currentSubSection,
 }) {
+  const { darkMode } = useStateContext();
   const [currentListItem, setCurrentListItem] = useState(null);
   const [results] = useQuery({
     query: SUB_SECTION_TITLES,
@@ -45,7 +48,7 @@ export default function Filterbar({
     setCurrentListItem(idx);
   };
   return (
-    <StyledUL>
+    <StyledUL darkMode={darkMode}>
       <FilterItem
         onClick={() => {
           setFiltering(false), setCurrentListItem(null);

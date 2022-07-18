@@ -6,6 +6,7 @@ import GridItem from "../../atoms/GridItem/GridItem";
 import Flex from "../../atoms/Styled-Containers/Flex/Flex";
 import { MAX_WINDOW_WIDTH } from "../../../styles/constants";
 import { Link } from "react-scroll";
+import { useStateContext } from "../../../lib/context";
 const hi = "hi";
 const StyledPostBar = styled.div`
   grid-row: ${(props) => (props.gridRow ? props.gridRow : 5)};
@@ -16,7 +17,8 @@ const StyledPostBar = styled.div`
   border-bottom: 1px solid lightgrey;
   position: sticky;
   top: ${(props) => props.topMobile};
-  background-color: white;
+  background-color: ${(props) =>
+    props.darkMode ? props.theme.dark.body : props.theme.light.body};
   @media (min-width: ${MAX_WINDOW_WIDTH}px) {
     top: ${(props) => props.topDesktop};
     grid-row: ${(props) => props.gridRowDesktop};
@@ -39,6 +41,7 @@ const PostBar = ({
   elementToShow,
   setElementScrollId,
 }) => {
+  const { darkMode } = useStateContext();
   const route = useRouter();
   const path = route.pathname;
   const scrolling = feedView?.feedViewProp;
@@ -71,6 +74,7 @@ const PostBar = ({
         withFilter={withFilter}
         topMobile={topMobile}
         topDesktop={topDesktop}
+        darkMode={darkMode}
       >
         <Flex width={"100%"} overflow={"scroll"} alignItems={"center"}>
           <div

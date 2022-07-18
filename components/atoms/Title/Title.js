@@ -10,6 +10,9 @@ const StyledP = styled.p`
   font-size: ${(props) => props.fontSize};
   padding: 0;
   margin: 0;
+  &:hover {
+    cursor: ${(props) => props.hoverCursor || null};
+  }
   @media (min-width: ${MAX_WINDOW_WIDTH}px) {
     display: ${(props) => props.largeMediaDisplay};
   }
@@ -27,6 +30,8 @@ export default function Title({
   textAlign,
   smallMediaDisplay,
   largeMediaDisplay,
+  onClick,
+  hoverCursor,
 }) {
   return (
     <PaddingContainer
@@ -39,6 +44,8 @@ export default function Title({
         fontSize={fontSize}
         largeMediaDisplay={largeMediaDisplay}
         smallMediaDisplay={smallMediaDisplay}
+        onClick={onClick}
+        hoverCursor={hoverCursor}
       >
         {firstName}
       </StyledP>
@@ -47,6 +54,8 @@ export default function Title({
         fontSize={fontSize}
         largeMediaDisplay={largeMediaDisplay}
         smallMediaDisplay={smallMediaDisplay}
+        onClick={onClick}
+        hoverCursor={hoverCursor}
       >
         {lastName}
       </StyledP>

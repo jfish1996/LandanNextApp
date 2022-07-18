@@ -9,7 +9,8 @@ export const StyledSidebar = styled.div`
   flex-direction: column;
   width: ${SIDE_NAV_WIDTH}px;
   height: 100vh;
-  background-color: #ececed;
+  background-color: ${(props) =>
+    props.darkMode ? props.theme.dark.sidebar : props.theme.light.sidebar};
   overflow: scroll;
   padding: ${SIDE_NAV_PADDING}px;
   position: fixed;

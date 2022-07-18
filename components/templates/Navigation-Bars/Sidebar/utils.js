@@ -7,6 +7,7 @@ import Title from "../../../atoms/Title/Title";
 import TopBarSelctor from "../../../atoms/TopBarSelector/TopBarSelctor";
 import { OverlappingFieldsCanBeMergedRule } from "graphql";
 import { fontColors } from "../../../../styles/constants";
+import { useStateContext } from "../../../../lib/context";
 export const SIDEBAR_DATA = [
   { link: "HOME", subLink: ["Home Archive"], href: "/" },
   {
@@ -40,6 +41,7 @@ export const SIDEBAR_DATA = [
 ];
 
 export const sideBarBuilder = (data, currentSection) => {
+  const { darkMode } = useStateContext();
   const router = useRouter();
   const currentRoute = router.pathname;
   return data.map((mainCategory, idx) => {
@@ -49,13 +51,14 @@ export const sideBarBuilder = (data, currentSection) => {
       <>
         <ul key={idx + 1}>
           <Header
+            darkMode={darkMode}
             active={currentRoute === `/${lowerCaseCategory}`}
             url={lowerCaseCategory}
             key={idx}
             onClick={() => currentSection.setCurrentSection(lowerCaseCategory)}
           >
             <Link href={`/${homeLink || lowerCaseCategory}`}>
-              <StyledSpan>{mainCategory.link}</StyledSpan>
+              <StyledSpan darkMode={darkMode}>{mainCategory.link}</StyledSpan>
             </Link>
           </Header>
 
@@ -65,6 +68,7 @@ export const sideBarBuilder = (data, currentSection) => {
               .replace(/ /g, "");
             return (
               <Subtitle
+                darkMode={darkMode}
                 key={idx2}
                 color={fontColors.default}
                 active={
@@ -73,7 +77,7 @@ export const sideBarBuilder = (data, currentSection) => {
                 }
               >
                 <Link href={`/${lowerCaseCategory}/${lowerCaseSubCategory}`}>
-                  <StyledSpan>{subCategory}</StyledSpan>
+                  <StyledSpan darkMode={darkMode}>{subCategory}</StyledSpan>
                 </Link>
               </Subtitle>
             );
@@ -85,6 +89,7 @@ export const sideBarBuilder = (data, currentSection) => {
 };
 
 export const topBarMainSection = (data, currentSection) => {
+  const { darkMode } = useStateContext();
   const router = useRouter();
   const currentRoute = router.pathname;
   return (
@@ -97,6 +102,7 @@ export const topBarMainSection = (data, currentSection) => {
           let homeLink = mainCategory.href;
           return (
             <Subtitle
+              darkMode={darkMode}
               key={idx}
               onClick={() => {
                 currentSection.setCurrentSection(mainCategory);
@@ -104,7 +110,7 @@ export const topBarMainSection = (data, currentSection) => {
               active={currentRoute === `/${lowerCaseCategory}`}
             >
               <Link href={`/${homeLink || lowerCaseCategory}`}>
-                <StyledSpan>{mainCategory.link}</StyledSpan>
+                <StyledSpan darkMode={darkMode}>{mainCategory.link}</StyledSpan>
               </Link>
             </Subtitle>
           );
@@ -114,6 +120,7 @@ export const topBarMainSection = (data, currentSection) => {
   );
 };
 export const topBarSubSection = (data, currentSection) => {
+  const { darkMode } = useStateContext();
   const router = useRouter();
   const currentRoute = router.pathname;
   return (
@@ -136,7 +143,7 @@ export const topBarSubSection = (data, currentSection) => {
                 }
               >
                 <Link href={`/${lowerCaseCategory}/${lowerCaseSubCategory}`}>
-                  <StyledSpan>{subCategory}</StyledSpan>
+                  <StyledSpan darkMode={darkMode}>{subCategory}</StyledSpan>
                 </Link>
               </Subtitle>
             );

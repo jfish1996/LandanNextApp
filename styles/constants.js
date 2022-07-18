@@ -16,3 +16,16 @@ export const SIDE_NAV_MARGIN = SIDE_NAV_WIDTH + SIDE_NAV_PADDING;
 export const fontColors = {
   default: " #434343",
 };
+
+export const theme = {
+  light: {
+    sidebar: "#ececed",
+    body: "#FFFFFF",
+    text: "#000000",
+  },
+  dark: {
+    sidebar: "#3A3B3c",
+    body: "#18191A",
+    text: "#FFFFFF",
+  },
+};
