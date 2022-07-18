@@ -3,6 +3,8 @@ import { useQuery } from "urql";
 import { PRODUCT_SECTION_QUERY } from "../../lib/query";
 import { returnShopSectionData } from "../../lib/returnData";
 import { returnPosts } from "../../lib/returnposts";
+import { TOP_NAV_HEIGHT } from "../../styles/constants";
+
 import RichTextParagraph from "../../components/atoms/RichTextParagraph/RichTextParagraph";
 
 export default function Posters({ feedView }) {
@@ -11,7 +13,7 @@ export default function Posters({ feedView }) {
   return (
     <>
       <RichTextParagraph markup={richText} />
-      {returnPosts(products, feedView)}
+      {returnPosts(products, feedView, addToRefs, setElementToShow)}
     </>
   );
 }

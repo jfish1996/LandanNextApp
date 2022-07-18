@@ -3,17 +3,24 @@ import styled from "styled-components";
 import Flex from "../../atoms/Styled-Containers/Flex/Flex";
 import { useQuery } from "urql";
 import { SUB_SECTION_TITLES } from "../../../lib/query";
-import FilterItem from "../../atoms/ListItem/FilterItem";
+import FilterItem from "../../atoms/List-Items/FilterItem";
 import Grid from "../../atoms/Styled-Containers/Grid/Grid";
+import { MAX_WINDOW_WIDTH, TOP_NAV_HEIGHT } from "../../../styles/constants";
 
 const StyledUL = styled.ul`
   margin: 0;
   display: flex;
   grid-column: 1/-1;
   overflow-x: scroll;
+  background-color: white;
   border-top: 1px solid lightgrey;
   border-bottom: 1px solid lightgrey;
   padding: 10px 0;
+  position: sticky;
+  top: ${TOP_NAV_HEIGHT}px;
+  @media (min-width: ${MAX_WINDOW_WIDTH}px) {
+    top: 0;
+  }
 `;
 
 export default function Filterbar({

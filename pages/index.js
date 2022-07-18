@@ -27,8 +27,10 @@ export default function Home() {
         console.log("were in the falsey section");
         setHeroImg(homepagePost);
         fromPostsOrigin = false;
+        return;
       } else {
         fromPostsOrigin = true;
+        return;
       }
     }
 

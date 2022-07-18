@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledSubTitle = styled.li`
-  color: #434343;
-
-  padding: 10px 0%;
+  color: ${(props) => props.color};
+  list-style-type: none;
+  padding: 10px 0;
   text-align: right;
   font-weight: ${(props) => (props.active ? "bold" : null)};
   /* &:hover {
@@ -13,9 +13,9 @@ const StyledSubTitle = styled.li`
   } */
 `;
 
-export default function Subtitle({ children, active, onClick }) {
+export default function Subtitle({ children, active, onClick, color }) {
   return (
-    <StyledSubTitle onClick={onClick} active={active}>
+    <StyledSubTitle onClick={onClick} active={active} color={color}>
       {children}
     </StyledSubTitle>
   );

@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-
+import { GRID_BOX_WIDTH, GRID_BOX_HEIGHT } from "../../../styles/constants";
 const GridItemIMG = styled.img`
-  width: ${(props) => (props.width ? props.width : "200px")};
-  height: ${(props) => (props.height ? props.height : "200px")};
+  width: ${(props) => (props.width ? props.width : `${GRID_BOX_WIDTH}px`)};
+  height: ${(props) => (props.height ? props.height : `${GRID_BOX_HEIGHT}px`)};
   object-fit: cover;
   border: ${(props) =>
     props.active ? "2px solid yellow" : "2px solid transparent"};

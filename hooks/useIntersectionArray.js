@@ -13,7 +13,6 @@ export function useIntersectionArray(
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setter(entry.target.id);
-            console.log(entry.target.id);
           }
         });
       },

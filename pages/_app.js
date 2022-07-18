@@ -3,6 +3,7 @@ import { Provider, createClient } from "urql";
 import AppLayout from "../components/AppLayout/AppLayout";
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
+import { StateContext } from "../lib/context";
 
 const client = createClient({
   url: "https://shielded-sea-51712.herokuapp.com/graphql",
@@ -13,18 +14,20 @@ const MyApp = ({ Component, pageProps }) => {
   const [currentSection, setCurrentSection] = useState("");
   const [currentIdInView, setCurrentIdInView] = useState(0);
   return (
-    <Provider value={client}>
-      <AppLayout
-        feedView={{ feedViewProp: feedView, setFeedViewProp: setFeedView }}
-        currentSection={{ currentSection, setCurrentSection }}
-      >
-        <Component
-          {...pageProps}
+    <StateContext>
+      <Provider value={client}>
+        <AppLayout
           feedView={{ feedViewProp: feedView, setFeedViewProp: setFeedView }}
-          currentId={{ currentIdInView, setCurrentIdInView }}
-        />
-      </AppLayout>
-    </Provider>
+          currentSection={{ currentSection, setCurrentSection }}
+        >
+          <Component
+            {...pageProps}
+            feedView={{ feedViewProp: feedView, setFeedViewProp: setFeedView }}
+            currentId={{ currentIdInView, setCurrentIdInView }}
+          />
+        </AppLayout>
+      </Provider>
+    </StateContext>
   );
 };
 

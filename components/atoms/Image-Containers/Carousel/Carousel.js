@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Flex from "../Styled-Containers/Flex/Flex";
+import Flex from "../../Styled-Containers/Flex/Flex";
 import styled from "styled-components";
 
 const CarouselContainer = styled.div`

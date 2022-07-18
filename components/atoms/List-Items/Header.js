@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-
+import { MAX_WINDOW_WIDTH } from "../../../styles/constants";
 const StyledHeader = styled.li`
-  grid-column: 1/-1;
-  grid-row: 1 / -1;
+  /* grid-column: 1/-1; */
+  grid-row: 2;
   color: ${(props) => (props.color ? props.color : "#434343")};
   font-family: Arial, Helvetica, sans-serif;
   font-size: 21px;
@@ -11,10 +11,9 @@ const StyledHeader = styled.li`
   text-align: ${(props) => (props.textAlign ? props.textAlign : "right")};
   list-style-type: none;
   padding: ${(props) => props.padding};
-  /* &:hover {
-    color: #fff100;
-    cursor: pointer;
-  } */
+  @media (min-width: ${MAX_WINDOW_WIDTH}px) {
+    grid-row: 1;
+  }
 `;
 
 export default function Header({
