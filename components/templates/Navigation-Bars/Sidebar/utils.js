@@ -1,12 +1,12 @@
 import Link from "next/link";
 import Header from "../../../atoms/List-Items/Header";
 import Subtitle from "../../../atoms/List-Items/Subtitle";
-import { StyledSpan } from "./styles";
+import { StyledSpan, StyledUl } from "./styles";
 import { useRouter } from "next/router";
 import Title from "../../../atoms/Title/Title";
 import TopBarSelctor from "../../../atoms/TopBarSelector/TopBarSelctor";
 import { OverlappingFieldsCanBeMergedRule } from "graphql";
-import { fontColors } from "../../../../styles/constants";
+// import { fontColors } from "../../../../styles/constants";
 import { useStateContext } from "../../../../lib/context";
 export const SIDEBAR_DATA = [
   { link: "HOME", subLink: ["Home Archive"], href: "/" },
@@ -49,7 +49,7 @@ export const sideBarBuilder = (data, currentSection) => {
     let homeLink = mainCategory.href;
     return (
       <>
-        <ul key={idx + 1}>
+        <StyledUl key={idx + 1} margin="10px 0">
           <Header
             darkMode={darkMode}
             active={currentRoute === `/${lowerCaseCategory}`}
@@ -70,7 +70,6 @@ export const sideBarBuilder = (data, currentSection) => {
               <Subtitle
                 darkMode={darkMode}
                 key={idx2}
-                color={fontColors.default}
                 active={
                   currentRoute ===
                   `/${lowerCaseCategory}/${lowerCaseSubCategory}`
@@ -82,7 +81,7 @@ export const sideBarBuilder = (data, currentSection) => {
               </Subtitle>
             );
           })}
-        </ul>
+        </StyledUl>
       </>
     );
   });

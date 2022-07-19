@@ -1,30 +1,62 @@
 import React from "react";
 import styled from "styled-components";
 import StyledSvgContainer from "./StyledSvgContainer";
+const { motion } = require("framer-motion");
+import { TRANSITION_TIMES } from "../../../styles/constants";
+
+const HelperContainer = styled.div`
+  width: 94px;
+  height: 54px;
+  border-right: ${(props) =>
+    props.darkMode ? `1px solid white` : "1px solid black"};
+  transition: ease-in-out ${TRANSITION_TIMES.body}ms;
+  background-color: ${(props) =>
+    props.darkMode ? props.theme.dark.body : props.theme.light.body};
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  left: 0;
+`;
 
 export default function GridBox({
   width,
   height,
   stroke,
+  margin,
   hover,
   fill,
   active,
+  scale,
+  flexShrink,
+  position,
+  left,
+  darkMode,
+  onClick,
 }) {
   return (
-    <StyledSvgContainer
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 300 300"
-      fill={fill}
-      height={height}
-      width={width}
-      stroke={stroke}
-      hover={hover}
-      active={active}
-    >
-      <path
-        class="cls-1"
-        d="M33.12 33.12h64.94v64.94H33.12zM117.53 33.12h64.94v64.94h-64.94zM201.93 33.12h64.94v64.94h-64.94zM33.12 117.53h64.94v64.94H33.12zM117.53 117.53h64.94v64.94h-64.94zM201.93 117.53h64.94v64.94h-64.94zM33.12 201.93h64.94v64.94H33.12zM117.53 201.93h64.94v64.94h-64.94zM201.93 201.93h64.94v64.94h-64.94z"
-      />
-    </StyledSvgContainer>
+    <HelperContainer darkMode={darkMode}>
+      <StyledSvgContainer
+        viewBox="0 0 48 48"
+        onClick={onClick}
+        width="48"
+        height="48"
+        whileHover={{ scale: 1.03 }}
+        whileTap={{ scale: 1 }}
+        flexShrink={0}
+        fill={"#ececed"}
+        hover={"yellow"}
+        active={"black"}
+        position={"sticky"}
+        left={0}
+        margin={"0 0 0 3px"}
+      >
+        <path
+          class="cls-1"
+          d="M 0 0 L 13.334 0 L 13.334 13.335 L 0 13.335 L 0 0 Z M 17.332 0 L 30.669 0 L 30.669 13.335 L 17.332 13.335 L 17.332 0 Z M 34.666 0 L 48 0 L 48 13.335 L 34.666 13.335 L 34.666 0 Z M 0 17.335 L 13.334 17.335 L 13.334 30.668 L 0 30.668 L 0 17.335 Z M 17.332 17.335 L 30.669 17.335 L 30.669 30.668 L 17.332 30.668 L 17.332 17.335 Z M 34.666 17.335 L 48 17.335 L 48 30.668 L 34.666 30.668 L 34.666 17.335 Z M 0 34.665 L 13.334 34.665 L 13.334 48 L 0 48 L 0 34.665 Z M 17.332 34.665 L 30.669 34.665 L 30.669 48 L 17.332 48 L 17.332 34.665 Z M 34.666 34.665 L 48 34.665 L 48 48 L 34.666 48 L 34.666 34.665 Z"
+          data-bx-origin="0.59 0.5"
+        ></path>
+      </StyledSvgContainer>
+    </HelperContainer>
   );
 }

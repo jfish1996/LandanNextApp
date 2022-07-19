@@ -5,16 +5,23 @@ import { useQuery } from "urql";
 import { SUB_SECTION_TITLES } from "../../../lib/query";
 import FilterItem from "../../atoms/List-Items/FilterItem";
 import Grid from "../../atoms/Styled-Containers/Grid/Grid";
-import { MAX_WINDOW_WIDTH, TOP_NAV_HEIGHT } from "../../../styles/constants";
+import {
+  MAX_WINDOW_WIDTH,
+  TOP_NAV_HEIGHT,
+  TRANSITION_TIMES,
+  Z_INDEXS,
+} from "../../../styles/constants";
 import { useStateContext } from "../../../lib/context";
 
 const StyledUL = styled.ul`
+  z-index: ${Z_INDEXS.scrollBars};
   margin: 0;
   display: flex;
   grid-column: 1/-1;
   overflow-x: scroll;
   background-color: ${(props) =>
     props.darkMode ? props.theme.dark.body : props.theme.light.body};
+  transition: ease-in-out ${TRANSITION_TIMES.body}ms;
   border-top: 1px solid lightgrey;
   border-bottom: 1px solid lightgrey;
   padding: 10px 0;

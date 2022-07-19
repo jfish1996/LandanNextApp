@@ -3,6 +3,7 @@ import { SIDEBAR_DATA, sideBarBuilder } from "./utils";
 import { StyledSidebar } from "./styles";
 import { useStateContext } from "../../../../lib/context";
 import Title from "../../../atoms/Title/Title";
+const { motion } = require("framer-motion");
 
 export default function Sidebar({ currentSection, display, bigScreenDisplay }) {
   const { darkMode } = useStateContext();

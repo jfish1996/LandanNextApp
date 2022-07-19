@@ -53,12 +53,7 @@ const Portfolio = ({ feedView, currentId }) => {
 
   return (
     <>
-      <Header
-        textAlign={"left"}
-        padding={"16px 0 0 0"}
-        fontWeight={"700"}
-        color={"black"}
-      >
+      <Header textAlign={"left"} fontWeight={"700"} color={"black"}>
         {CATEGORY_NAME.toUpperCase()}
       </Header>
       <PostBar

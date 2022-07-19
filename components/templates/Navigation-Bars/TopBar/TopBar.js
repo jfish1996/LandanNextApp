@@ -8,10 +8,15 @@ import {
 import styled from "styled-components";
 import Title from "../../../atoms/Title/Title";
 import TopBarSelctor from "../../../atoms/TopBarSelector/TopBarSelctor";
-import { MAX_WINDOW_WIDTH, TOP_NAV_HEIGHT } from "../../../../styles/constants";
+import {
+  MAX_WINDOW_WIDTH,
+  TOP_NAV_HEIGHT,
+  Z_INDEXS,
+} from "../../../../styles/constants";
 
 const StyledTopBar = styled.div`
   width: 100%;
+  z-index: ${Z_INDEXS.scrollBars};
   background-color: #ececed;
   position: sticky;
   top: 0;

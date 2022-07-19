@@ -20,6 +20,10 @@ const StyledP = styled.p`
 
 const PaddingContainer = styled.div`
   padding: ${(props) => props.padding};
+  display: ${(props) => props.smallMediaDisplay};
+  @media (min-width: ${MAX_WINDOW_WIDTH}px) {
+    display: ${(props) => props.largeMediaDisplay};
+  }
 `;
 
 export default function Title({

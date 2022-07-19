@@ -1,16 +1,23 @@
 import React, { useState } from "react";
 import Flex from "../../Styled-Containers/Flex/Flex";
 import styled from "styled-components";
-
+import { useStateContext } from "../../../../lib/context";
+import { TRANSITION_TIMES } from "../../../../styles/constants";
+import { ArrowLeft, ArrowRight } from "../../SVGs/Arrows";
 const CarouselContainer = styled.div`
   display: flex;
-  background-color: lightgray;
+  background-color: ${(props) =>
+    props.darkMode ? props.theme.dark.sidebar : props.theme.light.sidebar};
   width: 100%;
+  transition: ease-in-out ${TRANSITION_TIMES.body}ms;
   aspect-ratio: ${(props) => props.aspectRatio};
   justify-content: center;
+  position: relative;
+  user-select: none;
 `;
 
 const Carousel = ({ post, id }, ref) => {
+  const { darkMode } = useStateContext();
   const [ratio, setRatio] = useState("");
   const [activeIdx, setActiveIdx] = useState(0);
   const imgData = post?.attributes?.Img?.data;
@@ -22,6 +29,7 @@ const Carousel = ({ post, id }, ref) => {
         aspectRatio={aspectRatio ? aspectRatio : "16/9"}
         ref={ref}
         id={id}
+        darkMode={darkMode}
       >
         {imgData?.map((item, idx) => {
           return idx === activeIdx ? (
@@ -32,26 +40,22 @@ const Carousel = ({ post, id }, ref) => {
           ) : null;
         })}
       </CarouselContainer>
-      <Flex width={"100%"} justifyContent={"space-between"}>
+      <Flex width={"100%"} justifyContent={"start"} gap={"10px"}>
         {" "}
-        <button
+        <ArrowLeft
           onClick={() =>
             activeIdx === 0
               ? setActiveIdx(imgData.length - 1)
               : setActiveIdx(activeIdx - 1)
           }
-        >
-          Back{" "}
-        </button>
-        <button
+        />
+        <ArrowRight
           onClick={() =>
             activeIdx === imgData.length - 1
               ? setActiveIdx(0)
               : setActiveIdx(activeIdx + 1)
           }
-        >
-          Next
-        </button>
+        />
       </Flex>
     </>
   );

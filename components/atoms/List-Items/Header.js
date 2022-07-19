@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { MAX_WINDOW_WIDTH } from "../../../styles/constants";
 import { useStateContext } from "../../../lib/context";
+const { motion } = require("framer-motion");
 const StyledHeader = styled.li`
   /* grid-column: 1/-1; */
   grid-row: 2;

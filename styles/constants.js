@@ -13,8 +13,16 @@ export const TOP_NAV_HEIGHT = 80;
 export const SIDE_NAV_WIDTH = 350;
 export const SIDE_NAV_PADDING = 75;
 export const SIDE_NAV_MARGIN = SIDE_NAV_WIDTH + SIDE_NAV_PADDING;
-export const fontColors = {
-  default: " #434343",
+
+export const TRANSITION_TIMES = {
+  sidebar: 200,
+  body: 300,
+  text: 300,
+};
+
+export const Z_INDEXS = {
+  scrollBars: 2,
+  arrows: 1,
 };
 
 export const theme = {

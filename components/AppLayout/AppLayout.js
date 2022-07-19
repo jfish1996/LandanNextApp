@@ -14,6 +14,7 @@ import {
   SIDE_NAV_WIDTH,
   SIDE_NAV_MARGIN,
   SIDE_NAV_PADDING,
+  TRANSITION_TIMES,
 } from "../../styles/constants";
 import MediaQuery from "react-responsive";
 
@@ -21,7 +22,14 @@ const GlobalStyle = createGlobalStyle`
   body {
     background-color : ${(props) =>
       props.darkMode ? props.theme.dark.body : props.theme.light.body};
-       transition: ease-in-out 300ms;
+       transition: ease-in-out ${TRANSITION_TIMES.body}ms;
+   
+  }
+
+  * {
+  color: ${(props) =>
+    props.darkMode ? props.theme.dark.text : props.theme.light.text};
+    
   }
   `;
 
@@ -63,6 +71,7 @@ export default function AppLayout({ children, feedView, currentSection }) {
             firstName={"LANDY"}
             lastName={"PANDY"}
             fontSize={"2.5rem"}
+            padding={"0 0 45px 0"}
             hoverCursor={"pointer"}
             onClick={() => {
               setDarkMode((prevState) => !prevState), console.log(darkMode);
