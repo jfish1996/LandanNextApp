@@ -23,8 +23,7 @@ const FeedItem = (
       //carousel returns
       return (
         <div id={item.Title}>
-          <PostContainer>
-            {" "}
+          <PostContainer item={item}>
             <Carousel post={carouselItem} ref={ref} id={id} />
           </PostContainer>
         </div>
@@ -44,7 +43,9 @@ const FeedItem = (
       return (
         //single returns
         <div id={item.Title}>
-          <SingleImagePost src={smallURL || defaultURL} ref={ref} id={id} />
+          <PostContainer item={item}>
+            <SingleImagePost src={smallURL || defaultURL} ref={ref} id={id} />
+          </PostContainer>
         </div>
       );
     }

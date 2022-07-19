@@ -5,14 +5,18 @@ import AddToCart from "../SVGs/AddToCart";
 import Fart from "../SVGs/Fart";
 import Checkout from "../SVGs/Checkout";
 import { ArrowLeft, ArrowRight } from "../SVGs/Arrows";
-// import heartimport from "../../../public/assets/svgs/heart";
+import RichTextParagraph from "../RichTextParagraph/RichTextParagraph";
 const { motion } = require("framer-motion");
-export default function PostContainer({ children, date, price, title }) {
+export default function PostContainer({ children, item }) {
+  const { Title, FullDescription, Date } = item;
+  console.log(item);
   return (
     <>
-      {/* <ArrowRight />
-      <ArrowLeft /> */}
       {children}
+      <h3>{Title}</h3>
+      <RichTextParagraph markup={FullDescription} />
+      {item.likes && <p>likes: {item.likes}</p>}
+      <span>{Date}</span>
     </>
   );
 }
