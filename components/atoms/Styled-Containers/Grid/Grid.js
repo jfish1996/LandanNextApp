@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { animate, motion } from "framer-motion";
 import { MAX_WINDOW_WIDTH } from "../../../../styles/constants";
 
-const StyledGrid = styled.div`
+const StyledGrid = styled(motion.div)`
   display: grid;
   grid-template-columns: ${(props) => props.gridColumns};
   justify-content: center;
@@ -33,6 +34,8 @@ export default function Grid({
   padding,
   overflow,
   bigScreenMargin,
+  animate,
+  initial,
 }) {
   return (
     <StyledGrid
@@ -45,6 +48,8 @@ export default function Grid({
       rowGap={rowGap}
       columnGap={columnGap}
       bigScreenMargin={bigScreenMargin}
+      animate={animate}
+      initial={initial}
     >
       {children}
     </StyledGrid>

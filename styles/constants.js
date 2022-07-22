@@ -20,6 +20,12 @@ export const TRANSITION_TIMES = {
   text: 300,
 };
 
+export const POST_TRANSITION_TIMES = {
+  intial: { opacity: 0, scale: 0.9 },
+  animate: { opacity: 1, scale: 1 },
+  transition: { delay: 0.09 },
+};
+
 export const Z_INDEXS = {
   scrollBars: 2,
   arrows: 1,

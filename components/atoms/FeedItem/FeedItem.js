@@ -4,49 +4,70 @@ import Carousel from "../Image-Containers/Carousel/Carousel";
 import SingleImagePost from "../Image-Containers/SingleImagePost/SingleImagePost";
 import PostContainer from "../PostContainer/PostContainer";
 import ProductContainer from "../ProductContainer/ProductContainer";
+import { motion } from "framer-motion";
+import { POST_TRANSITION_TIMES } from "../../../styles/constants";
 const FeedItem = (
   { smallURL, defaultURL, onClick, carouselItem, id, product, item },
   ref
 ) => {
   //product returns
-  console.log(item.Title);
   if (carouselItem) {
     if (product) {
       return (
-        <div id={item.Title}>
+        <motion.div
+          id={item.Title}
+          initial={POST_TRANSITION_TIMES.intial}
+          animate={POST_TRANSITION_TIMES.animate}
+          transition={POST_TRANSITION_TIMES.transition}
+        >
           <ProductContainer item={item} id={id}>
             <Carousel post={carouselItem} ref={ref} id={id} />
           </ProductContainer>
-        </div>
+        </motion.div>
       );
     } else {
       //carousel returns
       return (
-        <div id={item.Title}>
-          <PostContainer item={item}>
+        <motion.div
+          id={item.Title}
+          initial={POST_TRANSITION_TIMES.intial}
+          animate={POST_TRANSITION_TIMES.animate}
+          transition={POST_TRANSITION_TIMES.transition}
+        >
+          <PostContainer item={item} id={id}>
             <Carousel post={carouselItem} ref={ref} id={id} />
           </PostContainer>
-        </div>
+        </motion.div>
       );
     }
   } else {
     if (product) {
       return (
         //product returns
-        <div id={item.Title}>
-          THIS IS A PORDUCT
-          <SingleImagePost src={smallURL || defaultURL} ref={ref} id={id} />
-        </div>
+        <motion.div
+          id={item.Title}
+          initial={POST_TRANSITION_TIMES.intial}
+          animate={POST_TRANSITION_TIMES.animate}
+          transition={POST_TRANSITION_TIMES.transition}
+        >
+          <ProductContainer>
+            <SingleImagePost src={smallURL || defaultURL} ref={ref} id={id} />
+          </ProductContainer>
+        </motion.div>
       );
     } else {
-      console.log(item.Title);
       return (
         //single returns
-        <div id={item.Title}>
-          <PostContainer item={item}>
+        <motion.div
+          id={item.Title}
+          initial={POST_TRANSITION_TIMES.intial}
+          animate={POST_TRANSITION_TIMES.animate}
+          transition={POST_TRANSITION_TIMES.transition}
+        >
+          <PostContainer item={item} id={id}>
             <SingleImagePost src={smallURL || defaultURL} ref={ref} id={id} />
           </PostContainer>
-        </div>
+        </motion.div>
       );
     }
   }

@@ -31,8 +31,8 @@ export function ArrowLeft({ onClick }) {
       viewBox="0 0 40 40"
       width="40"
       height="40"
-      whileHover={{ scale: 1.03 }}
-      whileTap={{ scale: 1 }}
+      whileHover={{ scale: 1.6 }}
+      whileTap={{ scale: 0.9 }}
       fill={"#ececed"}
       hover={"yellow"}
       active={"black"}

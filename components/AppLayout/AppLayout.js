@@ -62,11 +62,6 @@ export default function AppLayout({ children, feedView, currentSection }) {
           minWidth={`${MIN_WINDOW_WITH}px`}
           bigScreenMargin={`${SIDE_NAV_PADDING}px ${SIDE_NAV_PADDING}px 0 ${SIDE_NAV_MARGIN}px`}
         >
-          {/* <Flex
-            alignItems={"flex-start"}
-            flexDirection={"column"}
-            padding={"0 0 35px 0"}
-          > */}
           <Title
             firstName={"LANDY"}
             lastName={"PANDY"}
@@ -74,12 +69,15 @@ export default function AppLayout({ children, feedView, currentSection }) {
             padding={"0 0 45px 0"}
             hoverCursor={"pointer"}
             onClick={() => {
-              setDarkMode((prevState) => !prevState), console.log(darkMode);
+              setDarkMode((prevState) => {
+                localStorage.setItem("darkMode", !prevState);
+                return !prevState;
+              });
             }}
             smallMediaDisplay={"none"}
             largeMediaDisplay={"block"}
           />
-          {/* </Flex> */}
+
           <GridView feedView={feedView}>
             <TopBar currentSection={currentSection} />
             {children}

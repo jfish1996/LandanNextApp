@@ -10,6 +10,7 @@ import { TOP_NAV_HEIGHT } from "../../styles/constants";
 export default function ShmocialSmedia({ feedView, currentId }) {
   const CATEGORY_NAME = "Social";
   const { markup, posts } = returnCategoryData(CATEGORY_NAME);
+  console.log(posts, "port posts");
   const ref = useRef([]);
   const addToRefs = (el) => {
     if (el && !ref.current.includes(el)) {
@@ -37,12 +38,7 @@ export default function ShmocialSmedia({ feedView, currentId }) {
   useIntersectionArray(ref, feedView, currentId.setCurrentIdInView);
   return (
     <>
-      <Header
-        textAlign={"left"}
-        padding={"16px 0 0 0"}
-        fontWeight={"700"}
-        color={"black"}
-      >
+      <Header textAlign={"left"} fontWeight={"700"} color={"black"}>
         {CATEGORY_NAME.toUpperCase()}
       </Header>
       <PostBar

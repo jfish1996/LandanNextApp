@@ -36,7 +36,7 @@ export default async function handler(req, res) {
           };
         }),
         success_url: `${req.headers.origin}/success?&session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${req.headers.origin}/canceled`,
+        cancel_url: `${req.headers.origin}/shop/cart`,
       });
       res.status(200).json(session);
     } catch (error) {

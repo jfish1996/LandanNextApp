@@ -3,6 +3,7 @@ import { TOP_NAV_HEIGHT } from "../../../styles/constants";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import GridItem from "../../atoms/GridItem/GridItem";
+import PostBarItem from "../../atoms/PostBarItem/PostBarItem";
 import Flex from "../../atoms/Styled-Containers/Flex/Flex";
 import {
   MAX_WINDOW_WIDTH,
@@ -85,19 +86,6 @@ const PostBar = ({
       >
         <Flex width={"100%"} overflow={"scroll"} alignItems={"center"}>
           <Flex alignItems={"center"}>
-            {/* <div
-              style={{
-                width: "94px",
-                height: "54px",
-                borderRight: "1px solid black",
-                backgroundColor: "white",
-                flexShrink: 0,
-                display: "flex",
-                alignItems: "center",
-                position: "sticky",
-                left: 0,
-              }}
-            > */}
             <GridBox
               position={"sticky"}
               darkMode={darkMode}
@@ -110,7 +98,7 @@ const PostBar = ({
                 setGridOrFeed(!scrolling), setClickToElement(true);
               }}
             />
-            {/* </div> */}
+
             {posts?.map((item, idx) => {
               const defaultURL =
                 item?.attributes?.Img?.data[0]?.attributes?.url;
@@ -123,9 +111,8 @@ const PostBar = ({
                   offset={-120}
                   style={{ display: "flex" }}
                 >
-                  <GridItem
+                  <PostBarItem
                     key={idx}
-                    // onClick={() => setElementScrollId(item.id)}
                     width={"50px"}
                     height={"50px"}
                     defaultURL={defaultURL}

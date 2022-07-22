@@ -9,7 +9,7 @@ import { OverlappingFieldsCanBeMergedRule } from "graphql";
 // import { fontColors } from "../../../../styles/constants";
 import { useStateContext } from "../../../../lib/context";
 export const SIDEBAR_DATA = [
-  { link: "HOME", subLink: ["Home Archive"], href: "/" },
+  { link: "HOME", subLink: ["Home Archive"], href: "/", homeHref: "/home" },
   {
     link: "PORTFOLIO",
     subLink: ["pitch book", "case studies", "illustrations"],
@@ -47,6 +47,7 @@ export const sideBarBuilder = (data, currentSection) => {
   return data.map((mainCategory, idx) => {
     let lowerCaseCategory = mainCategory.link.toLowerCase().replace(/ /g, "");
     let homeLink = mainCategory.href;
+
     return (
       <>
         <StyledUl key={idx + 1} margin="10px 0">
@@ -57,7 +58,7 @@ export const sideBarBuilder = (data, currentSection) => {
             key={idx}
             onClick={() => currentSection.setCurrentSection(lowerCaseCategory)}
           >
-            <Link href={`/${homeLink || lowerCaseCategory}`}>
+            <Link href={`/${lowerCaseCategory}`}>
               <StyledSpan darkMode={darkMode}>{mainCategory.link}</StyledSpan>
             </Link>
           </Header>
@@ -104,11 +105,11 @@ export const topBarMainSection = (data, currentSection) => {
               darkMode={darkMode}
               key={idx}
               onClick={() => {
-                currentSection.setCurrentSection(mainCategory);
+                currentSection.setCurrentSection(lowerCaseCategory);
               }}
               active={currentRoute === `/${lowerCaseCategory}`}
             >
-              <Link href={`/${homeLink || lowerCaseCategory}`}>
+              <Link href={`/${lowerCaseCategory}`}>
                 <StyledSpan darkMode={darkMode}>{mainCategory.link}</StyledSpan>
               </Link>
             </Subtitle>
@@ -125,10 +126,10 @@ export const topBarSubSection = (data, currentSection) => {
   return (
     <TopBarSelctor textAlign={"right"}>
       {data.map((mainCategory, idx2) => {
-        if (mainCategory === currentSection.currentSection) {
-          let lowerCaseCategory = mainCategory.link
-            .toLowerCase()
-            .replace(/ /g, "");
+        let lowerCaseCategory = mainCategory.link
+          .toLowerCase()
+          .replace(/ /g, "");
+        if (lowerCaseCategory === currentSection.currentSection) {
           return mainCategory.subLink.map((subCategory, idx) => {
             let lowerCaseSubCategory = subCategory
               .toLowerCase()

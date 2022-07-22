@@ -1,6 +1,7 @@
 import React from "react";
 import { returnCategoryData } from "../../lib/returnData";
 import { returnPosts } from "../../lib/returnposts";
+import { returnLinks } from "../../lib/returnLinks";
 import RichTextParagraph from "../../components/atoms/RichTextParagraph/RichTextParagraph";
 export default function Links({ feedView }) {
   const CATEGORY_NAME = "Links";
@@ -8,7 +9,7 @@ export default function Links({ feedView }) {
   return (
     <>
       <RichTextParagraph markup={markup} />
-      {returnPosts(posts, feedView)}
+      {returnLinks(posts)}
     </>
   );
 }

@@ -23,6 +23,26 @@ const Carousel = ({ post, id }, ref) => {
   const imgData = post?.attributes?.Img?.data;
   const aspectRatio = post?.attributes?.aspectRatio;
 
+  const imageOrVideo = (item, idx) => {
+    if (item.attributes.ext === ".mp4") {
+      console.log(item);
+      return idx === activeIdx ? (
+        <iframe
+          src={item?.attributes?.url}
+          style={{ objectFit: "contain", width: "100%" }}
+          type="video/mp4"
+        />
+      ) : null;
+    } else {
+      return idx === activeIdx ? (
+        <img
+          src={item?.attributes?.formats?.small?.url}
+          style={{ objectFit: "contain", width: "100%" }}
+        />
+      ) : null;
+    }
+  };
+
   return (
     <>
       <CarouselContainer
@@ -32,12 +52,7 @@ const Carousel = ({ post, id }, ref) => {
         darkMode={darkMode}
       >
         {imgData?.map((item, idx) => {
-          return idx === activeIdx ? (
-            <img
-              src={item?.attributes?.formats?.small?.url}
-              style={{ objectFit: "contain", width: "100%" }}
-            />
-          ) : null;
+          return imageOrVideo(item, idx);
         })}
       </CarouselContainer>
       <Flex width={"100%"} justifyContent={"start"} gap={"10px"}>
