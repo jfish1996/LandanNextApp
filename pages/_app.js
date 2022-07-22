@@ -8,7 +8,7 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../styles/constants";
 console.log(theme);
 const client = createClient({
-  url: "https://shielded-sea-51712.herokuapp.com/graphql",
+  url: process.env.NEXT_PUBLIC_BACK_END_URL,
 });
 
 const MyApp = ({ Component, pageProps }) => {
