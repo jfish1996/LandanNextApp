@@ -10,10 +10,30 @@ import Flex from "../../components/atoms/Styled-Containers/Flex/Flex";
 import SingleImagePost from "../../components/atoms/Image-Containers/SingleImagePost/SingleImagePost";
 import Header from "../../components/atoms/List-Items/Header";
 import styled from "styled-components";
-import { HomeItemIMG, Container } from "./styledHomePage";
 import SkeletonHome from "../../components/molecules/SkeletonTemplate/SkeletonHome";
 import EasterEgg from "../../components/atoms/EasterEgg/EasterEgg";
 import { useStateContext } from "../../lib/context";
+export const Container = styled.div`
+  width: 100%;
+  background-color: ${(props) =>
+    props.darkMode ? props.theme.dark.sidebar : props.theme.light.sidebar};
+
+  grid-column: 1/-1;
+  -webkit-user-drag: none;
+  z-index: 0;
+`;
+
+export const HomeItemIMG = styled.img`
+  width: 100%;
+  object-fit: contain;
+  aspect-ratio: ${(props) => props.aspectRatio};
+  object-fit: contain;
+  grid-row: ${(props) => props.gridRow};
+  grid-column: ${(props) => props.gridColumn};
+  -webkit-user-drag: none;
+  z-index: 0;
+`;
+
 const Home = () => {
   const { fetching, posts } = returnHomePageImage();
   const { hiddenImgSrc, hiddenImgText } = returnHiddenHomeImage();
