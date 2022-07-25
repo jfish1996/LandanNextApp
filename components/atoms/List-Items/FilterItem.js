@@ -20,6 +20,16 @@ const StyledFilterListItem = styled.li`
       -0.01em 0 #101010;
     cursor: pointer;
   }
+  animation: LeftRight 0.5s linear 0.6s;
+  @keyframes LeftRight {
+    0%,
+    100% {
+      transform: translateX(0px);
+    }
+    50% {
+      transform: translateX(-60px);
+    }
+  }
 `;
 
 export default function FilterItem({ onClick, children, active }) {

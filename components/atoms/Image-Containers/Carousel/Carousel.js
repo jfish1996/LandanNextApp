@@ -2,10 +2,14 @@ import React, { useState } from "react";
 import Flex from "../../Styled-Containers/Flex/Flex";
 import styled from "styled-components";
 import { useStateContext } from "../../../../lib/context";
-import { TRANSITION_TIMES } from "../../../../styles/constants";
+import {
+  TRANSITION_TIMES,
+  MARGIN_BETWEEN_POSTS,
+} from "../../../../styles/constants";
 import { ArrowLeft, ArrowRight } from "../../SVGs/Arrows";
 const CarouselContainer = styled.div`
   display: flex;
+  margin-top: ${MARGIN_BETWEEN_POSTS}px;
   background-color: ${(props) =>
     props.darkMode ? props.theme.dark.sidebar : props.theme.light.sidebar};
   width: 100%;

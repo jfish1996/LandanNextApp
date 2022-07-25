@@ -6,11 +6,12 @@ import Header from "../../components/atoms/List-Items/Header";
 import PostBar from "../../components/molecules/PostBar/PostBar";
 import { useIntersectionArray } from "../../hooks/useIntersectionArray";
 import { TOP_NAV_HEIGHT } from "../../styles/constants";
+import SkeletonTemplate from "../../components/molecules/SkeletonTemplate/SkeletonTemplate";
 
 export default function Posters({ feedView, currentId }) {
   const SECTION_NAME = "Posters.shop";
   const SECTION = "posters";
-  const { products, markup } = returnShopSectionData(SECTION_NAME);
+  const { fetching, products, markup } = returnShopSectionData(SECTION_NAME);
   const ref = useRef([]);
   const addToRefs = (el) => {
     if (el && !ref.current.includes(el)) {
@@ -36,14 +37,11 @@ export default function Posters({ feedView, currentId }) {
   }, [feedView, clickToElement]);
   //
   useIntersectionArray(ref, feedView, currentId.setCurrentIdInView);
-  return (
+  return fetching ? (
+    <SkeletonTemplate pageTitle={SECTION} />
+  ) : (
     <>
-      <Header
-        textAlign={"left"}
-        padding={"16px 0 0 0"}
-        fontWeight={"700"}
-        color={"black"}
-      >
+      <Header textAlign={"left"} fontWeight={"700"} color={"black"}>
         {SECTION.toUpperCase()}
       </Header>
       <PostBar

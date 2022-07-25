@@ -37,12 +37,7 @@ export default function Stickers({ feedView, currentId }) {
   useIntersectionArray(ref, feedView, currentId.setCurrentIdInView);
   return (
     <>
-      <Header
-        textAlign={"left"}
-        padding={"16px 0 0 0"}
-        fontWeight={"700"}
-        color={"black"}
-      >
+      <Header textAlign={"left"} fontWeight={"700"} color={"black"}>
         {SECTION.toUpperCase()}
       </Header>
       <PostBar

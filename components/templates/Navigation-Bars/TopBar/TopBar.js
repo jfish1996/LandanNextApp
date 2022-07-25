@@ -57,20 +57,31 @@ const StyledTopBar = styled.div`
 
 export default function TopBar({ currentSection }) {
   const { darkMode, setDarkMode } = useStateContext();
+
   const { ref, inView, entry } = useInView({
     threshold: 0.5,
   });
+  let trueFalse = false;
   useEffect(() => {
+    const darkModeLocal = JSON.parse(localStorage.getItem("darkMode"));
     if (window.innerWidth < 920) {
-      if (inView) {
-        localStorage.setItem("darkMode", true);
-        setDarkMode(true);
-      } else {
+      if (inView && darkModeLocal) {
         localStorage.setItem("darkMode", false);
         setDarkMode(false);
       }
+
+      if (inView && !darkModeLocal) {
+        localStorage.setItem("darkMode", true);
+        setDarkMode(true);
+      }
     }
+
+    // }
   }, [inView]);
+
+  // useEffect(() => {
+
+  // }, []);
 
   return (
     <>

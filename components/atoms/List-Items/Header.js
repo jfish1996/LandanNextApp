@@ -1,6 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { MAX_WINDOW_WIDTH } from "../../../styles/constants";
+import {
+  MAX_WINDOW_WIDTH,
+  SMALL_SCREEN_FONTS,
+  LARGE_SCREEN_FONTS,
+} from "../../../styles/constants";
 import { useStateContext } from "../../../lib/context";
 const { motion } = require("framer-motion");
 const StyledHeader = styled.li`
@@ -9,7 +13,7 @@ const StyledHeader = styled.li`
   color: ${(props) =>
     props.darkMode ? props.theme.dark.text : props.theme.light.text};
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 21px;
+  font-size: ${`${SMALL_SCREEN_FONTS}rem`};
   font-weight: ${(props) => (props.active ? "bold" : props.fontWeight)};
   text-align: ${(props) => (props.textAlign ? props.textAlign : "right")};
   list-style-type: none;
@@ -19,6 +23,7 @@ const StyledHeader = styled.li`
   }
   @media (min-width: ${MAX_WINDOW_WIDTH}px) {
     grid-row: 1;
+    font-size: ${`${LARGE_SCREEN_FONTS}rem`};
   }
 `;
 

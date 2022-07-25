@@ -8,9 +8,11 @@ import PostBar from "../../components/molecules/PostBar/PostBar";
 import { useIntersectionArray } from "../../hooks/useIntersectionArray";
 import { TOP_NAV_HEIGHT } from "../../styles/constants";
 import { returnPosts } from "../../lib/returnposts";
+import SkeletonTemplate from "../../components/molecules/SkeletonTemplate/SkeletonTemplate";
+
 export default function Shop({ feedView, currentId }) {
   const CATEGORY_NAME = "Shop";
-  const { products, markup } = returnShopCategoryData(CATEGORY_NAME);
+  const { fetching, products, markup } = returnShopCategoryData(CATEGORY_NAME);
 
   const ref = useRef([]);
   const addToRefs = (el) => {
@@ -37,14 +39,11 @@ export default function Shop({ feedView, currentId }) {
   }, [feedView, clickToElement]);
   //
   useIntersectionArray(ref, feedView, currentId.setCurrentIdInView);
-  return (
+  return fetching ? (
+    <SkeletonTemplate pageTitle={CATEGORY_NAME} />
+  ) : (
     <>
-      <Header
-        textAlign={"left"}
-        padding={"16px 0 0 0"}
-        fontWeight={"700"}
-        color={"black"}
-      >
+      <Header textAlign={"left"} fontWeight={"700"} color={"black"}>
         {CATEGORY_NAME.toUpperCase()}
       </Header>
       <PostBar

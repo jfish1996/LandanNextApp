@@ -9,10 +9,11 @@ import Header from "../../components/atoms/List-Items/Header";
 import PostBar from "../../components/molecules/PostBar/PostBar";
 import { useIntersectionArray } from "../../hooks/useIntersectionArray";
 import { TOP_NAV_HEIGHT } from "../../styles/constants";
+import SkeletonTemplate from "../../components/molecules/SkeletonTemplate/SkeletonTemplate";
 
 const HomeArchive = ({ feedView, currentId }) => {
   const CATEGORY_NAME = "Home Archive";
-  const { posts, richText } = returnHomeArchiveData();
+  const { fetching, posts, richText } = returnHomeArchiveData();
   console.log(posts, "arch posts");
   const ref = useRef([]);
   const addToRefs = (el) => {
@@ -40,14 +41,11 @@ const HomeArchive = ({ feedView, currentId }) => {
   }, [feedView, clickToElement]);
   //
   useIntersectionArray(ref, feedView, currentId.setCurrentIdInView);
-  return (
+  return fetching ? (
+    <SkeletonTemplate pageTitle={CATEGORY_NAME} />
+  ) : (
     <>
-      <Header
-        textAlign={"left"}
-        padding={"16px 0 0 0"}
-        fontWeight={"700"}
-        color={"black"}
-      >
+      <Header textAlign={"left"} fontWeight={"700"} color={"black"}>
         {CATEGORY_NAME.toUpperCase()}
       </Header>
       <PostBar

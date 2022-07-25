@@ -11,13 +11,12 @@ import Header from "../../components/atoms/List-Items/Header";
 import PostBar from "../../components/molecules/PostBar/PostBar";
 import { useIntersectionArray } from "../../hooks/useIntersectionArray";
 import { TOP_NAV_HEIGHT } from "../../styles/constants";
+import SkeletonTemplate from "../../components/molecules/SkeletonTemplate/SkeletonTemplate";
 const Portfolio = ({ feedView, currentId }) => {
   const CATEGORY_NAME = "Portfolio";
   const [currentSubSection, setCurrentSubSection] = useState("");
   const [filtering, setFiltering] = useState(false);
-  //
-  //
-  const { markup, posts } = returnCategoryData(CATEGORY_NAME);
+  const { fetching, markup, posts } = returnCategoryData(CATEGORY_NAME);
   const { filteredPosts } = returnFilteredCategory(currentSubSection);
   const ref = useRef([]);
   const addToRefs = (el) => {
@@ -51,7 +50,9 @@ const Portfolio = ({ feedView, currentId }) => {
     filteredPosts
   );
 
-  return (
+  return fetching ? (
+    <SkeletonTemplate pageTitle={CATEGORY_NAME} />
+  ) : (
     <>
       <Header textAlign={"left"} fontWeight={"700"} color={"black"}>
         {CATEGORY_NAME.toUpperCase()}

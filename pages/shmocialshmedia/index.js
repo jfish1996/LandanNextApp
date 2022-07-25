@@ -6,10 +6,10 @@ import Header from "../../components/atoms/List-Items/Header";
 import PostBar from "../../components/molecules/PostBar/PostBar";
 import { useIntersectionArray } from "../../hooks/useIntersectionArray";
 import { TOP_NAV_HEIGHT } from "../../styles/constants";
-
+import SkeletonTemplate from "../../components/molecules/SkeletonTemplate/SkeletonTemplate";
 export default function ShmocialSmedia({ feedView, currentId }) {
   const CATEGORY_NAME = "Social";
-  const { markup, posts } = returnCategoryData(CATEGORY_NAME);
+  const { fetching, markup, posts } = returnCategoryData(CATEGORY_NAME);
   console.log(posts, "port posts");
   const ref = useRef([]);
   const addToRefs = (el) => {
@@ -36,7 +36,9 @@ export default function ShmocialSmedia({ feedView, currentId }) {
   }, [feedView, clickToElement]);
   //
   useIntersectionArray(ref, feedView, currentId.setCurrentIdInView);
-  return (
+  return fetching ? (
+    <SkeletonTemplate pageTitle={CATEGORY_NAME} />
+  ) : (
     <>
       <Header textAlign={"left"} fontWeight={"700"} color={"black"}>
         {CATEGORY_NAME.toUpperCase()}

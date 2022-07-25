@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Head from "next/head";
 import { useRouter } from "next/router";
 const BaseURL = () => {
   const router = useRouter();
@@ -7,6 +8,10 @@ const BaseURL = () => {
       router.push("/home");
     }
   }, []);
-  return <></>;
+  return (
+    <Head>
+      <title>First Post</title>
+    </Head>
+  );
 };
 export default BaseURL;

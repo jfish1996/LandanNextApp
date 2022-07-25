@@ -15,6 +15,7 @@ import {
   SIDE_NAV_MARGIN,
   SIDE_NAV_PADDING,
   TRANSITION_TIMES,
+  MAIN_NAME_CONTENT_PADDING,
 } from "../../styles/constants";
 import MediaQuery from "react-responsive";
 
@@ -66,7 +67,7 @@ export default function AppLayout({ children, feedView, currentSection }) {
             firstName={"LANDY"}
             lastName={"PANDY"}
             fontSize={"2.5rem"}
-            padding={"0 0 45px 0"}
+            padding={`0 0 ${MAIN_NAME_CONTENT_PADDING}px 0`}
             hoverCursor={"pointer"}
             onClick={() => {
               setDarkMode((prevState) => {

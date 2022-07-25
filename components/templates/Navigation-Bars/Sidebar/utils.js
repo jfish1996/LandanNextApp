@@ -1,15 +1,25 @@
 import Link from "next/link";
 import Header from "../../../atoms/List-Items/Header";
 import Subtitle from "../../../atoms/List-Items/Subtitle";
-import { StyledSpan, StyledUl } from "./styles";
+import {
+  StyledSpan,
+  StyledUl,
+  StyledCartListItem,
+  StyledQuantityCircle,
+} from "./styles";
 import { useRouter } from "next/router";
 import Title from "../../../atoms/Title/Title";
 import TopBarSelctor from "../../../atoms/TopBarSelector/TopBarSelctor";
 import { OverlappingFieldsCanBeMergedRule } from "graphql";
-// import { fontColors } from "../../../../styles/constants";
+import {
+  SMALL_SCREEN_FONTS,
+  LARGE_SCREEN_FONTS,
+  UL_MARGIN,
+} from "../../../../styles/constants";
 import { useStateContext } from "../../../../lib/context";
+import Flex from "../../../atoms/Styled-Containers/Flex/Flex";
 export const SIDEBAR_DATA = [
-  { link: "HOME", subLink: ["Home Archive"], href: "/", homeHref: "/home" },
+  { link: "HOME", subLink: ["home archive"], href: "/", homeHref: "/home" },
   {
     link: "PORTFOLIO",
     subLink: ["pitch book", "case studies", "illustrations"],
@@ -40,6 +50,50 @@ export const SIDEBAR_DATA = [
   },
 ];
 
+export const handleCart = (
+  subCategory,
+  darkMode,
+  currentRoute,
+  lowerCaseCategory,
+  lowerCaseSubCategory
+) => {
+  const { cartItems } = useStateContext();
+  let totalCartItems = cartItems.reduce((curNumber, item) => {
+    return curNumber + item.quantity;
+  }, 0);
+
+  return (
+    <>
+      <Subtitle>
+        <Flex justifyContent={"flex-end"} gap={"10px"} alignItems={"center"}>
+          <Link href={`/${lowerCaseCategory}/${lowerCaseSubCategory}`}>
+            <StyledCartListItem
+              darkMode={darkMode}
+              smallScreenFont={SMALL_SCREEN_FONTS}
+              largeScreenFont={LARGE_SCREEN_FONTS}
+              colorHover={"#fff100"}
+              active={
+                currentRoute === `/${lowerCaseCategory}/${lowerCaseSubCategory}`
+              }
+            >
+              {subCategory}
+            </StyledCartListItem>
+          </Link>
+          <StyledCartListItem
+            darkMode={darkMode}
+            smallScreenFont={SMALL_SCREEN_FONTS}
+            largeScreenFont={LARGE_SCREEN_FONTS}
+          >
+            <StyledQuantityCircle darkMode={darkMode}>
+              {totalCartItems}
+            </StyledQuantityCircle>
+          </StyledCartListItem>
+        </Flex>
+      </Subtitle>
+    </>
+  );
+};
+
 export const sideBarBuilder = (data, currentSection) => {
   const { darkMode } = useStateContext();
   const router = useRouter();
@@ -50,7 +104,7 @@ export const sideBarBuilder = (data, currentSection) => {
 
     return (
       <>
-        <StyledUl key={idx + 1} margin="10px 0">
+        <StyledUl key={idx + 1} margin={`${UL_MARGIN}px 0`}>
           <Header
             darkMode={darkMode}
             active={currentRoute === `/${lowerCaseCategory}`}
@@ -59,7 +113,13 @@ export const sideBarBuilder = (data, currentSection) => {
             onClick={() => currentSection.setCurrentSection(lowerCaseCategory)}
           >
             <Link href={`/${lowerCaseCategory}`}>
-              <StyledSpan darkMode={darkMode}>{mainCategory.link}</StyledSpan>
+              <StyledSpan
+                darkMode={darkMode}
+                smallScreenFont={SMALL_SCREEN_FONTS}
+                largeScreenFont={LARGE_SCREEN_FONTS}
+              >
+                {mainCategory.link}
+              </StyledSpan>
             </Link>
           </Header>
 
@@ -67,7 +127,15 @@ export const sideBarBuilder = (data, currentSection) => {
             let lowerCaseSubCategory = subCategory
               .toLowerCase()
               .replace(/ /g, "");
-            return (
+            return lowerCaseSubCategory === "cart" ? (
+              handleCart(
+                subCategory,
+                darkMode,
+                currentRoute,
+                lowerCaseCategory,
+                lowerCaseSubCategory
+              )
+            ) : (
               <Subtitle
                 darkMode={darkMode}
                 key={idx2}
@@ -77,7 +145,13 @@ export const sideBarBuilder = (data, currentSection) => {
                 }
               >
                 <Link href={`/${lowerCaseCategory}/${lowerCaseSubCategory}`}>
-                  <StyledSpan darkMode={darkMode}>{subCategory}</StyledSpan>
+                  <StyledSpan
+                    darkMode={darkMode}
+                    smallScreenFont={SMALL_SCREEN_FONTS}
+                    largeScreenFont={LARGE_SCREEN_FONTS}
+                  >
+                    {subCategory}
+                  </StyledSpan>
                 </Link>
               </Subtitle>
             );
@@ -102,6 +176,7 @@ export const topBarMainSection = (data, currentSection) => {
           let homeLink = mainCategory.href;
           return (
             <Subtitle
+              smallScreenAnimation={true}
               darkMode={darkMode}
               key={idx}
               onClick={() => {
@@ -110,7 +185,13 @@ export const topBarMainSection = (data, currentSection) => {
               active={currentRoute === `/${lowerCaseCategory}`}
             >
               <Link href={`/${lowerCaseCategory}`}>
-                <StyledSpan darkMode={darkMode}>{mainCategory.link}</StyledSpan>
+                <StyledSpan
+                  darkMode={darkMode}
+                  smallScreenFont={SMALL_SCREEN_FONTS}
+                  largeScreenFont={LARGE_SCREEN_FONTS}
+                >
+                  {mainCategory.link}
+                </StyledSpan>
               </Link>
             </Subtitle>
           );
@@ -129,13 +210,14 @@ export const topBarSubSection = (data, currentSection) => {
         let lowerCaseCategory = mainCategory.link
           .toLowerCase()
           .replace(/ /g, "");
-        if (lowerCaseCategory === currentSection.currentSection) {
+        if (currentRoute.includes(lowerCaseCategory)) {
           return mainCategory.subLink.map((subCategory, idx) => {
             let lowerCaseSubCategory = subCategory
               .toLowerCase()
               .replace(/ /g, "");
             return (
               <Subtitle
+                smallScreenAnimation={true}
                 key={idx2}
                 active={
                   currentRoute ===
@@ -143,7 +225,13 @@ export const topBarSubSection = (data, currentSection) => {
                 }
               >
                 <Link href={`/${lowerCaseCategory}/${lowerCaseSubCategory}`}>
-                  <StyledSpan darkMode={darkMode}>{subCategory}</StyledSpan>
+                  <StyledSpan
+                    darkMode={darkMode}
+                    smallScreenFont={SMALL_SCREEN_FONTS}
+                    largeScreenFont={LARGE_SCREEN_FONTS}
+                  >
+                    {subCategory}
+                  </StyledSpan>
                 </Link>
               </Subtitle>
             );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import Flex from "../../atoms/Styled-Containers/Flex/Flex";
 import { useQuery } from "urql";
@@ -11,9 +11,10 @@ import {
   TRANSITION_TIMES,
   Z_INDEXS,
 } from "../../../styles/constants";
+import { motion } from "framer-motion";
 import { useStateContext } from "../../../lib/context";
 
-const StyledUL = styled.ul`
+const StyledUL = styled(motion.ul)`
   z-index: ${Z_INDEXS.scrollBars};
   margin: 0;
   display: flex;
@@ -54,6 +55,7 @@ export default function Filterbar({
     setCurrentSubSection(subSectionName);
     setCurrentListItem(idx);
   };
+
   return (
     <StyledUL darkMode={darkMode}>
       <FilterItem

@@ -8,13 +8,14 @@ import PostBar from "../../components/molecules/PostBar/PostBar";
 import Header from "../../components/atoms/List-Items/Header";
 import { useIntersectionArray } from "../../hooks/useIntersectionArray";
 import { TOP_NAV_HEIGHT } from "../../styles/constants";
+import SkeletonTemplate from "../../components/molecules/SkeletonTemplate/SkeletonTemplate";
 
 export default function PitchBook({ feedView, currentId }) {
   const SECTION_NAME = "PitchBook.port";
   const SECTION = "PitchBook";
   const [currentSubSection, setCurrentSubSection] = useState("");
   const [filtering, setFiltering] = useState(false);
-  const { posts, markup } = returnSectionData("PitchBook.port");
+  const { fetching, posts, markup } = returnSectionData("PitchBook.port");
   const { filteredPosts } = returnFilteredData(SECTION_NAME, currentSubSection);
   const addToRefs = (el) => {
     if (el && !ref.current.includes(el)) {
@@ -48,14 +49,11 @@ export default function PitchBook({ feedView, currentId }) {
     filtering,
     filteredPosts
   );
-  return (
+  return fetching ? (
+    <SkeletonTemplate pageTitle={SECTION} />
+  ) : (
     <>
-      <Header
-        textAlign={"left"}
-        padding={"16px 0 0 0"}
-        fontWeight={"700"}
-        color={"black"}
-      >
+      <Header textAlign={"left"} fontWeight={"700"} color={"black"}>
         {SECTION.toUpperCase()}
       </Header>
       <RichTextParagraph markup={markup} />
