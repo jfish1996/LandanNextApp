@@ -48,6 +48,7 @@ export const POST_TRANSITION_TIMES = {
 };
 
 export const theme = {
+  nav_padding: "75px",
   light: {
     sidebar: "#ececed",
     body: "#FFFFFF",

@@ -15,16 +15,21 @@ import {
   SIDE_NAV_MARGIN,
   SIDE_NAV_PADDING,
   TRANSITION_TIMES,
+  GRID_BOX_WIDTH,
+  GRID_GAP,
   MAIN_NAME_CONTENT_PADDING,
 } from "../../styles/constants";
 import MediaQuery from "react-responsive";
 
 const GlobalStyle = createGlobalStyle`
+:root {
+  --test: 75px;
+}
   body {
     background-color : ${(props) =>
       props.darkMode ? props.theme.dark.body : props.theme.light.body};
        transition: ease-in-out ${TRANSITION_TIMES.body}ms;
-   
+     
   }
 
   * {
@@ -59,6 +64,11 @@ export default function AppLayout({ children, feedView, currentSection }) {
 
         <Grid
           width={`${MAX_WINDOW_WIDTH}px`}
+          smallDesktopGridWidth={`${MIN_WINDOW_WITH}px`}
+          mediumDesktopGridWith={`${
+            MIN_WINDOW_WITH + GRID_BOX_WIDTH + GRID_GAP
+          }px`}
+          fullDesktopGridWith={`${MAX_WINDOW_WIDTH}px`}
           margin={"0"}
           minWidth={`${MIN_WINDOW_WITH}px`}
           bigScreenMargin={`${SIDE_NAV_PADDING}px ${SIDE_NAV_PADDING}px 0 ${SIDE_NAV_MARGIN}px`}

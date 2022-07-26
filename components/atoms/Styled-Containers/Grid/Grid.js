@@ -19,6 +19,14 @@ const StyledGrid = styled(motion.div)`
   @media (min-width: ${MAX_WINDOW_WIDTH}px) {
     justify-content: start;
     margin: ${(props) => props.bigScreenMargin};
+    width: ${(props) => props.smallDesktopGridWith};
+  }
+
+  @media (min-width: 1120px) {
+    width: ${(props) => props.mediumDesktopGridWith};
+  }
+  @media (min-width: 1330px) {
+    width: ${(props) => props.fullDesktopGridWith};
   }
 `;
 
@@ -36,6 +44,9 @@ export default function Grid({
   bigScreenMargin,
   animate,
   initial,
+  smallDesktopGridWith,
+  mediumDesktopGridWith,
+  fullDesktopGridWith,
 }) {
   return (
     <StyledGrid
@@ -50,6 +61,9 @@ export default function Grid({
       bigScreenMargin={bigScreenMargin}
       animate={animate}
       initial={initial}
+      smallDesktopGridWith={smallDesktopGridWith}
+      mediumDesktopGridWith={mediumDesktopGridWith}
+      fullDesktopGridWith={fullDesktopGridWith}
     >
       {children}
     </StyledGrid>

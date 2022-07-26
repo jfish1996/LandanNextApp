@@ -32,15 +32,6 @@ export default function PostContainer({ children, item, id }) {
       {item.likes >= 0 && category === "Social" && (
         <Flex gap={"20px"}>
           <Flex alignItems={"center"}>
-            <Fart
-              fill={theme.light.sidebar}
-              hover="yellow"
-              active={"black"}
-              onClick={() => updateFart(fartVariables)}
-            />
-            <StyledP>{item.farts || 0}</StyledP>
-          </Flex>
-          <Flex alignItems={"center"}>
             <Heart
               fill={theme.light.sidebar}
               hover="yellow"
@@ -48,6 +39,15 @@ export default function PostContainer({ children, item, id }) {
               onClick={() => updateLike(variables)}
             />
             <StyledP>{item.likes}</StyledP>
+          </Flex>
+          <Flex alignItems={"center"}>
+            <Fart
+              fill={theme.light.sidebar}
+              hover="yellow"
+              active={"black"}
+              onClick={() => updateFart(fartVariables)}
+            />
+            <StyledP>{item.farts || 0}</StyledP>
           </Flex>
         </Flex>
       )}

@@ -14,18 +14,32 @@ const CarouselContainer = styled.div`
     props.darkMode ? props.theme.dark.sidebar : props.theme.light.sidebar};
   width: 100%;
   transition: ease-in-out ${TRANSITION_TIMES.body}ms;
-  aspect-ratio: ${(props) => props.aspectRatio};
+  /* aspect-ratio: ${(props) => props.aspectRatio}; */
+  padding-top: ${(props) => `${props.paddingTop}%`};
+  position: relative;
+  width: 100%;
   justify-content: center;
   position: relative;
   user-select: none;
+  /* @supports (aspect-ratio: auto) {
+    aspect-ratio: ${(props) => props.aspectRatio};
+  } */
 `;
 
 const Carousel = ({ post, id }, ref) => {
   const { darkMode } = useStateContext();
-  const [ratio, setRatio] = useState("");
   const [activeIdx, setActiveIdx] = useState(0);
   const imgData = post?.attributes?.Img?.data;
   const aspectRatio = post?.attributes?.aspectRatio;
+  const calcAspectRatio = (aspectRatio) => {
+    const ratiosArray = aspectRatio.split("/");
+    for (let i = 0; i < ratiosArray.length; i++) {
+      ratiosArray[i] = parseInt(ratiosArray[i]);
+    }
+    const divided = ratiosArray[1] / ratiosArray[0];
+    const paddingTop = (divided * 100).toFixed(2);
+    return paddingTop;
+  };
 
   const imageOrVideo = (item, idx) => {
     if (item.attributes.ext === ".mp4") {
@@ -33,7 +47,13 @@ const Carousel = ({ post, id }, ref) => {
       return idx === activeIdx ? (
         <iframe
           src={item?.attributes?.url}
-          style={{ objectFit: "contain", width: "100%" }}
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "100%",
+          }}
           type="video/mp4"
         />
       ) : null;
@@ -41,7 +61,15 @@ const Carousel = ({ post, id }, ref) => {
       return idx === activeIdx ? (
         <img
           src={item?.attributes?.formats?.small?.url}
-          style={{ objectFit: "contain", width: "100%" }}
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "100%",
+            maxHeight: "100%",
+            objectFit: "contain",
+          }}
         />
       ) : null;
     }
@@ -51,6 +79,7 @@ const Carousel = ({ post, id }, ref) => {
     <>
       <CarouselContainer
         aspectRatio={aspectRatio ? aspectRatio : "16/9"}
+        paddingTop={calcAspectRatio(aspectRatio)}
         ref={ref}
         id={id}
         darkMode={darkMode}
