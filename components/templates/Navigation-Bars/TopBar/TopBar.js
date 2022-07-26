@@ -64,15 +64,17 @@ export default function TopBar({ currentSection }) {
   let trueFalse = false;
   useEffect(() => {
     const darkModeLocal = JSON.parse(localStorage.getItem("darkMode"));
-    if (window.innerWidth < 920) {
-      if (inView && darkModeLocal) {
-        localStorage.setItem("darkMode", false);
-        setDarkMode(false);
-      }
 
-      if (inView && !darkModeLocal) {
-        localStorage.setItem("darkMode", true);
-        setDarkMode(true);
+    if (window.innerWidth < 920) {
+      setDarkMode(darkModeLocal);
+
+      if (inView) {
+        setDarkMode(!darkModeLocal);
+        localStorage.setItem("darkMode", !darkModeLocal);
+      }
+      if (!inView) {
+        setDarkMode(!darkModeLocal);
+        localStorage.setItem("darkMode", !darkModeLocal);
       }
     }
 

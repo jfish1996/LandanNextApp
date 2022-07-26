@@ -10,7 +10,6 @@ export async function getSSProps(params) {
 }
 
 export default function Success({ order }) {
-  console.log(order);
   const route = useRouter();
   return (
     <h1>

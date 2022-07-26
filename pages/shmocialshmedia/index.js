@@ -10,7 +10,7 @@ import SkeletonTemplate from "../../components/molecules/SkeletonTemplate/Skelet
 export default function ShmocialSmedia({ feedView, currentId }) {
   const CATEGORY_NAME = "Social";
   const { fetching, markup, posts } = returnCategoryData(CATEGORY_NAME);
-  console.log(posts, "port posts");
+
   const ref = useRef([]);
   const addToRefs = (el) => {
     if (el && !ref.current.includes(el)) {

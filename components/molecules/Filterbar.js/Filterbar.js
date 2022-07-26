@@ -39,7 +39,7 @@ export default function Filterbar({
   const { data } = returnSubSections();
   const [currentListItem, setCurrentListItem] = useState(null);
   const { darkMode } = useStateContext();
-  console.log(data, "data");
+
   const sub_sections = data?.subSections?.data;
 
   const onClick = (subSectionName, idx) => {

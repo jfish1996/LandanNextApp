@@ -21,7 +21,6 @@ export default function PostContainer({ children, item, id }) {
   const { Title, FullDescription, Date } = item;
   const [updateLikeResult, updateLike] = useMutation(LIKE_MUTATION);
   const [updateFartResult, updateFart] = useMutation(FART_MUTATION);
-  console.log(item);
   const category = item?.category?.data?.attributes.name;
   const variables = { id, likes: item.likes + 1 };
   const fartVariables = { id, farts: item.farts + 1 };

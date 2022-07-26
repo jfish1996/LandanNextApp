@@ -14,11 +14,10 @@ import SkeletonTemplate from "../../components/molecules/SkeletonTemplate/Skelet
 const HomeArchive = ({ feedView, currentId }) => {
   const CATEGORY_NAME = "Home Archive";
   const { fetching, posts, richText } = returnHomeArchiveData();
-  console.log(posts, "arch posts");
+
   const ref = useRef([]);
   const addToRefs = (el) => {
     if (el && !ref.current.includes(el)) {
-      console.log(el.id, "id");
       ref.current.push(el);
     }
   };

@@ -10,13 +10,11 @@ export default function TotallyLegitReviews({ feedView }) {
   const { posts, markup } = returnSectionData(SECTION_NAME);
 
   const { reviews } = returnLegitReviews();
-  console.log(reviews);
 
   return (
     <>
       <RichTextParagraph markup={markup} />
       {reviews?.map((item, idx) => {
-        console.log(item?.attributes?.review);
         return <LegitReview markup={item?.attributes?.review} />;
       })}
     </>

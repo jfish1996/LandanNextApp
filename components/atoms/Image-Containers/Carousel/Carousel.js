@@ -43,7 +43,6 @@ const Carousel = ({ post, id }, ref) => {
 
   const imageOrVideo = (item, idx) => {
     if (item.attributes.ext === ".mp4") {
-      console.log(item);
       return idx === activeIdx ? (
         <iframe
           src={item?.attributes?.url}
