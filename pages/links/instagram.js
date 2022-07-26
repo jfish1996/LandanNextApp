@@ -5,12 +5,12 @@ import RichTextParagraph from "../../components/atoms/RichTextParagraph/RichText
 import { returnLinks } from "../../lib/returnLinks";
 export default function Instagram({ feedView }) {
   const SECTION_NAME = "Instagram.links";
-  const { posts, richText } = returnSectionData(SECTION_NAME);
+  const { posts, markup } = returnSectionData(SECTION_NAME);
   let link;
   posts ? (link = posts[0]?.attributes?.FullDescription) : null;
   return (
     <>
-      <RichTextParagraph markup={richText} />
+      <RichTextParagraph markup={markup} />
       {returnLinks(posts, feedView, link)}
     </>
   );

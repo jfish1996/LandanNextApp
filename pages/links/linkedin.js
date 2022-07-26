@@ -5,12 +5,14 @@ import RichTextParagraph from "../../components/atoms/RichTextParagraph/RichText
 
 export default function LinkedIn({ feedView }) {
   const SECTION_NAME = "LinkedIn.links";
-  const { posts, richText } = returnSectionData(SECTION_NAME);
+  const { posts, markup } = returnSectionData(SECTION_NAME);
+
+  console.log(markup);
   let link;
   posts ? (link = posts[0]?.attributes?.FullDescription) : null;
   return (
     <>
-      <RichTextParagraph markup={richText} />
+      <RichTextParagraph markup={markup} />
       {returnLinks(posts, feedView, link)}
     </>
   );
