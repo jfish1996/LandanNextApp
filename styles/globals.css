@@ -17,8 +17,11 @@ ul {
 }
 
 a {
-  color: inherit;
+  color: yellow;
   text-decoration: none;
+}
+a:visited {
+  color: lightgrey;
 }
 p {
   /* padding: 0; */
