@@ -21,13 +21,16 @@ export default function Category({ feedView, currentId }) {
   const router = useRouter();
   const cleanedRoute = router.asPath.split("/")[1];
 
-  const { fetching, result, filtering, items } = returnPageType(cleanedRoute);
-
-  return result === "posts" && filtering ? (
+  const { fetching, result, filtering, items, markup, richText } =
+    returnPageType(cleanedRoute);
+  console.log(markup);
+  return fetching ? (
+    <SkeletonTemplate pageTitle={cleanedRoute} />
+  ) : result === "posts" && filtering ? (
     <PortfolioPage
       fetching={fetching}
       pageTitle={cleanedRoute}
-      pageMarkup={<p>hi</p>}
+      pageMarkup={markup}
       feedView={feedView}
       currentId={currentId}
       posts={items}
@@ -37,7 +40,7 @@ export default function Category({ feedView, currentId }) {
     <SocialPage
       fetching={fetching}
       pageTitle={cleanedRoute}
-      pageMarkup={<p>hi</p>}
+      pageMarkup={markup}
       feedView={feedView}
       currentId={currentId}
       posts={items}
@@ -46,12 +49,14 @@ export default function Category({ feedView, currentId }) {
     <ShopPage
       fetching={fetching}
       pageTitle={cleanedRoute}
-      pageMarkup={<p>hi</p>}
+      pageMarkup={richText}
       feedView={feedView}
       currentId={currentId}
       posts={items}
     />
+  ) : result === "no result" ? (
+    <>Nothing here</>
   ) : (
-    <SkeletonTemplate pageTitle={cleanedRoute} />
+    <></>
   );
 }

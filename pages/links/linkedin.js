@@ -7,7 +7,6 @@ export default function LinkedIn({ feedView }) {
   const SECTION_NAME = "LinkedIn.links";
   const { posts, markup } = returnSectionData(SECTION_NAME);
 
-  console.log(markup);
   let link;
   posts ? (link = posts[0]?.attributes?.FullDescription) : null;
   return (

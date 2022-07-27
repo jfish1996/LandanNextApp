@@ -22,7 +22,7 @@ export default function ShopPage({
   posts,
 }) {
   const CATEGORY_NAME = pageTitle;
-  console.log(posts);
+
   const ref = useRef([]);
   const addToRefs = (el) => {
     if (el && !ref.current.includes(el)) {
@@ -48,9 +48,7 @@ export default function ShopPage({
   }, [feedView, clickToElement]);
   //
   useIntersectionArray(ref, feedView, currentId.setCurrentIdInView);
-  return fetching ? (
-    <SkeletonTemplate pageTitle={CATEGORY_NAME} />
-  ) : (
+  return (
     <>
       <Header textAlign={"left"} fontWeight={"700"} color={"black"}>
         {CATEGORY_NAME.toUpperCase()}

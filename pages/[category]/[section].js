@@ -16,21 +16,23 @@ import ShopPage from "../../components/sections/Shop";
 import SocialPage from "../../components/sections/Social";
 import { returnPageType } from "../../lib/returnpageToRender";
 import { TOP_NAV_HEIGHT } from "../../styles/constants";
+import NoContent from "../../components/sections/NoContent";
 
 export default function Section({ feedView, currentId }) {
   const router = useRouter();
   const cleanedRouteFirstParam = router.asPath.split("/")[1];
   const cleanedRouteSecondParam = router.asPath.split("/")[2];
-  const { fetching, result, filtering, items } = returnPageType(
-    cleanedRouteFirstParam,
-    cleanedRouteSecondParam
-  );
-  console.log(result);
-  return result === "posts" && filtering ? (
+  const { fetching, result, filtering, items, markup, richText } =
+    returnPageType(cleanedRouteFirstParam, cleanedRouteSecondParam);
+  console.log(markup, items, "in here");
+
+  return fetching ? (
+    <SkeletonTemplate pageTitle={cleanedRouteSecondParam} />
+  ) : result === "posts" && filtering ? (
     <PortfolioPage
       fetching={fetching}
       pageTitle={cleanedRouteSecondParam}
-      pageMarkup={<p>hi</p>}
+      pageMarkup={markup}
       feedView={feedView}
       currentId={currentId}
       posts={items}
@@ -40,7 +42,7 @@ export default function Section({ feedView, currentId }) {
     <SocialPage
       fetching={fetching}
       pageTitle={cleanedRouteSecondParam}
-      pageMarkup={<p>hi</p>}
+      pageMarkup={markup}
       feedView={feedView}
       currentId={currentId}
       posts={items}
@@ -49,12 +51,14 @@ export default function Section({ feedView, currentId }) {
     <ShopPage
       fetching={fetching}
       pageTitle={cleanedRouteSecondParam}
-      pageMarkup={<p>hi</p>}
+      pageMarkup={richText}
       feedView={feedView}
       currentId={currentId}
       posts={items}
     />
+  ) : result === "no result" ? (
+    <NoContent pageTitle={cleanedRouteSecondParam} pageMarkup={markup} />
   ) : (
-    <SkeletonTemplate pageTitle={cleanedRouteSecondParam} />
+    <NoContent pageTitle={cleanedRouteSecondParam} pageMarkup={markup} />
   );
 }

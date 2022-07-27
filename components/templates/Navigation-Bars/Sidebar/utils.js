@@ -18,6 +18,7 @@ import {
 } from "../../../../styles/constants";
 import { useStateContext } from "../../../../lib/context";
 import Flex from "../../../atoms/Styled-Containers/Flex/Flex";
+import { returnNavData } from "../../../../lib/returnData";
 export const SIDEBAR_DATA = [
   { link: "HOME", subLink: ["home archive"], href: "/", homeHref: "/home" },
   {
@@ -95,102 +96,177 @@ export const handleCart = (
 };
 
 export const sideBarBuilder = (data, currentSection) => {
+  const { results } = returnNavData();
+  const resultsFiltered = results?.filter((item) => {
+    return item.attributes.name !== "Home" && item.attributes.name !== "Links";
+  });
   const { darkMode } = useStateContext();
   const router = useRouter();
-  const currentRoute = router.pathname;
-  return data.map((mainCategory, idx) => {
-    let lowerCaseCategory = mainCategory.link.toLowerCase().replace(/ /g, "");
-    let homeLink = mainCategory.href;
+  const currentRoute = router.asPath;
 
-    return (
-      <>
-        <StyledUl key={idx + 1} margin={`${UL_MARGIN}px 0`}>
-          <Header
-            darkMode={darkMode}
-            active={currentRoute === `/${lowerCaseCategory}`}
-            url={lowerCaseCategory}
-            key={idx}
-            onClick={() => currentSection.setCurrentSection(lowerCaseCategory)}
-          >
-            <Link href={`/${lowerCaseCategory}`}>
-              <StyledSpan
+  return (
+    <>
+      {results?.map((mainCategory, idx) => {
+        console.log(mainCategory);
+        const lowerCaseCategory = mainCategory.attributes.name.toLowerCase();
+        const dataName = mainCategory.attributes.dataName.toLowerCase();
+        return (
+          <>
+            <StyledUl key={idx + 1} margin={`${UL_MARGIN}px 0`}>
+              <Header
                 darkMode={darkMode}
-                smallScreenFont={SMALL_SCREEN_FONTS}
-                largeScreenFont={LARGE_SCREEN_FONTS}
+                active={currentRoute === `/${dataName}`}
+                url={lowerCaseCategory}
+                key={idx}
+                onClick={() => currentSection.setCurrentSection(dataName)}
               >
-                {mainCategory.link}
-              </StyledSpan>
-            </Link>
-          </Header>
-
-          {mainCategory.subLink.map((subCategory, idx2) => {
-            let lowerCaseSubCategory = subCategory
-              .toLowerCase()
-              .replace(/ /g, "");
-            return lowerCaseSubCategory === "cart" ? (
-              handleCart(
-                subCategory,
-                darkMode,
-                currentRoute,
-                lowerCaseCategory,
-                lowerCaseSubCategory
-              )
-            ) : (
-              <Subtitle
-                darkMode={darkMode}
-                key={idx2}
-                active={
-                  currentRoute ===
-                  `/${lowerCaseCategory}/${lowerCaseSubCategory}`
-                }
-              >
-                <Link href={`/${lowerCaseCategory}/${lowerCaseSubCategory}`}>
+                <Link href={`/${dataName}`}>
                   <StyledSpan
                     darkMode={darkMode}
                     smallScreenFont={SMALL_SCREEN_FONTS}
                     largeScreenFont={LARGE_SCREEN_FONTS}
                   >
-                    {subCategory}
+                    {mainCategory.attributes.name.toUpperCase()}
                   </StyledSpan>
                 </Link>
-              </Subtitle>
-            );
-          })}
-        </StyledUl>
-      </>
-    );
-  });
+              </Header>
+              {mainCategory.attributes.sections?.data?.map(
+                (subCategory, idx2) => {
+                  const lowerCaseSubCategory =
+                    subCategory.attributes.SectionName.toLowerCase().split(
+                      "."
+                    )[0];
+                  const subLink = subCategory.attributes.dataName;
+                  return subCategory.attributes.dataName === "cart" ? (
+                    handleCart(
+                      lowerCaseSubCategory,
+                      darkMode,
+                      currentRoute,
+                      lowerCaseCategory,
+                      lowerCaseSubCategory
+                    )
+                  ) : (
+                    <Subtitle
+                      darkMode={darkMode}
+                      key={idx2}
+                      active={currentRoute === `/${dataName}/${subLink}`}
+                    >
+                      <Link href={`/${dataName}/${subLink}`}>
+                        <StyledSpan
+                          darkMode={darkMode}
+                          smallScreenFont={SMALL_SCREEN_FONTS}
+                          largeScreenFont={LARGE_SCREEN_FONTS}
+                        >
+                          {lowerCaseSubCategory}
+                        </StyledSpan>
+                      </Link>
+                    </Subtitle>
+                  );
+                }
+              )}
+            </StyledUl>
+          </>
+        );
+      })}
+    </>
+  );
+
+  // return data.map((mainCategory, idx) => {
+  // let lowerCaseCategory = mainCategory.link.toLowerCase().replace(/ /g, "");
+  //   let homeLink = mainCategory.href;
+
+  //   return (
+  //     <>
+  //       <StyledUl key={idx + 1} margin={`${UL_MARGIN}px 0`}>
+  //         <Header
+  //           darkMode={darkMode}
+  //           active={currentRoute === `/${lowerCaseCategory}`}
+  //           url={lowerCaseCategory}
+  //           key={idx}
+  //           onClick={() => currentSection.setCurrentSection(lowerCaseCategory)}
+  //         >
+  //           <Link href={`/${lowerCaseCategory}`}>
+  //             <StyledSpan
+  //               darkMode={darkMode}
+  //               smallScreenFont={SMALL_SCREEN_FONTS}
+  //               largeScreenFont={LARGE_SCREEN_FONTS}
+  //             >
+  //               {mainCategory.link}
+  //             </StyledSpan>
+  //           </Link>
+  //         </Header>
+
+  // {mainCategory.subLink.map((subCategory, idx2) => {
+  //   let lowerCaseSubCategory = subCategory
+  //     .toLowerCase()
+  //     .replace(/ /g, "");
+  //   return lowerCaseSubCategory === "cart" ? (
+  //     handleCart(
+  //       subCategory,
+  //       darkMode,
+  //       currentRoute,
+  //       lowerCaseCategory,
+  //       lowerCaseSubCategory
+  //     )
+  //   ) : (
+  //     <Subtitle
+  //       darkMode={darkMode}
+  //       key={idx2}
+  //       active={
+  //         currentRoute ===
+  //         `/${lowerCaseCategory}/${lowerCaseSubCategory}`
+  //       }
+  //     >
+  //       <Link href={`/${lowerCaseCategory}/${lowerCaseSubCategory}`}>
+  //         <StyledSpan
+  //           darkMode={darkMode}
+  //           smallScreenFont={SMALL_SCREEN_FONTS}
+  //           largeScreenFont={LARGE_SCREEN_FONTS}
+  //         >
+  //           {subCategory}
+  //         </StyledSpan>
+  //       </Link>
+  //     </Subtitle>
+  //   );
+  // })}
+  //       </StyledUl>
+  //     </>
+  //   );
+  // });
 };
 
 export const topBarMainSection = (data, currentSection) => {
+  const { results } = returnNavData();
   const { darkMode } = useStateContext();
   const router = useRouter();
-  const currentRoute = router.pathname;
+  const currentRoute = router.asPath;
   return (
     <>
       <TopBarSelctor textAlign={"right"}>
-        {data.map((mainCategory, idx) => {
-          let lowerCaseCategory = mainCategory.link
-            .toLowerCase()
-            .replace(/ /g, "");
-          let homeLink = mainCategory.href;
+        {results?.map((mainCategory, idx) => {
+          const lowerCaseCategory = mainCategory.attributes.name.toLowerCase();
+          const dataName = mainCategory.attributes.dataName.toLowerCase();
+          // let lowerCaseCategory = mainCategory.link
+          //   .toLowerCase()
+          //   .replace(/ /g, "");
+          // let homeLink = mainCategory.href;
           return (
             <Subtitle
               smallScreenAnimation={true}
               darkMode={darkMode}
               key={idx}
               onClick={() => {
-                currentSection.setCurrentSection(lowerCaseCategory);
+                currentSection.setCurrentSection(dataName);
               }}
-              active={currentRoute === `/${lowerCaseCategory}`}
+              active={currentRoute === `/${dataName}`}
             >
-              <Link href={`/${lowerCaseCategory}`}>
+              <Link href={`/${dataName}`}>
                 <StyledSpan
                   darkMode={darkMode}
                   smallScreenFont={SMALL_SCREEN_FONTS}
                   largeScreenFont={LARGE_SCREEN_FONTS}
                 >
-                  {mainCategory.link}
+                  {mainCategory.attributes.name.toUpperCase()}
                 </StyledSpan>
               </Link>
             </Subtitle>
@@ -201,41 +277,40 @@ export const topBarMainSection = (data, currentSection) => {
   );
 };
 export const topBarSubSection = (data, currentSection) => {
+  const { results } = returnNavData();
   const { darkMode } = useStateContext();
   const router = useRouter();
-  const currentRoute = router.pathname;
+  const currentRoute = router.asPath;
   return (
     <TopBarSelctor textAlign={"right"}>
-      {data.map((mainCategory, idx2) => {
-        let lowerCaseCategory = mainCategory.link
-          .toLowerCase()
-          .replace(/ /g, "");
+      {results?.map((mainCategory, idx2) => {
+        const lowerCaseCategory = mainCategory.attributes.dataName;
         if (currentRoute.includes(lowerCaseCategory)) {
-          return mainCategory.subLink.map((subCategory, idx) => {
-            let lowerCaseSubCategory = subCategory
-              .toLowerCase()
-              .replace(/ /g, "");
-            return (
-              <Subtitle
-                smallScreenAnimation={true}
-                key={idx2}
-                active={
-                  currentRoute ===
-                  `/${lowerCaseCategory}/${lowerCaseSubCategory}`
-                }
-              >
-                <Link href={`/${lowerCaseCategory}/${lowerCaseSubCategory}`}>
-                  <StyledSpan
-                    darkMode={darkMode}
-                    smallScreenFont={SMALL_SCREEN_FONTS}
-                    largeScreenFont={LARGE_SCREEN_FONTS}
-                  >
-                    {subCategory}
-                  </StyledSpan>
-                </Link>
-              </Subtitle>
-            );
-          });
+          return mainCategory.attributes.sections?.data?.map(
+            (subCategory, idx) => {
+              const dataName = mainCategory.attributes.dataName.toLowerCase();
+              const lowerCaseSubCategory =
+                subCategory.attributes.SectionName.toLowerCase().split(".")[0];
+              const subLink = subCategory.attributes.dataName;
+              return (
+                <Subtitle
+                  smallScreenAnimation={true}
+                  key={idx2}
+                  active={currentRoute === `/${dataName}/${subLink}`}
+                >
+                  <Link href={`/${dataName}/${subLink}`}>
+                    <StyledSpan
+                      darkMode={darkMode}
+                      smallScreenFont={SMALL_SCREEN_FONTS}
+                      largeScreenFont={LARGE_SCREEN_FONTS}
+                    >
+                      {lowerCaseSubCategory}
+                    </StyledSpan>
+                  </Link>
+                </Subtitle>
+              );
+            }
+          );
         }
       })}
     </TopBarSelctor>

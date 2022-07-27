@@ -42,9 +42,7 @@ export default function SocialPage({
   }, [feedView, clickToElement]);
   //
   useIntersectionArray(ref, feedView, currentId.setCurrentIdInView);
-  return fetching ? (
-    <SkeletonTemplate pageTitle={CATEGORY_NAME} />
-  ) : (
+  return (
     <>
       <Header textAlign={"left"} fontWeight={"700"} color={"black"}>
         {CATEGORY_NAME.toUpperCase()}
