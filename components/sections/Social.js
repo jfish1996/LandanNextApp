@@ -1,19 +1,22 @@
-import React, { useRef, useEffect, useState } from "react";
-import { returnShopCategoryData } from "../../lib/returnData";
-// import { returnPro } from "../../lib/returnposts";
-import { returnProducts } from "../../lib/returnproducts";
+import React, { useRef, useState, useEffect } from "react";
+import { returnPosts } from "../../lib/returnposts";
+import { returnCategoryData } from "../../lib/returnData";
 import RichTextParagraph from "../../components/atoms/RichTextParagraph/RichTextParagraph";
 import Header from "../../components/atoms/List-Items/Header";
 import PostBar from "../../components/molecules/PostBar/PostBar";
 import { useIntersectionArray } from "../../hooks/useIntersectionArray";
 import { TOP_NAV_HEIGHT } from "../../styles/constants";
-import { returnPosts } from "../../lib/returnposts";
 import SkeletonTemplate from "../../components/molecules/SkeletonTemplate/SkeletonTemplate";
+export default function SocialPage({
+  fetching,
+  feedView,
+  currentId,
+  pageTitle,
+  pageMarkup,
+  posts,
+}) {
+  const CATEGORY_NAME = pageTitle;
 
-export default function Shop({ feedView, currentId }) {
-  const CATEGORY_NAME = "Shop";
-  const { fetching, products, markup } = returnShopCategoryData(CATEGORY_NAME);
-  console.log(products, "shop hardcoded");
   const ref = useRef([]);
   const addToRefs = (el) => {
     if (el && !ref.current.includes(el)) {
@@ -49,7 +52,7 @@ export default function Shop({ feedView, currentId }) {
       <PostBar
         gridRow={3}
         feedView={feedView}
-        posts={products}
+        posts={posts}
         currentId={currentId.currentIdInView}
         topMobile={`${TOP_NAV_HEIGHT}px`}
         topDesktop={0}
@@ -57,8 +60,8 @@ export default function Shop({ feedView, currentId }) {
         setClickToElement={setClickToElement}
         elementToShow={elementToShow}
       />
-      <RichTextParagraph markup={markup} />
-      {returnPosts(products, feedView, addToRefs, setElementToShow, true)}
+      <RichTextParagraph markup={pageMarkup} />
+      {returnPosts(posts, feedView, addToRefs, setElementToShow)}
     </>
   );
 }

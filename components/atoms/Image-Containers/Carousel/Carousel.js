@@ -32,7 +32,10 @@ const Carousel = ({ post, id }, ref) => {
   const imgData = post?.attributes?.Img?.data;
   const aspectRatio = post?.attributes?.aspectRatio;
   const calcAspectRatio = (aspectRatio) => {
-    const ratiosArray = aspectRatio.split("/");
+    const defaultRatio = "16/9";
+    const ratiosArray = aspectRatio
+      ? aspectRatio.split("/")
+      : defaultRatio.split("/");
     for (let i = 0; i < ratiosArray.length; i++) {
       ratiosArray[i] = parseInt(ratiosArray[i]);
     }

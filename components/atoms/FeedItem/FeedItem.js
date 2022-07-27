@@ -50,7 +50,7 @@ const FeedItem = (
           animate={POST_TRANSITION_TIMES.animate}
           transition={POST_TRANSITION_TIMES.transition}
         >
-          <ProductContainer>
+          <ProductContainer item={item}>
             <SingleImagePost src={smallURL || defaultURL} ref={ref} id={id} />
           </ProductContainer>
         </motion.div>
