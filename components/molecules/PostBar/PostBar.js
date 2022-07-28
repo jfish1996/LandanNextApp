@@ -20,7 +20,7 @@ const StyledPostBar = styled.div`
   /* background-color: red; */
   overflow-y: scroll;
   transition: ease-in-out ${TRANSITION_TIMES.body}ms;
-  padding: ${(props) => (props.withFilter ? "10px 0 15px 0" : "10px 0px")};
+  padding: ${(props) => (props.withFilter ? "10px 0 10px 0" : "10px 0px")};
   border-top: ${(props) => (props.withFilter ? null : "1px solid lightgrey")};
   border-bottom: 1px solid lightgrey;
   position: sticky;

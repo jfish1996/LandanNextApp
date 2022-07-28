@@ -5,7 +5,7 @@ const { motion } = require("framer-motion");
 import { TRANSITION_TIMES } from "../../../styles/constants";
 
 const HelperContainer = styled.div`
-  width: 94px;
+  width: 65px;
   height: 54px;
   border-right: ${(props) =>
     props.darkMode ? `1px solid white` : "1px solid black"};
@@ -17,6 +17,7 @@ const HelperContainer = styled.div`
   align-items: center;
   position: sticky;
   left: 0;
+  margin-right: 8px;
 `;
 
 export default function GridBox({

@@ -1,5 +1,17 @@
 //CSS constants might be moved to another file
 
+//Navigation Variables
+export const TOP_NAV_HEIGHT = 90;
+export const SIDE_NAV_WIDTH = 350;
+export const SIDE_NAV_PADDING = 65;
+export const SIDE_NAV_MARGIN = SIDE_NAV_WIDTH + SIDE_NAV_PADDING;
+
+//--Naigation Item Variables
+export const UL_MARGIN = SIDE_NAV_PADDING / 2;
+export const BIG_NAME_BOTTOM_PADDING_SIDEBAR = UL_MARGIN;
+export const BIG_NAME_BOTTOM_PADDING_BODY = UL_MARGIN * 2;
+export const GAP_BETWEEN_UL_ITEMS = UL_MARGIN / 2;
+
 //Grid Variables
 export const GRID_BOX_WIDTH = 200;
 export const GRID_BOX_HEIGHT = 200;
@@ -7,26 +19,22 @@ export const GRID_GAP = 10;
 export const MIN_WINDOW_WITH = GRID_BOX_WIDTH * 2 + GRID_GAP;
 export const MAX_WINDOW_WIDTH = GRID_BOX_WIDTH * 4 + GRID_GAP * 3;
 
-//Navigation Variables
-export const TOP_NAV_HEIGHT = 80;
-export const SIDE_NAV_WIDTH = 350;
-export const SIDE_NAV_PADDING = 75;
-export const SIDE_NAV_MARGIN = SIDE_NAV_WIDTH + SIDE_NAV_PADDING;
+//Mobile
+export const WHOLE_BODY_MOBILE_MARGIN = 5;
+export const TOP_PARAGRAPH_SECTION_PADDING = 15;
 
-//--Naigation Item Variables
-export const UL_MARGIN = 10;
-export const SECTION_LIST_ITEM_PADDING = 0;
-export const MAIN_NAME_SIDE_BAR_PADDING = 0;
-
-//Main Section
-export const MAIN_NAME_CONTENT_PADDING = UL_MARGIN + MAIN_NAME_SIDE_BAR_PADDING;
+//Desktop
+export const HEADER_AND_SCROLLBAR_PADDING = GAP_BETWEEN_UL_ITEMS - GRID_GAP;
 
 //Feed View Post Variables
 export const MARGIN_BETWEEN_POSTS = 10;
 
 //FONT-SIZES
+export const UL_SECTION_TITLE = 1.3;
+export const BODY_SECTION_TITLE = UL_SECTION_TITLE;
 export const SMALL_SCREEN_FONTS = 1.2;
 export const LARGE_SCREEN_FONTS = 1;
+export const TOP_BAR_UL_ITEMS = 1;
 
 //Z-INDEX LIBRARY
 export const Z_INDEXS = {

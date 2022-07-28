@@ -94,7 +94,7 @@ export default function TopBar({ currentSection }) {
             fontSize={"1.5rem"}
             firstName={"LANDAN"}
             lastName={"EARLEY"}
-            padding={"5px 0"}
+            padding={"10px 0"}
           />
 
           <div ref={ref}>

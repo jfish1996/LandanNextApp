@@ -9,7 +9,7 @@ const StyledSubTitle = styled.li`
   color: ${(props) =>
     props.darkMode ? props.theme.dark.font : props.theme.light.font};
   list-style-type: none;
-  padding: ${SECTION_LIST_ITEM_PADDING}px 0;
+  /* padding: ${SECTION_LIST_ITEM_PADDING}px 0; */
   font-size: ${(props) => props.smallScreenFont || `${1.3}rem`};
   text-align: right;
   font-weight: ${(props) => (props.active ? "bold" : null)};

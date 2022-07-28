@@ -6,6 +6,8 @@ import {
   TOP_NAV_HEIGHT,
   TRANSITION_TIMES,
   Z_INDEXS,
+  TOP_PARAGRAPH_SECTION_PADDING,
+  HEADER_AND_SCROLLBAR_PADDING,
 } from "../../../styles/constants";
 import { motion } from "framer-motion";
 import { returnSubSections } from "../../../lib/returnData";
@@ -13,7 +15,7 @@ import { useStateContext } from "../../../lib/context";
 
 const StyledUL = styled(motion.ul)`
   z-index: ${Z_INDEXS.scrollBars};
-  margin: 0;
+  margin: 0 0 ${HEADER_AND_SCROLLBAR_PADDING}px 0;
   display: flex;
   grid-column: 1/-1;
   overflow-x: scroll;

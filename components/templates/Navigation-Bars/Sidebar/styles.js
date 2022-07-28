@@ -6,6 +6,8 @@ import {
   SIDE_NAV_PADDING,
   TRANSITION_TIMES,
   Z_INDEXS,
+  GAP_BETWEEN_UL_ITEMS,
+  UL_SECTION_TITLE,
 } from "../../../../styles/constants";
 export const StyledSidebar = styled.div`
   display: ${(props) => props.display};
@@ -18,7 +20,7 @@ export const StyledSidebar = styled.div`
     props.darkMode ? props.theme.dark.sidebar : props.theme.light.sidebar};
   /* background-color: var(--main-bg-color); */
   overflow: scroll;
-  padding: ${(props) => props.theme.nav_padding};
+  padding: ${SIDE_NAV_PADDING}px;
   position: fixed;
   @media (min-width: ${MAX_WINDOW_WIDTH}px) {
     display: ${(props) => props.bigScreenDisplay};
@@ -27,26 +29,26 @@ export const StyledSidebar = styled.div`
 
 export const StyledUl = styled.ul`
   margin: ${(props) => props.margin};
-  margin: 22px 0;
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: ${GAP_BETWEEN_UL_ITEMS}px;
   padding: ${(props) => props.padding};
 `;
 
 export const StyledSpan = styled.p`
-  font-size: ${(props) => `${props.smallScreenFont}rem` || `${1.3}rem`};
+  font-size: ${(props) => `${props.smallScreenFont}rem`};
   margin: 0;
-  padding: 0;
+  padding: ${(props) => props.padding};
   list-style-type: none;
   /* transition: ease-in-out ${TRANSITION_TIMES.text}ms; */
   &:hover {
     color: #fff100;
     cursor: pointer;
   }
-  @media (min-width: ${MAX_WINDOW_WIDTH}px) {
-    font-size: 1.3rem;
-  }
+  /* @media (min-width: ${MAX_WINDOW_WIDTH}px) {
+    font-size: ${(props) =>
+    `${props.smallScreenFont}rem` || `${UL_SECTION_TITLE}rem`};
+  } */
 `;
 
 export const StyledCartListItem = styled.span`

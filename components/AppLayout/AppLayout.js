@@ -18,6 +18,9 @@ import {
   GRID_BOX_WIDTH,
   GRID_GAP,
   MAIN_NAME_CONTENT_PADDING,
+  BIG_NAME_BOTTOM_PADDING_BODY,
+  UL_MARGIN,
+  WHOLE_BODY_MOBILE_MARGIN,
 } from "../../styles/constants";
 import MediaQuery from "react-responsive";
 
@@ -69,15 +72,17 @@ export default function AppLayout({ children, feedView, currentSection }) {
             MIN_WINDOW_WITH + GRID_BOX_WIDTH + GRID_GAP
           }px`}
           fullDesktopGridWith={`${MAX_WINDOW_WIDTH}px`}
-          margin={"0"}
+          margin={`0 ${WHOLE_BODY_MOBILE_MARGIN}px`}
           minWidth={`${MIN_WINDOW_WITH}px`}
-          bigScreenMargin={`${SIDE_NAV_PADDING}px ${SIDE_NAV_PADDING}px 0 ${SIDE_NAV_MARGIN}px`}
+          bigScreenMargin={`${SIDE_NAV_PADDING}px ${SIDE_NAV_PADDING}px ${
+            SIDE_NAV_PADDING + UL_MARGIN
+          }px ${SIDE_NAV_MARGIN}px`}
         >
           <Title
             firstName={"LANDY"}
             lastName={"PANDY"}
             fontSize={"2.5rem"}
-            padding={`0 0 ${MAIN_NAME_CONTENT_PADDING}px 0`}
+            padding={`0 0 ${BIG_NAME_BOTTOM_PADDING_BODY}px 0`}
             hoverCursor={"pointer"}
             onClick={() => {
               setDarkMode((prevState) => {

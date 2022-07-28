@@ -5,7 +5,10 @@ import RichTextParagraph from "../../components/atoms/RichTextParagraph/RichText
 import Header from "../../components/atoms/List-Items/Header";
 import PostBar from "../../components/molecules/PostBar/PostBar";
 import { useIntersectionArray } from "../../hooks/useIntersectionArray";
-import { TOP_NAV_HEIGHT } from "../../styles/constants";
+import {
+  TOP_NAV_HEIGHT,
+  TOP_PARAGRAPH_SECTION_PADDING,
+} from "../../styles/constants";
 import SkeletonTemplate from "../../components/molecules/SkeletonTemplate/SkeletonTemplate";
 export default function SocialPage({
   fetching,
@@ -44,11 +47,17 @@ export default function SocialPage({
   useIntersectionArray(ref, feedView, currentId.setCurrentIdInView);
   return (
     <>
-      <Header textAlign={"left"} fontWeight={"700"} color={"black"}>
+      <Header
+        textAlign={"left"}
+        fontWeight={"700"}
+        color={"black"}
+        padding={`${TOP_PARAGRAPH_SECTION_PADDING}px 0 0 0`}
+        bigScreenPadding={0}
+      >
         {CATEGORY_NAME.toUpperCase()}
       </Header>
       <PostBar
-        gridRow={3}
+        gridRow={4}
         feedView={feedView}
         posts={posts}
         currentId={currentId.currentIdInView}

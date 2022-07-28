@@ -15,6 +15,8 @@ import {
   SMALL_SCREEN_FONTS,
   LARGE_SCREEN_FONTS,
   UL_MARGIN,
+  TOP_BAR_UL_ITEMS,
+  WHOLE_BODY_MOBILE_MARGIN,
 } from "../../../../styles/constants";
 import { useStateContext } from "../../../../lib/context";
 import Flex from "../../../atoms/Styled-Containers/Flex/Flex";
@@ -244,12 +246,7 @@ export const topBarMainSection = (data, currentSection) => {
     <>
       <TopBarSelctor textAlign={"right"}>
         {results?.map((mainCategory, idx) => {
-          const lowerCaseCategory = mainCategory.attributes.name.toLowerCase();
           const dataName = mainCategory.attributes.dataName.toLowerCase();
-          // let lowerCaseCategory = mainCategory.link
-          //   .toLowerCase()
-          //   .replace(/ /g, "");
-          // let homeLink = mainCategory.href;
           return (
             <Subtitle
               smallScreenAnimation={true}
@@ -262,9 +259,9 @@ export const topBarMainSection = (data, currentSection) => {
             >
               <Link href={`/${dataName}`}>
                 <StyledSpan
+                  smallScreenFont={TOP_BAR_UL_ITEMS}
+                  padding={"10px 0 0  0"}
                   darkMode={darkMode}
-                  smallScreenFont={SMALL_SCREEN_FONTS}
-                  largeScreenFont={LARGE_SCREEN_FONTS}
                 >
                   {mainCategory.attributes.name.toUpperCase()}
                 </StyledSpan>
@@ -282,7 +279,10 @@ export const topBarSubSection = (data, currentSection) => {
   const router = useRouter();
   const currentRoute = router.asPath;
   return (
-    <TopBarSelctor textAlign={"right"}>
+    <TopBarSelctor
+      textAlign={"right"}
+      marginRight={`${WHOLE_BODY_MOBILE_MARGIN}px`}
+    >
       {results?.map((mainCategory, idx2) => {
         const lowerCaseCategory = mainCategory.attributes.dataName;
         if (currentRoute.includes(lowerCaseCategory)) {
@@ -300,9 +300,9 @@ export const topBarSubSection = (data, currentSection) => {
                 >
                   <Link href={`/${dataName}/${subLink}`}>
                     <StyledSpan
+                      padding={"10px 0 0  0"}
                       darkMode={darkMode}
-                      smallScreenFont={SMALL_SCREEN_FONTS}
-                      largeScreenFont={LARGE_SCREEN_FONTS}
+                      smallScreenFont={TOP_BAR_UL_ITEMS}
                     >
                       {lowerCaseSubCategory}
                     </StyledSpan>

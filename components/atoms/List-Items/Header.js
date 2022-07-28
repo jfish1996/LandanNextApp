@@ -4,6 +4,7 @@ import {
   MAX_WINDOW_WIDTH,
   SMALL_SCREEN_FONTS,
   LARGE_SCREEN_FONTS,
+  BODY_SECTION_TITLE,
 } from "../../../styles/constants";
 import { useStateContext } from "../../../lib/context";
 const { motion } = require("framer-motion");
@@ -23,7 +24,8 @@ const StyledHeader = styled.li`
   }
   @media (min-width: ${MAX_WINDOW_WIDTH}px) {
     grid-row: 1;
-    font-size: ${`${LARGE_SCREEN_FONTS}rem`};
+    font-size: ${`${BODY_SECTION_TITLE}rem`};
+    padding: ${(props) => props.bigScreenPadding};
   }
 `;
 
@@ -36,6 +38,7 @@ export default function Header({
   color,
   onClick,
   hoverCursor,
+  bigScreenPadding,
 }) {
   const { darkMode } = useStateContext();
   return (
@@ -48,6 +51,7 @@ export default function Header({
       padding={padding}
       onClick={onClick}
       hoverCursor={hoverCursor}
+      bigScreenPadding={bigScreenPadding}
     >
       {children}
     </StyledHeader>

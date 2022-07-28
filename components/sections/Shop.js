@@ -11,7 +11,10 @@ import {
   returnFilteredCategory,
   returnFilteredData,
 } from "../../lib/returnData";
-import { TOP_NAV_HEIGHT } from "../../styles/constants";
+import {
+  TOP_NAV_HEIGHT,
+  TOP_PARAGRAPH_SECTION_PADDING,
+} from "../../styles/constants";
 
 export default function ShopPage({
   fetching,
@@ -50,11 +53,17 @@ export default function ShopPage({
   useIntersectionArray(ref, feedView, currentId.setCurrentIdInView);
   return (
     <>
-      <Header textAlign={"left"} fontWeight={"700"} color={"black"}>
+      <Header
+        textAlign={"left"}
+        fontWeight={"700"}
+        color={"black"}
+        padding={`${TOP_PARAGRAPH_SECTION_PADDING}px 0 0 0`}
+        bigScreenPadding={0}
+      >
         {CATEGORY_NAME.toUpperCase()}
       </Header>
       <PostBar
-        gridRow={3}
+        gridRow={4}
         feedView={feedView}
         posts={posts}
         currentId={currentId.currentIdInView}
