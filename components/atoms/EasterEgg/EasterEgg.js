@@ -8,13 +8,16 @@ export default function EasterEgg({ imgSrc, text }) {
         height: 100,
         position: "relative",
         zIndex: -1,
-        bottom: "120%",
-        // right: "50%",
+        bottom: "200%",
+        right: "-100%",
         // transform: "translate(-50%, -50%)",
       }}
     >
       {imgSrc ? (
-        <img src={imgSrc} style={{ objectFit: "contain" }} />
+        <img
+          src={imgSrc}
+          style={{ objectFit: "contain", width: "100px", height: "100px" }}
+        />
       ) : (
         <p>{text}</p>
       )}

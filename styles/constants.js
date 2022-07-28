@@ -15,8 +15,8 @@ export const SIDE_NAV_MARGIN = SIDE_NAV_WIDTH + SIDE_NAV_PADDING;
 
 //--Naigation Item Variables
 export const UL_MARGIN = 10;
-export const SECTION_LIST_ITEM_PADDING = 10;
-export const MAIN_NAME_SIDE_BAR_PADDING = 35;
+export const SECTION_LIST_ITEM_PADDING = 0;
+export const MAIN_NAME_SIDE_BAR_PADDING = 0;
 
 //Main Section
 export const MAIN_NAME_CONTENT_PADDING = UL_MARGIN + MAIN_NAME_SIDE_BAR_PADDING;
@@ -26,7 +26,7 @@ export const MARGIN_BETWEEN_POSTS = 10;
 
 //FONT-SIZES
 export const SMALL_SCREEN_FONTS = 1.2;
-export const LARGE_SCREEN_FONTS = 1.3;
+export const LARGE_SCREEN_FONTS = 1;
 
 //Z-INDEX LIBRARY
 export const Z_INDEXS = {

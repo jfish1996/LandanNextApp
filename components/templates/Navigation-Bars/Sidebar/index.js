@@ -19,6 +19,7 @@ export default function Sidebar({ currentSection, display, bigScreenDisplay }) {
         fontSize={"2.5rem"}
         firstName={"LANDAN"}
         lastName={"EARLEY"}
+        textAlign={"right"}
         padding={`0 0 ${MAIN_NAME_SIDE_BAR_PADDING}px 0`}
       />
       {sideBarBuilder(SIDEBAR_DATA, currentSection)}

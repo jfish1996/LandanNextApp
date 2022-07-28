@@ -13,7 +13,7 @@ const GridMap = styled.div`
   font-size: 1.3rem;
   padding: 10px 0;
   line-height: 1.3;
-  font-size: ${`${SMALL_SCREEN_FONTS}rem`};
+  font-size: 1rem;
   @media (min-width: ${MAX_WINDOW_WIDTH}px) {
     font-size: ${`${LARGE_SCREEN_FONTS}rem`};
   }

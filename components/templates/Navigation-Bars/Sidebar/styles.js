@@ -27,6 +27,10 @@ export const StyledSidebar = styled.div`
 
 export const StyledUl = styled.ul`
   margin: ${(props) => props.margin};
+  margin: 22px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
   padding: ${(props) => props.padding};
 `;
 
@@ -41,7 +45,7 @@ export const StyledSpan = styled.p`
     cursor: pointer;
   }
   @media (min-width: ${MAX_WINDOW_WIDTH}px) {
-    font-size: ${(props) => `${props.largeScreenFont}rem` || `${1.3}rem`};
+    font-size: 1.3rem;
   }
 `;
 
