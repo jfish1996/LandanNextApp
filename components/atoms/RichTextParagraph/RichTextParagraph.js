@@ -19,7 +19,7 @@ const GridMap = styled.div`
   font-size: 1rem;
   @media (min-width: ${MAX_WINDOW_WIDTH}px) {
     font-size: ${`${LARGE_SCREEN_FONTS}rem`};
-    padding: ${HEADER_AND_SCROLLBAR_PADDING}px 0;
+    padding: 4px 0 ${HEADER_AND_SCROLLBAR_PADDING}px 0;
   }
 `;
 
