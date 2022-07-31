@@ -2,6 +2,13 @@ import React, { useState } from "react";
 import Flex from "../../Styled-Containers/Flex/Flex";
 import styled from "styled-components";
 import { useStateContext } from "../../../../lib/context";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+// import Slider from "react-slick";
+// import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import {
   TRANSITION_TIMES,
   MARGIN_BETWEEN_POSTS,
@@ -19,14 +26,20 @@ const CarouselContainer = styled.div`
   position: relative;
   width: 100%;
   justify-content: center;
-  position: relative;
   user-select: none;
+  & .slick-slide {
+    & img {
+      object-fit: contain;
+      width: 100%;
+      max-height: 100%;
+    }
+  }
   /* @supports (aspect-ratio: auto) {
     aspect-ratio: ${(props) => props.aspectRatio};
   } */
 `;
 
-const Carousel = ({ post, id }, ref) => {
+const CarouselObj = ({ post, id }, ref) => {
   const { darkMode } = useStateContext();
   const [activeIdx, setActiveIdx] = useState(0);
   const imgData = post?.attributes?.Img?.data;
@@ -61,37 +74,60 @@ const Carousel = ({ post, id }, ref) => {
         />
       ) : null;
     } else {
-      return idx === activeIdx ? (
-        <img
-          src={item?.attributes?.formats?.small?.url}
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: "100%",
-            maxHeight: "100%",
-            objectFit: "contain",
-          }}
-        />
-      ) : null;
+      return (
+        <SwiperSlide>
+          <img
+            src={item?.attributes?.formats?.small?.url}
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: "100%",
+              maxHeight: "100%",
+              objectFit: "contain",
+            }}
+          />
+        </SwiperSlide>
+      );
     }
   };
 
+  const settings = {
+    dots: false,
+    centerMode: false,
+    adaptiveHeight: false,
+    arrows: false,
+    // sliderPerView: 1,
+  };
   return (
     <>
       <CarouselContainer
-        aspectRatio={aspectRatio ? aspectRatio : "16/9"}
+        // aspectRatio={aspectRatio ? aspectRatio : "16/9"}
         paddingTop={calcAspectRatio(aspectRatio)}
         ref={ref}
         id={id}
         darkMode={darkMode}
       >
-        {imgData?.map((item, idx) => {
-          return imageOrVideo(item, idx);
-        })}
+        <Swiper
+          modules={[Navigation, Pagination, Scrollbar, A11y]}
+          navigation
+          pagination={{ clickable: true }}
+          spaceBetween={0}
+          slidesPerView={1}
+          style={{
+            position: "absolute",
+            top: 0,
+            width: "100%",
+            height: "100%",
+          }}
+        >
+          {imgData?.map((item, idx) => {
+            return imageOrVideo(item, idx);
+          })}
+        </Swiper>
       </CarouselContainer>
-      <Flex width={"100%"} justifyContent={"start"} gap={"10px"}>
+      {/* <Flex width={"100%"} justifyContent={"start"} gap={"10px"}>
         {" "}
         <ArrowLeft
           onClick={() =>
@@ -107,9 +143,9 @@ const Carousel = ({ post, id }, ref) => {
               : setActiveIdx(activeIdx + 1)
           }
         />
-      </Flex>
+      </Flex> */}
     </>
   );
 };
-const forwardCarousel = React.forwardRef(Carousel);
+const forwardCarousel = React.forwardRef(CarouselObj);
 export default forwardCarousel;
