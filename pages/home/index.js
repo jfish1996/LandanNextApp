@@ -34,13 +34,16 @@ export const HomeItemIMG = styled.img`
   z-index: 0;
 `;
 
-const Home = () => {
+const Home = ({ feedView }) => {
   const { fetching, posts } = returnHomePageImage();
   const { hiddenImgSrc, hiddenImgText } = returnHiddenHomeImage();
   const { darkMode } = useStateContext();
   const CATEGORY_NAME = "Home";
   const { markup } = returnCategoryData(CATEGORY_NAME);
 
+  useEffect(() => {
+    feedView.setFeedViewProp(false);
+  }, []);
   return fetching ? (
     <SkeletonHome pageTitle={CATEGORY_NAME} height={"400px"} />
   ) : (

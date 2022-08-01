@@ -1,4 +1,5 @@
 import React from "react";
+import RichTextParagraph from "../RichTextParagraph/RichTextParagraph";
 
 export default function EasterEgg({ imgSrc, text }) {
   return (
@@ -19,7 +20,7 @@ export default function EasterEgg({ imgSrc, text }) {
           style={{ objectFit: "contain", width: "100px", height: "100px" }}
         />
       ) : (
-        <p>{text}</p>
+        <RichTextParagraph markup={text} />
       )}
     </div>
   );
