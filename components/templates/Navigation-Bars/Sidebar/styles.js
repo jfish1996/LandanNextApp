@@ -61,7 +61,7 @@ export const StyledCartListItem = styled.span`
     cursor: pointer;
   }
   @media (min-width: ${MAX_WINDOW_WIDTH}px) {
-    font-size: ${(props) => `${props.largeScreenFont}rem` || `${1.3}rem`};
+    /* font-size: ${(props) => `${props.largeScreenFont}rem` || `${1.3}rem`}; */
   }
 `;
 

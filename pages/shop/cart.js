@@ -29,14 +29,15 @@ export default function Cart() {
       <Header textAlign={"left"} fontWeight={"700"} color={"black"}>
         {CATEGORY_NAME.toUpperCase()}
       </Header>
-      <CartItem defaultItem={true} />
+
+      {!cartItems.length && <CartItem defaultItem={true} />}
       <>
         {cartItems.map((item, idx) => {
           return <CartItem key={idx} item={item} />;
         })}
       </>
       <div style={{ gridColumn: "1/-1", marginLeft: "auto" }}>
-        <span>Cart Total: {cartItems ? totalCartPrice : 0}</span>
+        <span>Cart Total: ${cartItems ? totalCartPrice : 0}</span>
         <Checkout
           fill={theme.light.sidebar}
           hover="yellow"
