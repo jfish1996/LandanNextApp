@@ -23,6 +23,7 @@ import {
   WHOLE_BODY_MOBILE_MARGIN,
 } from "../../styles/constants";
 import MediaQuery from "react-responsive";
+import Link from "next/link";
 
 const GlobalStyle = createGlobalStyle`
 :root {
@@ -40,6 +41,16 @@ const GlobalStyle = createGlobalStyle`
     props.darkMode ? props.theme.dark.text : props.theme.light.text};
     
   }
+
+  a {
+  color: ${(props) => (props.darkMode ? "white" : "black")};
+  text-decoration: underline;
+}
+
+
+a:hover {
+  color: yellow;
+}
   `;
 
 const Layout = styled.div`
@@ -80,7 +91,7 @@ export default function AppLayout({ children, feedView, currentSection }) {
         >
           <Title
             firstName={"LANDY"}
-            lastName={"PANDY"}
+            lastName={"PANDYY"}
             fontSize={"2.5rem"}
             padding={`0 0 ${BIG_NAME_BOTTOM_PADDING_BODY}px 0`}
             hoverCursor={"pointer"}

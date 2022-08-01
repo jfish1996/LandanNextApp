@@ -58,6 +58,7 @@ export default function SocialPage({
       </Header>
       <PostBar
         gridRow={4}
+        gridRowDesktop={3}
         feedView={feedView}
         posts={posts}
         currentId={currentId.currentIdInView}

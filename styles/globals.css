@@ -16,7 +16,7 @@ ul {
   margin: 0;
 }
 
-a {
+/* a {
   color: black;
   text-decoration: underline;
 }
@@ -24,7 +24,7 @@ a {
 
 a:hover {
   color: yellow;
-}
+} */
 /* a:visited {
   color: lightgrey;
 } */

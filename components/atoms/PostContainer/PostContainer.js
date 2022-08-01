@@ -24,11 +24,10 @@ export default function PostContainer({ children, item, id }) {
   const category = item?.category?.data?.attributes.name;
   const variables = { id, likes: item.likes + 1 };
   const fartVariables = { id, farts: item.farts + 1 };
-
   return (
     <>
       {children}
-      {item.likes >= 0 && category === "Social" && (
+      {item.likes >= 0 && !item.sub_section.data?.attributes?.Name && (
         <Flex gap={"20px"}>
           <Flex alignItems={"center"}>
             <Heart
@@ -50,15 +49,17 @@ export default function PostContainer({ children, item, id }) {
           </Flex>
         </Flex>
       )}
-      <h3>{Title}</h3>
+      <Flex gap={"10px"} alignItems={"center"}>
+        <h3>{Title}</h3>
+        <StyledP fontWeight={400} fontStyle={"italic"}>
+          {Date}
+        </StyledP>
+      </Flex>
       <RichTextParagraph
         markup={FullDescription}
         width={"50px"}
         height={"50px"}
       />
-      <StyledP fontWeight={400} fontStyle={"italic"}>
-        {Date}
-      </StyledP>
     </>
   );
 }

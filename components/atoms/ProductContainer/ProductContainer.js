@@ -25,7 +25,8 @@ export default function ProductContainer({ children, item, id }) {
       {children}
       <Flex alignItems={"center"} gap={"10px"}>
         <h3>{Title}</h3>
-        <AddToCart
+        <p>${Price}</p>
+        {/* <AddToCart
           fill={theme.light.sidebar}
           hover="yellow"
           active={"black"}
@@ -33,15 +34,24 @@ export default function ProductContainer({ children, item, id }) {
             onAdd({ Title, Price, Date, id, url: img });
             notify(Title);
           }}
-        />
+        /> */}
       </Flex>
       <RichTextParagraph
         markup={FullDescription}
         width={"50px"}
         height={"50px"}
       />
-      <p>${Price}</p>
-      <p>{Date}</p>
+      <AddToCart
+        fill={theme.light.sidebar}
+        hover="yellow"
+        active={"black"}
+        onClick={() => {
+          onAdd({ Title, Price, Date, id, url: img });
+          notify(Title);
+        }}
+      />
+      {/* <p>${Price}</p> */}
+      {/* <p>{Date}</p> */}
     </>
   );
 }

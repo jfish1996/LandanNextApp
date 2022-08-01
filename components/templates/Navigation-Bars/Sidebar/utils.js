@@ -109,7 +109,6 @@ export const sideBarBuilder = (data, currentSection) => {
   return (
     <>
       {results?.map((mainCategory, idx) => {
-        console.log(mainCategory);
         const lowerCaseCategory = mainCategory.attributes.name.toLowerCase();
         const dataName = mainCategory.attributes.dataName.toLowerCase();
         return (

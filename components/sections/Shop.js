@@ -64,6 +64,7 @@ export default function ShopPage({
       </Header>
       <PostBar
         gridRow={4}
+        gridRowDesktop={3}
         feedView={feedView}
         posts={posts}
         currentId={currentId.currentIdInView}

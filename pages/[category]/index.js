@@ -23,7 +23,7 @@ export default function Category({ feedView, currentId }) {
 
   const { fetching, result, filtering, items, markup, richText } =
     returnPageType(cleanedRoute);
-  console.log(markup);
+
   return fetching ? (
     <SkeletonTemplate pageTitle={cleanedRoute} />
   ) : result === "posts" && filtering ? (

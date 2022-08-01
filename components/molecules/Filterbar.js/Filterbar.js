@@ -45,9 +45,15 @@ export default function Filterbar({
   const sub_sections = data?.subSections?.data;
 
   const onClick = (subSectionName, idx) => {
-    setFiltering(true);
-    setCurrentSubSection(subSectionName);
-    setCurrentListItem(idx);
+    if (currentSubSection === subSectionName) {
+      setFiltering(false);
+      setCurrentSubSection("");
+      setCurrentListItem(null);
+    } else {
+      setFiltering(true);
+      setCurrentSubSection(subSectionName);
+      setCurrentListItem(idx);
+    }
   };
 
   return (

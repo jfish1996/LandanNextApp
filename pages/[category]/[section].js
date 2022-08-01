@@ -24,7 +24,6 @@ export default function Section({ feedView, currentId }) {
   const cleanedRouteSecondParam = router.asPath.split("/")[2];
   const { fetching, result, filtering, items, markup, richText } =
     returnPageType(cleanedRouteFirstParam, cleanedRouteSecondParam);
-  console.log(markup, items, "in here");
 
   return fetching ? (
     <SkeletonTemplate pageTitle={cleanedRouteSecondParam} />

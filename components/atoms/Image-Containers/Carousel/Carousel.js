@@ -59,20 +59,22 @@ const CarouselObj = ({ post, id }, ref) => {
 
   const imageOrVideo = (item, idx) => {
     if (item.attributes.ext === ".mp4") {
-      return idx === activeIdx ? (
-        <iframe
-          src={item?.attributes?.url}
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: "100%",
-            height: "100%",
-          }}
-          type="video/mp4"
-        />
-      ) : null;
+      return (
+        <SwiperSlide>
+          <iframe
+            src={item?.attributes?.url}
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: "100%",
+              height: "100%",
+            }}
+            type="video/mp4"
+          />
+        </SwiperSlide>
+      );
     } else {
       return (
         <SwiperSlide>

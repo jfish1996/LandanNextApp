@@ -16,7 +16,7 @@ export function useIntersectionArray(
           }
         });
       },
-      { threshold: 1 }
+      { threshold: 0.5 }
     );
     ref.current.forEach((divElement) => {
       observer.observe(divElement);
