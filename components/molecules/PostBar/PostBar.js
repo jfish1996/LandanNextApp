@@ -13,11 +13,9 @@ import {
 import { Link } from "react-scroll";
 import { useStateContext } from "../../../lib/context";
 import GridBox from "../../atoms/SVGs/GridBox";
-const hi = "hi";
 const StyledPostBar = styled.div`
   z-index: ${Z_INDEXS.scrollBars};
   grid-row: ${(props) => (props.gridRow ? props.gridRow : 5)};
-  /* background-color: red; */
   overflow-y: scroll;
   transition: ease-in-out ${TRANSITION_TIMES.body}ms;
   padding: ${(props) => (props.withFilter ? "10px 0 10px 0" : "10px 0px")};
@@ -30,7 +28,6 @@ const StyledPostBar = styled.div`
   @media (min-width: ${MAX_WINDOW_WIDTH}px) {
     top: ${(props) => props.topDesktop};
     grid-row: ${(props) => props.gridRowDesktop};
-    /* width: 100%; */
   }
 `;
 
@@ -107,7 +104,7 @@ const PostBar = ({
               return (
                 <Link
                   to={item?.attributes?.Title}
-                  smooth={true}
+                  // smooth={true}
                   offset={-120}
                   style={{ display: "flex" }}
                 >

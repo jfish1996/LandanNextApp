@@ -65,7 +65,7 @@ const PortfolioPage = ({
   );
 
   return fetching ? (
-    <SkeletonTemplate pageTitle={CATEGORY_NAME} />
+    <SkeletonTemplate pageTitle={CATEGORY_NAME || "PORTFOLIO"} />
   ) : (
     <>
       <Header

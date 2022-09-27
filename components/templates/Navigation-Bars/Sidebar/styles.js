@@ -9,18 +9,18 @@ import {
   GAP_BETWEEN_UL_ITEMS,
   UL_SECTION_TITLE,
 } from "../../../../styles/constants";
+
 export const StyledSidebar = styled.div`
   display: ${(props) => props.display};
   flex-direction: column;
-  transition: ease-in-out ${TRANSITION_TIMES.sidebar}ms;
+  /* transition: ease-in-out ${TRANSITION_TIMES.sidebar}ms; */
   width: ${SIDE_NAV_WIDTH}px;
   height: 100vh;
   z-index: ${Z_INDEXS.sidebar};
   background-color: ${(props) =>
     props.darkMode ? props.theme.dark.sidebar : props.theme.light.sidebar};
-  /* background-color: var(--main-bg-color); */
   overflow: scroll;
-  padding: ${SIDE_NAV_PADDING}px;
+  padding: 75px;
   position: fixed;
   @media (min-width: ${MAX_WINDOW_WIDTH}px) {
     display: ${(props) => props.bigScreenDisplay};

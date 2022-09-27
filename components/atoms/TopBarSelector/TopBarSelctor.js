@@ -7,9 +7,18 @@ const StyledMenu = styled.div`
   margin-right: ${(props) => props.marginRight};
 `;
 
-export default function TopBarSelctor({ children, textAlign, marginRight }) {
+export default function TopBarSelctor({
+  children,
+  textAlign,
+  marginRight,
+  onScroll,
+}) {
   return (
-    <StyledMenu textAlign={textAlign} marginRight={marginRight}>
+    <StyledMenu
+      textAlign={textAlign}
+      marginRight={marginRight}
+      onScroll={onScroll}
+    >
       {children}
     </StyledMenu>
   );

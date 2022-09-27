@@ -291,7 +291,16 @@ export const topBarSubSection = (data, currentSection) => {
               const lowerCaseSubCategory =
                 subCategory.attributes.SectionName.toLowerCase().split(".")[0];
               const subLink = subCategory.attributes.dataName;
-              return (
+
+              return subCategory.attributes.dataName === "cart" ? (
+                handleCart(
+                  lowerCaseSubCategory,
+                  darkMode,
+                  currentRoute,
+                  lowerCaseCategory,
+                  lowerCaseSubCategory
+                )
+              ) : (
                 <Subtitle
                   smallScreenAnimation={true}
                   key={idx2}

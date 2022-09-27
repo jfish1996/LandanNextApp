@@ -11,11 +11,27 @@ import RichTextParagraph from "../RichTextParagraph/RichTextParagraph";
 import { LIKE_MUTATION, FART_MUTATION } from "../../../lib/mutation";
 import { theme } from "../../../styles/constants";
 import styled from "styled-components";
+import { MAX_WINDOW_WIDTH } from "../../../styles/constants";
 const { motion } = require("framer-motion");
 const StyledP = styled.p`
   font-weight: ${(props) => props.fontWeight || "bold"};
   margin: 0;
   font-style: ${(props) => props.fontStyle};
+  font-size: ${(props) => props.fontSize};
+`;
+
+const StyledFlexTitleDate = styled.div`
+  h3 {
+    margin: 0;
+  }
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  @media (min-width: ${MAX_WINDOW_WIDTH}px) {
+    flex-direction: row;
+    align-items: center;
+  }
 `;
 export default function PostContainer({ children, item, id }) {
   const { Title, FullDescription, Date } = item;
@@ -49,13 +65,14 @@ export default function PostContainer({ children, item, id }) {
           </Flex>
         </Flex>
       )}
-      <Flex gap={"10px"} alignItems={"center"}>
+      <StyledFlexTitleDate gap={"10px"} alignItems={"center"}>
         <h3>{Title}</h3>
-        <StyledP fontWeight={400} fontStyle={"italic"}>
+        <StyledP fontWeight={400} fontStyle={"italic"} fontSize={"0.8rem"}>
           {Date}
         </StyledP>
-      </Flex>
+      </StyledFlexTitleDate>
       <RichTextParagraph
+        margin={"0 0 40px 0"}
         markup={FullDescription}
         width={"50px"}
         height={"50px"}

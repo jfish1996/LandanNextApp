@@ -21,7 +21,7 @@ const StyledUL = styled(motion.ul)`
   overflow-x: scroll;
   background-color: ${(props) =>
     props.darkMode ? props.theme.dark.body : props.theme.light.body};
-  transition: ease-in-out ${TRANSITION_TIMES.body}ms;
+  /* transition: ease-in 300ms; */
   border-top: 1px solid lightgrey;
   border-bottom: 1px solid lightgrey;
   padding: 10px 0;

@@ -24,7 +24,6 @@ const GridItem = (
   return (
     <GridItemIMG
       onClick={onClick}
-      src={smallURL || defaultURL}
       width={width}
       height={height}
       padding={padding}

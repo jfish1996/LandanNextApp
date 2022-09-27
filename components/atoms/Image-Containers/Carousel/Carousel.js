@@ -6,14 +6,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
-// import Slider from "react-slick";
-// import { Carousel } from "react-responsive-carousel";
+
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import {
   TRANSITION_TIMES,
   MARGIN_BETWEEN_POSTS,
 } from "../../../../styles/constants";
-import { ArrowLeft, ArrowRight } from "../../SVGs/Arrows";
+import Image from "next/image";
 const CarouselContainer = styled.div`
   display: flex;
   margin-top: ${MARGIN_BETWEEN_POSTS}px;
@@ -34,12 +33,22 @@ const CarouselContainer = styled.div`
       max-height: 100%;
     }
   }
+
+  & .swiper-pagination-bullet {
+    background-color: ${(props) =>
+      props.darkMode ? props.theme.light.sidebar : props.theme.dark.sidebar};
+  }
+
+  & .swiper-pagination-bullet-active {
+    background-color: yellow;
+  }
   /* @supports (aspect-ratio: auto) {
     aspect-ratio: ${(props) => props.aspectRatio};
   } */
 `;
 
 const CarouselObj = ({ post, id }, ref) => {
+  console.log(post);
   const { darkMode } = useStateContext();
   const [activeIdx, setActiveIdx] = useState(0);
   const imgData = post?.attributes?.Img?.data;
@@ -78,17 +87,15 @@ const CarouselObj = ({ post, id }, ref) => {
     } else {
       return (
         <SwiperSlide>
-          <img
-            src={item?.attributes?.formats?.small?.url}
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              width: "100%",
-              maxHeight: "100%",
-              objectFit: "contain",
-            }}
+          <Image
+            loading="lazy"
+            layout="fill"
+            width={"100%"}
+            objectFit={"contain"}
+            maxHeight={"100%"}
+            src={
+              item?.attributes?.formats?.medium?.url || item?.attributes?.url
+            }
           />
         </SwiperSlide>
       );

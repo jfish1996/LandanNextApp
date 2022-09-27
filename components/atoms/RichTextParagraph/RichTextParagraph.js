@@ -17,15 +17,16 @@ const GridMap = styled.div`
   padding: ${HEADER_AND_SCROLLBAR_PADDING}px 0;
   line-height: 1.3;
   font-size: 1rem;
+  margin: ${(props) => props.margin};
   @media (min-width: ${MAX_WINDOW_WIDTH}px) {
     font-size: ${`${LARGE_SCREEN_FONTS}rem`};
     padding: ${HEADER_AND_SCROLLBAR_PADDING}px 0;
   }
 `;
 
-export default function RichTextParagraph({ markup }) {
+export default function RichTextParagraph({ markup, margin }) {
   return (
-    <GridMap>
+    <GridMap margin={margin}>
       <Markup markup={markup} />
     </GridMap>
   );

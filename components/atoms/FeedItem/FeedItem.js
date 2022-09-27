@@ -16,9 +16,9 @@ const FeedItem = (
       return (
         <motion.div
           id={item.Title}
-          initial={POST_TRANSITION_TIMES.intial}
-          animate={POST_TRANSITION_TIMES.animate}
-          transition={POST_TRANSITION_TIMES.transition}
+          // initial={POST_TRANSITION_TIMES.intial}
+          // animate={POST_TRANSITION_TIMES.animate}
+          // transition={POST_TRANSITION_TIMES.transition}
         >
           <ProductContainer item={item} id={id}>
             <Carousel post={carouselItem} ref={ref} id={id} />
@@ -30,9 +30,9 @@ const FeedItem = (
       return (
         <motion.div
           id={item.Title}
-          initial={POST_TRANSITION_TIMES.intial}
-          animate={POST_TRANSITION_TIMES.animate}
-          transition={POST_TRANSITION_TIMES.transition}
+          // initial={POST_TRANSITION_TIMES.intial}
+          // animate={POST_TRANSITION_TIMES.animate}
+          // transition={POST_TRANSITION_TIMES.transition}
         >
           <PostContainer item={item} id={id}>
             <Carousel post={carouselItem} ref={ref} id={id} />

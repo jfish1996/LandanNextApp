@@ -20,7 +20,7 @@ export const MIN_WINDOW_WITH = GRID_BOX_WIDTH * 2 + GRID_GAP;
 export const MAX_WINDOW_WIDTH = GRID_BOX_WIDTH * 4 + GRID_GAP * 3;
 
 //Mobile
-export const WHOLE_BODY_MOBILE_MARGIN = 5;
+export const WHOLE_BODY_MOBILE_MARGIN = 2;
 export const TOP_PARAGRAPH_SECTION_PADDING = 15;
 
 //Desktop
@@ -56,13 +56,10 @@ export const POST_TRANSITION_TIMES = {
 };
 
 export const theme = {
-  nav_padding: "75px",
   light: {
     sidebar: "#ececed",
     body: "#FFFFFF",
     text: "#000000",
-    skeletonStart: "(240, 3%, 93%)",
-    skeletonEnd: "(240, 3%, 24%)",
   },
   dark: {
     sidebar: "#3A3B3c",

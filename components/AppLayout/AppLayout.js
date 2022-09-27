@@ -26,9 +26,6 @@ import MediaQuery from "react-responsive";
 import Link from "next/link";
 
 const GlobalStyle = createGlobalStyle`
-:root {
-  --test: 75px;
-}
   body {
     background-color : ${(props) =>
       props.darkMode ? props.theme.dark.body : props.theme.light.body};
@@ -59,8 +56,8 @@ const Layout = styled.div`
   color: ${(props) =>
     props.darkMode ? props.theme.dark.text : props.theme.light.text};
   flex-direction: row;
-  /* background-color: ${(props) =>
-    props.darkMode ? props.theme.dark.body : props.theme.light.body}; */
+  background-color: ${(props) =>
+    props.darkMode ? props.theme.dark.body : props.theme.light.body};
   height: 100%;
 `;
 
@@ -96,16 +93,17 @@ export default function AppLayout({ children, feedView, currentSection }) {
             padding={`0 0 ${BIG_NAME_BOTTOM_PADDING_BODY}px 0`}
             hoverCursor={"pointer"}
             onClick={() => {
-              setDarkMode((prevState) => {
-                localStorage.setItem("darkMode", !prevState);
-                return !prevState;
-              });
+              localStorage.setItem("darkMode", !darkMode);
+              setDarkMode(!darkMode);
             }}
             smallMediaDisplay={"none"}
             largeMediaDisplay={"block"}
           />
 
-          <GridView feedView={feedView}>
+          <GridView
+            feedView={feedView}
+            margin={`0 ${WHOLE_BODY_MOBILE_MARGIN}px 0 0`}
+          >
             <TopBar currentSection={currentSection} />
             {children}
           </GridView>

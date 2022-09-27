@@ -58,28 +58,23 @@ const StyledTopBar = styled.div`
 export default function TopBar({ currentSection }) {
   const { darkMode, setDarkMode } = useStateContext();
 
-  const { ref, inView, entry } = useInView({
-    threshold: 0.5,
-  });
-  let trueFalse = false;
-  useEffect(() => {
-    const darkModeLocal = JSON.parse(localStorage.getItem("darkMode"));
+  // useEffect(() => {
+  //   const darkModeLocal = JSON.parse(localStorage.getItem("darkMode"));
 
-    if (window.innerWidth < 920) {
-      setDarkMode(darkModeLocal);
+  //   if (window.innerWidth < 920) {
+  //     setDarkMode(darkModeLocal);
 
-      if (inView) {
-        setDarkMode(!darkModeLocal);
-        localStorage.setItem("darkMode", !darkModeLocal);
-      }
-      if (!inView) {
-        setDarkMode(!darkModeLocal);
-        localStorage.setItem("darkMode", !darkModeLocal);
-      }
-    }
+  //     if (inView) {
+  //       setDarkMode(!darkModeLocal);
+  //       localStorage.setItem("darkMode", !darkModeLocal);
+  //     }
+  //     if (!inView) {
+  //       setDarkMode(!darkModeLocal);
+  //       localStorage.setItem("darkMode", !darkModeLocal);
+  //     }
+  //   }
 
-    // }
-  }, [inView]);
+  // }, [inView]);
 
   // useEffect(() => {
 
@@ -88,7 +83,19 @@ export default function TopBar({ currentSection }) {
   return (
     <>
       <StyledTopBar darkMode={darkMode}>
-        <TopBarSelctor>
+        <TopBarSelctor
+          onScroll={(e) => {
+            if (e.target.scrollTop === 0) {
+              localStorage.setItem("darkMode", false);
+              setDarkMode(false);
+            } else if (e.target.scrollTop === 86) {
+              localStorage.setItem("darkMode", true);
+              setDarkMode(true);
+            } else {
+              return;
+            }
+          }}
+        >
           <Title
             // textAlign={"center"}
             fontSize={"1.5rem"}
@@ -97,15 +104,13 @@ export default function TopBar({ currentSection }) {
             padding={"10px 0"}
           />
 
-          <div ref={ref}>
-            <Title
-              // textAlign={"center"}
-              fontSize={"1.5rem"}
-              firstName={"LANDY"}
-              lastName={"PANDY"}
-              padding={"10px 0"}
-            />
-          </div>
+          <Title
+            // textAlign={"center"}
+            fontSize={"1.5rem"}
+            firstName={"LANDY"}
+            lastName={"PANDY"}
+            padding={"10px 0"}
+          />
         </TopBarSelctor>
         {topBarMainSection(SIDEBAR_DATA, currentSection)}
         {topBarSubSection(SIDEBAR_DATA, currentSection)}
