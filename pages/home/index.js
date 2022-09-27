@@ -20,7 +20,7 @@ export const Container = styled.div`
 
   grid-column: 1/-1;
   -webkit-user-drag: none;
-  z-index: 0;
+  z-index: 1;
 `;
 
 export const HomeItemIMG = styled.img`
@@ -37,6 +37,7 @@ export const HomeItemIMG = styled.img`
 const Home = ({ feedView }) => {
   const { fetching, posts } = returnHomePageImage();
   const { hiddenImgSrc, hiddenImgText } = returnHiddenHomeImage();
+  console.log(hiddenImgSrc, hiddenImgText);
   const { darkMode } = useStateContext();
   const CATEGORY_NAME = "Home";
   const { markup } = returnCategoryData(CATEGORY_NAME);

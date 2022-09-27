@@ -8,7 +8,7 @@ export default function EasterEgg({ imgSrc, text }) {
         width: 100,
         height: 100,
         position: "relative",
-        zIndex: -1,
+        zIndex: 0,
         bottom: "200%",
         right: "-100%",
         // transform: "translate(-50%, -50%)",
