@@ -20,7 +20,7 @@ export const StyledSidebar = styled.div`
   background-color: ${(props) =>
     props.darkMode ? props.theme.dark.sidebar : props.theme.light.sidebar};
   overflow: scroll;
-  padding: 75px;
+  padding: 65px;
   position: fixed;
   @media (min-width: ${MAX_WINDOW_WIDTH}px) {
     display: ${(props) => props.bigScreenDisplay};
