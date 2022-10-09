@@ -11,7 +11,7 @@ const BaseURL = () => {
   return (
     <Head>
       <link rel="apple-touch-icon" href="/"></link>
-      <title>First Post</title>
+      <title>HTML Elements Reference</title>
     </Head>
   );
 };

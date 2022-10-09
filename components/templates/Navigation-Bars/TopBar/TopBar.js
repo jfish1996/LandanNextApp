@@ -14,7 +14,7 @@ import {
   Z_INDEXS,
 } from "../../../../styles/constants";
 import { useStateContext } from "../../../../lib/context";
-import { useInView, InView } from "react-intersection-observer";
+import Link from "next/link";
 
 const StyledTopBar = styled.div`
   width: 100%;
@@ -56,34 +56,30 @@ const StyledTopBar = styled.div`
 `;
 
 export default function TopBar({ currentSection }) {
-  const { darkMode, setDarkMode } = useStateContext();
+  const { darkMode, setDarkMode, firstVisit, setFirstVisit } =
+    useStateContext();
 
-  // useEffect(() => {
-  //   const darkModeLocal = JSON.parse(localStorage.getItem("darkMode"));
+  useEffect(() => {
+    if (firstVisit === false) {
+      return;
+    }
 
-  //   if (window.innerWidth < 920) {
-  //     setDarkMode(darkModeLocal);
-
-  //     if (inView) {
-  //       setDarkMode(!darkModeLocal);
-  //       localStorage.setItem("darkMode", !darkModeLocal);
-  //     }
-  //     if (!inView) {
-  //       setDarkMode(!darkModeLocal);
-  //       localStorage.setItem("darkMode", !darkModeLocal);
-  //     }
-  //   }
-
-  // }, [inView]);
-
-  // useEffect(() => {
-
-  // }, []);
-
+    setTimeout(() => {
+      setFirstVisit(false);
+    }, 3000);
+  }, []);
   return (
     <>
       <StyledTopBar darkMode={darkMode}>
         <TopBarSelctor
+          onSwipeUp={() => {
+            localStorage.setItem("darkMode", true);
+            setDarkMode(true);
+          }}
+          onSwipedDown={() => {
+            localStorage.setItem("darkMode", false);
+            setDarkMode(false);
+          }}
           onScroll={(e) => {
             if (e.target.scrollTop === 0) {
               localStorage.setItem("darkMode", false);
@@ -96,16 +92,16 @@ export default function TopBar({ currentSection }) {
             }
           }}
         >
+          <Link href={"/home"}>
+            <Title
+              fontSize={"1.5rem"}
+              firstName={"LANDAN"}
+              lastName={"EARLEY"}
+              padding={"10px 0"}
+              hoverCursor={"pointer"}
+            />
+          </Link>
           <Title
-            // textAlign={"center"}
-            fontSize={"1.5rem"}
-            firstName={"LANDAN"}
-            lastName={"EARLEY"}
-            padding={"10px 0"}
-          />
-
-          <Title
-            // textAlign={"center"}
             fontSize={"1.5rem"}
             firstName={"LANDY"}
             lastName={"PANDY"}

@@ -17,16 +17,29 @@ const GridMap = styled.div`
   padding: ${HEADER_AND_SCROLLBAR_PADDING}px 0;
   line-height: 1.3;
   font-size: 1rem;
+  border-bottom: ${(props) => props.borderBottom};
   margin: ${(props) => props.margin};
   @media (min-width: ${MAX_WINDOW_WIDTH}px) {
     font-size: ${`${LARGE_SCREEN_FONTS}rem`};
-    padding: ${HEADER_AND_SCROLLBAR_PADDING}px 0;
+    padding: ${(props) =>
+      props.bigScreenPadding
+        ? props.bigScreenPadding
+        : `${HEADER_AND_SCROLLBAR_PADDING}px 0`};
   }
 `;
 
-export default function RichTextParagraph({ markup, margin }) {
+export default function RichTextParagraph({
+  markup,
+  margin,
+  borderBottom,
+  bigScreenPadding,
+}) {
   return (
-    <GridMap margin={margin}>
+    <GridMap
+      margin={margin}
+      borderBottom={borderBottom}
+      bigScreenPadding={bigScreenPadding}
+    >
       <Markup markup={markup} />
     </GridMap>
   );

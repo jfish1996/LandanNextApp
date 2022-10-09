@@ -8,9 +8,7 @@ import {
   StyledQuantityCircle,
 } from "./styles";
 import { useRouter } from "next/router";
-import Title from "../../../atoms/Title/Title";
 import TopBarSelctor from "../../../atoms/TopBarSelector/TopBarSelctor";
-import { OverlappingFieldsCanBeMergedRule } from "graphql";
 import {
   SMALL_SCREEN_FONTS,
   LARGE_SCREEN_FONTS,
@@ -58,7 +56,8 @@ export const handleCart = (
   darkMode,
   currentRoute,
   lowerCaseCategory,
-  lowerCaseSubCategory
+  lowerCaseSubCategory,
+  mobile
 ) => {
   const { cartItems } = useStateContext();
   let totalCartItems = cartItems.reduce((curNumber, item) => {
@@ -67,24 +66,33 @@ export const handleCart = (
 
   return (
     <>
-      <Subtitle>
-        <Flex justifyContent={"flex-end"} gap={"10px"} alignItems={"center"}>
+      <Subtitle textAlign={"right"}>
+        <Flex
+          justifyContent={mobile ? "flex-start" : "flex-end"}
+          gap={"10px"}
+          alignItems={"left"}
+          padding={mobile ? "10px 0 0 0" : null}
+        >
           <Link href={`/${lowerCaseCategory}/${lowerCaseSubCategory}`}>
-            <StyledCartListItem
-              darkMode={darkMode}
-              smallScreenFont={SMALL_SCREEN_FONTS}
-              largeScreenFont={LARGE_SCREEN_FONTS}
-              colorHover={"#fff100"}
-              active={
-                currentRoute === `/${lowerCaseCategory}/${lowerCaseSubCategory}`
-              }
-            >
-              {subCategory}
-            </StyledCartListItem>
+            <StyledSpan>
+              <StyledCartListItem
+                darkMode={darkMode}
+                // smallScreenFont={mobile ? "1.1rem" : null}
+                // largeScreenFont={LARGE_SCREEN_FONTS}
+                colorHover={"#fff100"}
+                active={
+                  currentRoute ===
+                  `/${lowerCaseCategory}/${lowerCaseSubCategory}`
+                }
+              >
+                {subCategory}
+              </StyledCartListItem>
+            </StyledSpan>
           </Link>
           <StyledCartListItem
             darkMode={darkMode}
-            smallScreenFont={SMALL_SCREEN_FONTS}
+            // smallScreenFont={mobile ? "1.1rem" : null}
+            // smallScreenFont={SMALL_SCREEN_FONTS}
             largeScreenFont={LARGE_SCREEN_FONTS}
           >
             <StyledQuantityCircle darkMode={darkMode}>
@@ -151,6 +159,7 @@ export const sideBarBuilder = (data, currentSection) => {
                       darkMode={darkMode}
                       key={idx2}
                       active={currentRoute === `/${dataName}/${subLink}`}
+                      smallScreenAnimation={false}
                     >
                       <Link href={`/${dataName}/${subLink}`}>
                         <StyledSpan
@@ -171,74 +180,11 @@ export const sideBarBuilder = (data, currentSection) => {
       })}
     </>
   );
-
-  // return data.map((mainCategory, idx) => {
-  // let lowerCaseCategory = mainCategory.link.toLowerCase().replace(/ /g, "");
-  //   let homeLink = mainCategory.href;
-
-  //   return (
-  //     <>
-  //       <StyledUl key={idx + 1} margin={`${UL_MARGIN}px 0`}>
-  //         <Header
-  //           darkMode={darkMode}
-  //           active={currentRoute === `/${lowerCaseCategory}`}
-  //           url={lowerCaseCategory}
-  //           key={idx}
-  //           onClick={() => currentSection.setCurrentSection(lowerCaseCategory)}
-  //         >
-  //           <Link href={`/${lowerCaseCategory}`}>
-  //             <StyledSpan
-  //               darkMode={darkMode}
-  //               smallScreenFont={SMALL_SCREEN_FONTS}
-  //               largeScreenFont={LARGE_SCREEN_FONTS}
-  //             >
-  //               {mainCategory.link}
-  //             </StyledSpan>
-  //           </Link>
-  //         </Header>
-
-  // {mainCategory.subLink.map((subCategory, idx2) => {
-  //   let lowerCaseSubCategory = subCategory
-  //     .toLowerCase()
-  //     .replace(/ /g, "");
-  //   return lowerCaseSubCategory === "cart" ? (
-  //     handleCart(
-  //       subCategory,
-  //       darkMode,
-  //       currentRoute,
-  //       lowerCaseCategory,
-  //       lowerCaseSubCategory
-  //     )
-  //   ) : (
-  //     <Subtitle
-  //       darkMode={darkMode}
-  //       key={idx2}
-  //       active={
-  //         currentRoute ===
-  //         `/${lowerCaseCategory}/${lowerCaseSubCategory}`
-  //       }
-  //     >
-  //       <Link href={`/${lowerCaseCategory}/${lowerCaseSubCategory}`}>
-  //         <StyledSpan
-  //           darkMode={darkMode}
-  //           smallScreenFont={SMALL_SCREEN_FONTS}
-  //           largeScreenFont={LARGE_SCREEN_FONTS}
-  //         >
-  //           {subCategory}
-  //         </StyledSpan>
-  //       </Link>
-  //     </Subtitle>
-  //   );
-  // })}
-  //       </StyledUl>
-  //     </>
-  //   );
-  // });
 };
 
 export const topBarMainSection = (data, currentSection) => {
   const { results } = returnNavData();
-  const { darkMode } = useStateContext();
+  const { darkMode, firstVisit } = useStateContext();
   const router = useRouter();
   const currentRoute = router.asPath;
   return (
@@ -248,8 +194,9 @@ export const topBarMainSection = (data, currentSection) => {
           const dataName = mainCategory.attributes.dataName.toLowerCase();
           return (
             <Subtitle
-              smallScreenAnimation={true}
+              smallScreenAnimation={firstVisit === true ? true : false}
               darkMode={darkMode}
+              textAlign={"left"}
               key={idx}
               onClick={() => {
                 currentSection.setCurrentSection(dataName);
@@ -272,9 +219,9 @@ export const topBarMainSection = (data, currentSection) => {
     </>
   );
 };
-export const topBarSubSection = (data, currentSection) => {
+export const topBarSubSection = () => {
   const { results } = returnNavData();
-  const { darkMode } = useStateContext();
+  const { darkMode, firstVisit } = useStateContext();
   const router = useRouter();
   const currentRoute = router.asPath;
   return (
@@ -298,13 +245,15 @@ export const topBarSubSection = (data, currentSection) => {
                   darkMode,
                   currentRoute,
                   lowerCaseCategory,
-                  lowerCaseSubCategory
+                  lowerCaseSubCategory,
+                  true
                 )
               ) : (
                 <Subtitle
-                  smallScreenAnimation={true}
+                  smallScreenAnimation={firstVisit === true ? true : false}
                   key={idx2}
                   active={currentRoute === `/${dataName}/${subLink}`}
+                  textAlign={"left"}
                 >
                   <Link href={`/${dataName}/${subLink}`}>
                     <StyledSpan

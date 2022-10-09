@@ -11,30 +11,18 @@ import { Toaster } from "react-hot-toast";
 const client = createClient({
   url: process.env.NEXT_PUBLIC_BACK_END_URL,
 });
-import { renderToString } from "react-dom/server";
-import { ServerStyleSheet, StyleSheetManager } from "styled-components";
+import Head from "next/head";
 
 const MyApp = ({ Component, pageProps }) => {
   const [feedView, setFeedView] = useState(false);
   const [currentSection, setCurrentSection] = useState("");
   const [currentIdInView, setCurrentIdInView] = useState(0);
-
-  const sheet = new ServerStyleSheet();
-  try {
-    const html = renderToString(
-      <StyleSheetManager sheet={sheet.instance}>
-        <AppLayout />
-      </StyleSheetManager>
-    );
-    const styleTags = sheet.getStyleTags(); // or sheet.getStyleElement();
-  } catch (error) {
-    // handle error
-    console.error(error);
-  } finally {
-    sheet.seal();
-  }
   return (
     <StateContext>
+      <Head>
+        <link rel="apple-touch-icon" href="/"></link>
+        <title>{"Landan Earley"}</title>
+      </Head>
       <Toaster position="bottom-right" reverseOrder={false} />
       <ThemeProvider theme={theme}>
         <Provider value={client}>

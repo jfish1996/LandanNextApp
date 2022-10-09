@@ -39,8 +39,9 @@ export const TOP_BAR_UL_ITEMS = 1;
 //Z-INDEX LIBRARY
 export const Z_INDEXS = {
   scrollBars: 2,
-  sidebar: 1,
+  sidebar: 2,
   arrows: 1,
+  homePageHero: 1,
 };
 
 export const TRANSITION_TIMES = {

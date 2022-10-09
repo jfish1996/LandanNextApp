@@ -43,7 +43,7 @@ export default function PostContainer({ children, item, id }) {
   return (
     <>
       {children}
-      {item.likes >= 0 && !item.sub_section.data?.attributes?.Name && (
+      {item.likes >= 0 && !item.sub_section?.data?.attributes?.Name && (
         <Flex gap={"20px"}>
           <Flex alignItems={"center"}>
             <Heart

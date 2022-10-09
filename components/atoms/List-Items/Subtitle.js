@@ -4,14 +4,14 @@ import {
   MAX_WINDOW_WIDTH,
   SECTION_LIST_ITEM_PADDING,
 } from "../../../styles/constants";
-
+import { useStateContext } from "../../../lib/context";
 const StyledSubTitle = styled.li`
   color: ${(props) =>
     props.darkMode ? props.theme.dark.font : props.theme.light.font};
   list-style-type: none;
   /* padding: ${SECTION_LIST_ITEM_PADDING}px 0; */
   font-size: ${(props) => props.smallScreenFont || `${1.3}rem`};
-  text-align: right;
+  text-align: ${(props) => (props.textAlign ? props.textAlign : "right")};
   font-weight: ${(props) => (props.active ? "bold" : null)};
   animation: ${(props) =>
     props.smallScreenAnimation ? "MoveUpDown 0.5s linear 0.5s" : null};
@@ -38,13 +38,16 @@ export default function Subtitle({
   smallScreenFont,
   smallScreenAnimation,
   largeScreenFont,
+  textAlign,
 }) {
+  const { firstVisit } = useStateContext();
   return (
     <StyledSubTitle
       onClick={onClick}
       active={active}
       color={color}
       smallScreen={smallScreenFont}
+      textAlign={textAlign}
       smallScreenAnimation={smallScreenAnimation}
       largeScreen={largeScreenFont}
       darkMode={darkMode}

@@ -1,10 +1,10 @@
 import React from "react";
-import CartItem from "../../components/atoms/CartItem/CartItem";
-import Checkout from "../../components/atoms/SVGs/Checkout";
-import { useStateContext } from "../../lib/context";
-import Header from "../../components/atoms/List-Items/Header";
-import { getStripe } from "../../lib/getStripe";
-import { theme } from "../../styles/constants";
+import CartItem from "../../../components/atoms/CartItem/CartItem";
+import Checkout from "../../../components/atoms/SVGs/Checkout";
+import { useStateContext } from "../../../lib/context";
+import Header from "../../../components/atoms/List-Items/Header";
+import { getStripe } from "../../../lib/getStripe";
+import { theme } from "../../../styles/constants";
 export default function Cart() {
   const CATEGORY_NAME = "cart";
   const { cartItems, onAdd, onRemove } = useStateContext();

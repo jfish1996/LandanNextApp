@@ -52,7 +52,7 @@ export const StyledSpan = styled.p`
 `;
 
 export const StyledCartListItem = styled.span`
-  font-size: ${(props) => `${props.smallScreenFont}rem` || `${1.3}rem`};
+  font-size: 1.1rem;
   list-style-type: none;
   font-weight: ${(props) => (props.active ? "bold" : null)};
   /* transition: ease-in-out ${TRANSITION_TIMES.text}ms; */
@@ -61,7 +61,7 @@ export const StyledCartListItem = styled.span`
     cursor: pointer;
   }
   @media (min-width: ${MAX_WINDOW_WIDTH}px) {
-    /* font-size: ${(props) => `${props.largeScreenFont}rem` || `${1.3}rem`}; */
+    font-size: ${(props) => `${props.largeScreenFont}rem` || `${1.3}rem`};
   }
 `;
 

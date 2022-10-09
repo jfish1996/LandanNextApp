@@ -13,6 +13,7 @@ import styled from "styled-components";
 import SkeletonHome from "../../components/molecules/SkeletonTemplate/SkeletonHome";
 import EasterEgg from "../../components/atoms/EasterEgg/EasterEgg";
 import { useStateContext } from "../../lib/context";
+import { Z_INDEXS } from "../../styles/constants";
 export const Container = styled.div`
   width: 100%;
   background-color: ${(props) =>
@@ -20,7 +21,7 @@ export const Container = styled.div`
 
   grid-column: 1/-1;
   -webkit-user-drag: none;
-  z-index: 1;
+  z-index: ${Z_INDEXS.homePageHero};
 `;
 
 export const HomeItemIMG = styled.img`
@@ -31,13 +32,11 @@ export const HomeItemIMG = styled.img`
   grid-row: ${(props) => props.gridRow};
   grid-column: ${(props) => props.gridColumn};
   -webkit-user-drag: none;
-  z-index: 0;
 `;
 
 const Home = ({ feedView }) => {
   const { fetching, posts } = returnHomePageImage();
   const { hiddenImgSrc, hiddenImgText } = returnHiddenHomeImage();
-  console.log(hiddenImgSrc, hiddenImgText);
   const { darkMode } = useStateContext();
   const CATEGORY_NAME = "Home";
   const { markup } = returnCategoryData(CATEGORY_NAME);

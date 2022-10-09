@@ -120,7 +120,6 @@ const CarouselObj = ({ post, id }, ref) => {
       >
         <Swiper
           modules={[Navigation, Pagination, Scrollbar, A11y]}
-          navigation
           pagination={{ clickable: true }}
           spaceBetween={0}
           slidesPerView={1}
