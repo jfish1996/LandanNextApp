@@ -9,7 +9,7 @@ import {
 import { useStateContext } from "../../../lib/context";
 const { motion } = require("framer-motion");
 const StyledHeader = styled.li`
-  /* grid-column: 1/-1; */
+  grid-column: 1/-1;
   grid-row: 2;
   color: ${(props) =>
     props.darkMode ? props.theme.dark.text : props.theme.light.text};

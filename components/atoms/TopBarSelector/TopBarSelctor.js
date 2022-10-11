@@ -5,6 +5,7 @@ import { useSwipeable } from "react-swipeable";
 const StyledMenu = styled.div`
   text-align: ${(props) => props.textAlign};
   overflow: scroll;
+  margin: ${(props) => props.margin};
   margin-right: ${(props) => props.marginRight};
 `;
 
@@ -15,6 +16,7 @@ export default function TopBarSelctor({
   onScroll,
   onSwipeUp,
   onSwipedDown,
+  margin,
 }) {
   const handlers = useSwipeable({
     onSwipedDown: onSwipedDown,
@@ -23,6 +25,7 @@ export default function TopBarSelctor({
 
   return (
     <StyledMenu
+      margin={margin}
       textAlign={textAlign}
       marginRight={marginRight}
       onScroll={onScroll}

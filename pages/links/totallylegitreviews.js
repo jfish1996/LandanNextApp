@@ -9,7 +9,7 @@ import { TOP_PARAGRAPH_SECTION_PADDING } from "../../styles/constants";
 import Header from "../../components/atoms/List-Items/Header";
 export default function TotallyLegitReviews({ feedView }) {
   const SECTION_NAME = "Totally Legit Reviews.links";
-  const SECTION_DISPLAY_NAME = "Totally Legit Reviews";
+  const SECTION_DISPLAY_NAME = "totally legit reviews";
   const { posts, markup } = returnSectionData(SECTION_NAME);
   const { reviews } = returnLegitReviews();
 
@@ -22,7 +22,7 @@ export default function TotallyLegitReviews({ feedView }) {
         padding={`${TOP_PARAGRAPH_SECTION_PADDING}px 0 0 0`}
         bigScreenPadding={0}
       >
-        {SECTION_DISPLAY_NAME.toUpperCase()}
+        {SECTION_DISPLAY_NAME}
       </Header>
       <RichTextParagraph
         markup={markup}

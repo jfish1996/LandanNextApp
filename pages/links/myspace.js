@@ -18,7 +18,7 @@ export default function Myspace({ feedView }) {
         padding={`${TOP_PARAGRAPH_SECTION_PADDING}px 0 0 0`}
         bigScreenPadding={0}
       >
-        {"MYSPACE"}
+        {"myspace"}
       </Header>
       <RichTextParagraph markup={markup} />
       {returnLinks(posts, feedView, link)}

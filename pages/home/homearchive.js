@@ -12,7 +12,7 @@ import { TOP_NAV_HEIGHT } from "../../styles/constants";
 import SkeletonTemplate from "../../components/molecules/SkeletonTemplate/SkeletonTemplate";
 
 const HomeArchive = ({ feedView, currentId }) => {
-  const CATEGORY_NAME = "Home Archive";
+  const CATEGORY_NAME = "home archive";
   const { fetching, posts, richText } = returnHomeArchiveData();
 
   const ref = useRef([]);
@@ -45,7 +45,7 @@ const HomeArchive = ({ feedView, currentId }) => {
   ) : (
     <>
       <Header textAlign={"left"} fontWeight={"700"} color={"black"}>
-        {CATEGORY_NAME.toUpperCase()}
+        {CATEGORY_NAME}
       </Header>
       <PostBar
         gridRow={3}

@@ -24,10 +24,10 @@ const StyledFlexTitleDate = styled.div`
   h3 {
     margin: 0;
   }
-  margin-top: 16px;
+  margin-top: 5px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
   @media (min-width: ${MAX_WINDOW_WIDTH}px) {
     flex-direction: row;
     align-items: center;
@@ -44,7 +44,7 @@ export default function PostContainer({ children, item, id }) {
     <>
       {children}
       {item.likes >= 0 && !item.sub_section?.data?.attributes?.Name && (
-        <Flex gap={"20px"}>
+        <Flex gap={"20px"} margin={"10px 0 0 0"}>
           <Flex alignItems={"center"}>
             <Heart
               fill={theme.light.sidebar}

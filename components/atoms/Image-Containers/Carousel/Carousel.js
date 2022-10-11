@@ -48,7 +48,6 @@ const CarouselContainer = styled.div`
 `;
 
 const CarouselObj = ({ post, id }, ref) => {
-  console.log(post);
   const { darkMode } = useStateContext();
   const [activeIdx, setActiveIdx] = useState(0);
   const imgData = post?.attributes?.Img?.data;

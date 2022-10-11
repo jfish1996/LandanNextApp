@@ -13,7 +13,7 @@ export default function NoContent({ pageTitle, pageMarkup }) {
   return (
     <>
       <Header textAlign={"left"} fontWeight={"700"} color={"black"}>
-        {CATEGORY_NAME.toUpperCase()}
+        {CATEGORY_NAME}
       </Header>
 
       <RichTextParagraph markup={pageMarkup} />

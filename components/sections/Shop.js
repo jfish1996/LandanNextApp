@@ -60,7 +60,7 @@ export default function ShopPage({
         padding={`${TOP_PARAGRAPH_SECTION_PADDING}px 0 0 0`}
         bigScreenPadding={0}
       >
-        {CATEGORY_NAME.toUpperCase()}
+        {CATEGORY_NAME}
       </Header>
       <PostBar
         gridRow={4}

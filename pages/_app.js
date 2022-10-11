@@ -21,7 +21,7 @@ const MyApp = ({ Component, pageProps }) => {
     <StateContext>
       <Head>
         <link rel="apple-touch-icon" href="/"></link>
-        <title>{"Landan Earley"}</title>
+        <title>{"Landy Pandyy"}</title>
       </Head>
       <Toaster position="bottom-right" reverseOrder={false} />
       <ThemeProvider theme={theme}>

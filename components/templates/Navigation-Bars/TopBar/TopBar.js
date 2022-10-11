@@ -23,6 +23,7 @@ const StyledTopBar = styled.div`
     props.darkMode ? props.theme.dark.sidebar : props.theme.light.sidebar};
   position: sticky;
   top: 0;
+  gap: 5px;
   height: ${TOP_NAV_HEIGHT}px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

@@ -16,11 +16,11 @@ import { returnPageType } from "../../lib/returnpageToRender";
 import { TOP_NAV_HEIGHT } from "../../styles/constants";
 import SocialPage from "../../components/sections/Social";
 import ShopPage from "../../components/sections/Shop";
-
+import { createSpacesFromDashes } from "../../lib/helperFunctions";
 export default function Category({ feedView, currentId }) {
   const router = useRouter();
   const cleanedRoute = router.asPath.split("/")[1];
-
+  const title = createSpacesFromDashes(cleanedRoute);
   const { fetching, result, filtering, items, markup, richText } =
     returnPageType(cleanedRoute);
 
@@ -29,7 +29,7 @@ export default function Category({ feedView, currentId }) {
   ) : result === "posts" && filtering ? (
     <PortfolioPage
       fetching={fetching}
-      pageTitle={cleanedRoute}
+      pageTitle={title.toUpperCase()}
       pageMarkup={markup}
       feedView={feedView}
       currentId={currentId}
@@ -39,7 +39,7 @@ export default function Category({ feedView, currentId }) {
   ) : result === "posts" && !filtering ? (
     <SocialPage
       fetching={fetching}
-      pageTitle={cleanedRoute}
+      pageTitle={title.toUpperCase()}
       pageMarkup={markup}
       feedView={feedView}
       currentId={currentId}
@@ -48,7 +48,7 @@ export default function Category({ feedView, currentId }) {
   ) : result === "products" ? (
     <ShopPage
       fetching={fetching}
-      pageTitle={cleanedRoute}
+      pageTitle={title.toUpperCase()}
       pageMarkup={richText}
       feedView={feedView}
       currentId={currentId}

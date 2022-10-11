@@ -26,9 +26,12 @@ export default function Flex({
   overflow,
   width,
   scrollBehavior,
+  style,
+  onClick,
 }) {
   return (
     <FlexContainer
+      onClick={onClick}
       display={display}
       padding={padding}
       width={width}
@@ -39,6 +42,7 @@ export default function Flex({
       flexDirection={flexDirection}
       gap={gap}
       scrollBehavior={scrollBehavior}
+      style={style}
     >
       {children}
     </FlexContainer>
