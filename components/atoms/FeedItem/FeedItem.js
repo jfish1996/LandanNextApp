@@ -4,6 +4,7 @@ import Carousel from "../Image-Containers/Carousel/Carousel";
 import SingleImagePost from "../Image-Containers/SingleImagePost/SingleImagePost";
 import PostContainer from "../PostContainer/PostContainer";
 import ProductContainer from "../ProductContainer/ProductContainer";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { POST_TRANSITION_TIMES } from "../../../styles/constants";
 const FeedItem = (
@@ -58,16 +59,18 @@ const FeedItem = (
     } else {
       return (
         //single returns
-        <motion.div
-          id={item.Title}
-          initial={POST_TRANSITION_TIMES.intial}
-          animate={POST_TRANSITION_TIMES.animate}
-          transition={POST_TRANSITION_TIMES.transition}
-        >
-          <PostContainer item={item} id={id}>
-            <SingleImagePost src={smallURL || defaultURL} ref={ref} id={id} />
-          </PostContainer>
-        </motion.div>
+        <Link href={"#" + id} replace>
+          <motion.div
+            id={item.Title}
+            initial={POST_TRANSITION_TIMES.intial}
+            animate={POST_TRANSITION_TIMES.animate}
+            transition={POST_TRANSITION_TIMES.transition}
+          >
+            <PostContainer item={item} id={id}>
+              <SingleImagePost src={smallURL || defaultURL} ref={ref} id={id} />
+            </PostContainer>
+          </motion.div>
+        </Link>
       );
     }
   }
