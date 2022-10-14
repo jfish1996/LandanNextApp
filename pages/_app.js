@@ -8,6 +8,9 @@ import { StateContext } from "../lib/context";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../styles/constants";
 import { Toaster } from "react-hot-toast";
+import { dedupExchange, cacheExchange, fetchExchange } from "@urql/core";
+
+import { withUrqlClient } from "next-urql";
 const client = createClient({
   url: process.env.NEXT_PUBLIC_BACK_END_URL,
 });
@@ -25,27 +28,33 @@ const MyApp = ({ Component, pageProps }) => {
       </Head>
       <Toaster position="bottom-right" reverseOrder={false} />
       <ThemeProvider theme={theme}>
-        <Provider value={client}>
-          <AppLayout
+        {/* <Provider value={client}> */}
+        <AppLayout
+          feedView={{
+            feedViewProp: feedView,
+            setFeedViewProp: setFeedView,
+          }}
+          currentSection={{ currentSection, setCurrentSection }}
+        >
+          <Component
+            {...pageProps}
             feedView={{
               feedViewProp: feedView,
               setFeedViewProp: setFeedView,
             }}
-            currentSection={{ currentSection, setCurrentSection }}
-          >
-            <Component
-              {...pageProps}
-              feedView={{
-                feedViewProp: feedView,
-                setFeedViewProp: setFeedView,
-              }}
-              currentId={{ currentIdInView, setCurrentIdInView }}
-            />
-          </AppLayout>
-        </Provider>
+            currentId={{ currentIdInView, setCurrentIdInView }}
+          />
+        </AppLayout>
+        {/* </Provider> */}
       </ThemeProvider>
     </StateContext>
   );
 };
 
-export default MyApp;
+export default withUrqlClient(
+  (ssrExchange) => ({
+    url: process.env.NEXT_PUBLIC_BACK_END_URL,
+    exchanges: [dedupExchange, cacheExchange, ssrExchange, fetchExchange],
+  }),
+  { ssr: true }
+)(MyApp);
