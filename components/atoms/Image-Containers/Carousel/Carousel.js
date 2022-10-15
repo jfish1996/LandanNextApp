@@ -16,6 +16,7 @@ import Image from "next/image";
 const CarouselContainer = styled.div`
   display: flex;
   margin-top: ${MARGIN_BETWEEN_POSTS}px;
+  margin: ${(props) => props.margin};
   background-color: ${(props) =>
     props.darkMode ? props.theme.dark.sidebar : props.theme.light.sidebar};
   width: 100%;
@@ -116,6 +117,7 @@ const CarouselObj = ({ post, id }, ref) => {
         ref={ref}
         id={id}
         darkMode={darkMode}
+        margin={"0 0 10px 0"}
       >
         <Swiper
           modules={[Navigation, Pagination, Scrollbar, A11y]}

@@ -18,6 +18,7 @@ import {
 
 const PortfolioPage = ({
   fetching,
+  dataNameForFilter,
   feedView,
   currentId,
   pageTitle,
@@ -31,7 +32,7 @@ const PortfolioPage = ({
   const [filtering, setFiltering] = useState(false);
   const { filteredPosts } = category
     ? returnFilteredCategory(currentSubSection)
-    : returnFilteredData(pageTitle, currentSubSection);
+    : returnFilteredData(dataNameForFilter, currentSubSection);
   const ref = useRef([]);
   const addToRefs = (el) => {
     if (el && !ref.current.includes(el)) {

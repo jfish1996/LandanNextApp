@@ -12,6 +12,7 @@ const Container = styled.div`
   user-select: none;
   width: 100%;
   margin-top: ${MARGIN_BETWEEN_POSTS}px;
+  margin: ${(props) => props.margin};
   background-color: ${(props) =>
     props.darkMode ? props.theme.dark.sidebar : props.theme.light.sidebar};
   grid-row: ${(props) => props.gridRow};
@@ -57,6 +58,7 @@ const SingleImagePost = ({ src, post, id, gridColumn, gridRow }, ref) => {
       gridColumn={gridColumn}
       darkMode={darkMode}
       paddingTop={calcAspectRatio(aspectRatio)}
+      margin={"0 0 10px 0"}
     >
       <FeedItemIMG
         src={src}

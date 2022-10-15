@@ -44,7 +44,7 @@ export default function PostContainer({ children, item, id }) {
     <>
       {children}
       {item.likes >= 0 && !item.sub_section?.data?.attributes?.Name && (
-        <Flex gap={"20px"} margin={"10px 0 0 0"}>
+        <Flex gap={"20px"}>
           <Flex alignItems={"center"}>
             <Heart
               fill={theme.light.sidebar}

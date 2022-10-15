@@ -22,6 +22,7 @@ export default function Section({ feedView, currentId }) {
   ) : result === "posts" && filtering ? (
     <PortfolioPage
       fetching={fetching}
+      dataNameForFilter={cleanedRouteSecondParam}
       pageTitle={multiWord.toLowerCase()}
       pageMarkup={markup}
       feedView={feedView}
