@@ -94,12 +94,12 @@ export const sideBarBuilder = (data, currentSection) => {
           const dataName = mainCategory.attributes.dataName.toLowerCase();
           return (
             <>
-              <StyledUl key={idx + 1} margin={`${UL_MARGIN}px 0`}>
+              <StyledUl key={idx + "UL"} margin={`${UL_MARGIN}px 0`}>
                 <Header
                   darkMode={darkMode}
                   active={currentRoute === `/${dataName}`}
                   url={lowerCaseCategory}
-                  key={idx}
+                  key={lowerCaseCategory}
                   onClick={() => currentSection.setCurrentSection(dataName)}
                 >
                   <Link href={`/${dataName}`}>
@@ -130,7 +130,7 @@ export const sideBarBuilder = (data, currentSection) => {
                     ) : (
                       <Subtitle
                         darkMode={darkMode}
-                        key={idx2}
+                        key={lowerCaseSubCategory}
                         active={currentRoute === `/${dataName}/${subLink}`}
                         smallScreenAnimation={false}
                       >
@@ -171,7 +171,7 @@ export const topBarMainSection = (data, currentSection) => {
               smallScreenAnimation={firstVisit === true ? true : false}
               darkMode={darkMode}
               textAlign={"left"}
-              key={idx}
+              key={idx + dataName}
               onClick={() => {
                 currentSection.setCurrentSection(dataName);
               }}
@@ -182,6 +182,7 @@ export const topBarMainSection = (data, currentSection) => {
                   smallScreenFont={TOP_BAR_UL_ITEMS}
                   padding={"10px 0 0  0"}
                   darkMode={darkMode}
+                  key={idx + "SPAN"}
                 >
                   {mainCategory.attributes.name.toUpperCase()}
                 </StyledSpan>
@@ -226,7 +227,7 @@ export const topBarSubSection = () => {
               ) : (
                 <Subtitle
                   smallScreenAnimation={firstVisit === true ? true : false}
-                  key={idx2}
+                  key={lowerCaseSubCategory}
                   active={currentRoute === `/${dataName}/${subLink}`}
                   textAlign={"left"}
                 >

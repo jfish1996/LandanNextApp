@@ -30,7 +30,9 @@ export default function SkeletonGrid() {
   return (
     <>
       {array.map((item, idx) => {
-        return <StyledSkeletonBox darkMode={darkMode} />;
+        return (
+          <StyledSkeletonBox darkMode={darkMode} key={idx + "skeletonBox"} />
+        );
       })}
     </>
   );

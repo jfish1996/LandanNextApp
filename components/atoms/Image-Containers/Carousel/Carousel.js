@@ -71,6 +71,7 @@ const CarouselObj = ({ post, id }, ref) => {
       return (
         <SwiperSlide>
           <iframe
+            key={id + ".mp4"}
             src={item?.attributes?.url}
             style={{
               position: "absolute",
@@ -88,6 +89,7 @@ const CarouselObj = ({ post, id }, ref) => {
       return (
         <SwiperSlide>
           <Image
+            key={id + ".img"}
             loading="lazy"
             layout="fill"
             width={"100%"}

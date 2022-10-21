@@ -41,7 +41,7 @@ export default function Cart() {
       {!cartItems.length && <CartItem defaultItem={true} />}
       <>
         {cartItems.map((item, idx) => {
-          return <CartItem key={idx} item={item} />;
+          return <CartItem key={idx + "cartItem"} item={item} />;
         })}
       </>
       <div style={{ gridColumn: "1/-1", marginLeft: "auto" }}>

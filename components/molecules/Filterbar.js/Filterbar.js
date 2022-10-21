@@ -70,6 +70,7 @@ export default function Filterbar({
 
         return (
           <FilterItem
+            key={idx + title.attributes.Name}
             active={idx === currentListItem ? true : false}
             onClick={() => onClick(title.attributes.Name, idx)}
           >

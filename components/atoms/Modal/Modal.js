@@ -98,6 +98,7 @@ export default function Modal({ modalActive, posts, onClickBackDrop }) {
                 item?.attributes?.Img?.data[0]?.attributes?.url;
               return (
                 <StyledImg
+                  key={itme.id}
                   src={defaultURL}
                   width={"200px"}
                   height={"200px"}

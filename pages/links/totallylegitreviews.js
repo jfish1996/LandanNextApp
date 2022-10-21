@@ -31,7 +31,9 @@ export default function TotallyLegitReviews({ feedView }) {
       />
 
       {reviews?.map((item, idx) => {
-        return <LegitReview markup={item?.attributes?.review} />;
+        return (
+          <LegitReview markup={item?.attributes?.review} key={idx + "legit"} />
+        );
       })}
     </>
   );

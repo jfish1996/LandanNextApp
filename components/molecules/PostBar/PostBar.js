@@ -109,7 +109,7 @@ const PostBar = ({
                   style={{ display: "flex" }}
                 >
                   <PostBarItem
-                    key={idx}
+                    key={idx + item?.attributes?.Title}
                     width={"50px"}
                     height={"50px"}
                     defaultURL={defaultURL}
