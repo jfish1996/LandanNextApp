@@ -30,6 +30,7 @@ const StyledUL = styled(motion.ul)`
   top: ${TOP_NAV_HEIGHT}px;
   @media (min-width: ${MAX_WINDOW_WIDTH}px) {
     top: 0;
+    margin-right: 0;
   }
 `;
 
