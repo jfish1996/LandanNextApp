@@ -16,6 +16,7 @@ import { useStateContext } from "../../../lib/context";
 const StyledUL = styled(motion.ul)`
   z-index: ${Z_INDEXS.scrollBars};
   margin: 0 0 ${HEADER_AND_SCROLLBAR_PADDING}px 0;
+  margin-right: 2px;
   display: flex;
   grid-column: 1/-1;
   overflow-x: scroll;
