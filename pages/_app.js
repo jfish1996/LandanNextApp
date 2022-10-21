@@ -9,12 +9,11 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../styles/constants";
 import { Toaster } from "react-hot-toast";
 import { dedupExchange, cacheExchange, fetchExchange } from "@urql/core";
-
 import { withUrqlClient } from "next-urql";
-const client = createClient({
-  url: process.env.NEXT_PUBLIC_BACK_END_URL,
-});
 import Head from "next/head";
+// const client = createClient({
+//   url: process.env.NEXT_PUBLIC_BACK_END_URL,
+// });
 
 const MyApp = ({ Component, pageProps }) => {
   const [feedView, setFeedView] = useState(false);

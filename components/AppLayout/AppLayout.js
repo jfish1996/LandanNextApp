@@ -80,7 +80,7 @@ export default function AppLayout({ children, feedView, currentSection }) {
             MIN_WINDOW_WITH + GRID_BOX_WIDTH + GRID_GAP
           }px`}
           fullDesktopGridWith={`${MAX_WINDOW_WIDTH}px`}
-          margin={`0 ${WHOLE_BODY_MOBILE_MARGIN}px`}
+          // margin={`0 ${WHOLE_BODY_MOBILE_MARGIN}px`}
           minWidth={`${MIN_WINDOW_WITH}px`}
           bigScreenMargin={`${SIDE_NAV_PADDING}px ${SIDE_NAV_PADDING}px ${
             SIDE_NAV_PADDING + UL_MARGIN

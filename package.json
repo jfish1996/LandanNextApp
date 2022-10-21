@@ -12,6 +12,7 @@
     "@stripe/react-stripe-js": "^1.9.0",
     "@stripe/stripe-js": "^1.32.0",
     "@urql/exchange-execute": "^2.0.0",
+    "@urql/exchange-graphcache": "^5.0.2",
     "axios": "^0.27.2",
     "framer-motion": "4.1.17",
     "graphql": "^16.6.0",

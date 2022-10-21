@@ -202,7 +202,7 @@ export const topBarSubSection = () => {
     <TopBarSelctor
       textAlign={"right"}
       marginRight={`${WHOLE_BODY_MOBILE_MARGIN}px`}
-      margin={"5px 0"}
+      margin={"5px 0 0 5px"}
     >
       {results?.map((mainCategory, idx2) => {
         const lowerCaseCategory = mainCategory.attributes.dataName;

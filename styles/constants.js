@@ -13,10 +13,11 @@ export const BIG_NAME_BOTTOM_PADDING_BODY = UL_MARGIN * 2;
 export const GAP_BETWEEN_UL_ITEMS = UL_MARGIN / 2;
 
 //Grid Variables
+export const GRID_BODY_MARGIN = 3;
 export const GRID_BOX_WIDTH = 200;
 export const GRID_BOX_HEIGHT = 200;
 export const GRID_GAP = 10;
-export const MIN_WINDOW_WITH = GRID_BOX_WIDTH * 2 + GRID_GAP;
+export const MIN_WINDOW_WITH = GRID_BOX_WIDTH * 2 + GRID_GAP + GRID_BODY_MARGIN;
 export const MAX_WINDOW_WIDTH = GRID_BOX_WIDTH * 4 + GRID_GAP * 3;
 
 //Mobile
