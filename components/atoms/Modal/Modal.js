@@ -62,6 +62,26 @@ const StyledInput = styled.input`
   flex-grow: ${(props) => props.flexGrow}; ;
 `;
 
+const StyledCloseDiv = styled.button`
+  display: flex;
+  justify-content: "flex-end";
+  gap: 10px;
+  position: "absolute";
+  top: "10px";
+  right: "10px";
+  cursor: "pointer";
+  color: white;
+  background: none;
+  border: none;
+  &:hover {
+    color: yellow;
+  }
+
+  @media (min-width: ${MAX_WINDOW_WIDTH}px) {
+    color: black;
+  }
+`;
+
 export default function Modal({ modalActive, posts, onClickBackDrop }) {
   return modalActive ? (
     <>
@@ -86,7 +106,7 @@ export default function Modal({ modalActive, posts, onClickBackDrop }) {
               );
             })}
             <Flex flexDirection={"column"} padding={"40px"}>
-              <Flex
+              <StyledCloseDiv
                 justifyContent={"flex-end"}
                 gap={"10px"}
                 style={{
@@ -96,11 +116,11 @@ export default function Modal({ modalActive, posts, onClickBackDrop }) {
                   cursor: "pointer",
                 }}
                 onClick={() => {
-                  deactivateModal();
+                  onClickBackDrop();
                 }}
               >
                 X
-              </Flex>
+              </StyledCloseDiv>
               <MailchimpSubscribe
                 render={({ subscribe, status, message }) => (
                   <CustomForm
