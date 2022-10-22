@@ -17,6 +17,7 @@ export default function GridView({ children, feedView }) {
       gridColumns={`minmax(${MIN_WINDOW_WITH}px, ${MAX_WINDOW_WIDTH}px)`}
       maxWidth={`${MAX_WINDOW_WIDTH}px`}
       minWidth={`${MIN_WINDOW_WITH}px`}
+      margin={feedView ? "0 2px" : null}
       rowGap={`${GRID_GAP}px`}
       columnGap={`${GRID_GAP}px`}
       overflow="hidden"

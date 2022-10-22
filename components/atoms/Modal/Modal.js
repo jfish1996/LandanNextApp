@@ -7,7 +7,7 @@ import Flex from "../Styled-Containers/Flex/Flex";
 const StyledModal = styled(motion.div)`
   width: 100%;
   position: fixed;
-  background-color: white;
+  background-color: ${(props) => props.backgroundColor ?? "white"};
   border: 1px solid black;
   z-index: 10;
   top: 50%;
@@ -83,6 +83,7 @@ const StyledCloseDiv = styled.button`
 `;
 
 export default function Modal({ modalActive, posts, onClickBackDrop }) {
+  const [status, setStatus] = useState("");
   return modalActive ? (
     <>
       <StyledBackdrop onClick={onClickBackDrop} />
@@ -90,6 +91,7 @@ export default function Modal({ modalActive, posts, onClickBackDrop }) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.09 }}
+        backgroundColor={status === "error" ? "red" : null}
       >
         <StyledContentContainer>
           <StyledContentContainer>
@@ -98,11 +100,11 @@ export default function Modal({ modalActive, posts, onClickBackDrop }) {
                 item?.attributes?.Img?.data[0]?.attributes?.url;
               return (
                 <StyledImg
-                  key={itme.id}
+                  key={item?.id}
                   src={defaultURL}
                   width={"200px"}
                   height={"200px"}
-                  id={item.id}
+                  id={item?.id}
                 />
               );
             })}
@@ -125,6 +127,7 @@ export default function Modal({ modalActive, posts, onClickBackDrop }) {
               <MailchimpSubscribe
                 render={({ subscribe, status, message }) => (
                   <CustomForm
+                    setModalStatus={setStatus}
                     status={status}
                     message={message}
                     onValidated={(formData) => subscribe(formData)}
@@ -138,7 +141,7 @@ export default function Modal({ modalActive, posts, onClickBackDrop }) {
     </>
   ) : null;
 }
-function CustomForm({ status, message, onValidated }) {
+function CustomForm({ status, message, onValidated, setModalStatus }) {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -160,22 +163,19 @@ function CustomForm({ status, message, onValidated }) {
         flexDirection: "column",
         justifyContent: "center",
         height: "100%",
+        backgroundColor: status === "error" ? "red" : null,
       }}
     >
-      <p>
-        enter your email below for your chance to win big! no wait, i mean
-        you'll get emails from me every once and a while same thing, right?
-      </p>
-
-      {status === "sending" && (
-        <div className="mc__alert mc__alert--sending">sending...</div>
-      )}
-      {status === "error" && (
-        <div dangerouslySetInnerHTML={{ __html: message }} />
-      )}
-      {status === "success" && (
-        <div dangerouslySetInnerHTML={{ __html: message }} />
-      )}
+      {!status ? (
+        <p>
+          enter your email below for your chance to win big! no wait, i mean
+          you'll get emails from me every once and a while same thing, right?
+        </p>
+      ) : status === "error" ? (
+        <p> oops</p>
+      ) : status === "success" ? (
+        <p>nice!</p>
+      ) : null}
 
       <Flex width={"100%"}>
         <StyledInput

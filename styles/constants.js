@@ -18,6 +18,7 @@ export const GRID_BOX_WIDTH = 200;
 export const GRID_BOX_HEIGHT = 200;
 export const GRID_GAP = 10;
 export const MIN_WINDOW_WITH = GRID_BOX_WIDTH * 2 + GRID_GAP + GRID_BODY_MARGIN;
+export const MIN_WINODW_THREAD_VIEW = MIN_WINDOW_WITH + 7;
 export const MAX_WINDOW_WIDTH = GRID_BOX_WIDTH * 4 + GRID_GAP * 3;
 
 //Mobile

@@ -73,6 +73,7 @@ export default function TopBar({ currentSection }) {
     <>
       <StyledTopBar darkMode={darkMode}>
         <TopBarSelctor
+          margin={"5px 0 0 0"}
           onSwipeUp={() => {
             localStorage.setItem("darkMode", true);
             setDarkMode(true);
@@ -85,7 +86,7 @@ export default function TopBar({ currentSection }) {
             if (e.target.scrollTop === 0) {
               localStorage.setItem("darkMode", false);
               setDarkMode(false);
-            } else if (e.target.scrollTop === 86) {
+            } else if (e.target.scrollTop === 81) {
               localStorage.setItem("darkMode", true);
               setDarkMode(true);
             } else {
@@ -98,7 +99,7 @@ export default function TopBar({ currentSection }) {
               fontSize={"1.5rem"}
               firstName={"LANDAN"}
               lastName={"EARLEY"}
-              padding={"10px 0"}
+              padding={"5px 0"}
               hoverCursor={"pointer"}
             />
           </Link>

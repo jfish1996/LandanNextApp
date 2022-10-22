@@ -11,6 +11,7 @@ import { createGlobalStyle } from "styled-components";
 import {
   MAX_WINDOW_WIDTH,
   MIN_WINDOW_WITH,
+  MIN_WINODW_THREAD_VIEW,
   SIDE_NAV_WIDTH,
   SIDE_NAV_MARGIN,
   SIDE_NAV_PADDING,
@@ -81,7 +82,11 @@ export default function AppLayout({ children, feedView, currentSection }) {
           }px`}
           fullDesktopGridWith={`${MAX_WINDOW_WIDTH}px`}
           // margin={`0 ${WHOLE_BODY_MOBILE_MARGIN}px`}
-          minWidth={`${MIN_WINDOW_WITH}px`}
+          minWidth={
+            feedView.feedViewProp
+              ? `${MIN_WINODW_THREAD_VIEW}px`
+              : `${MIN_WINDOW_WITH}px`
+          }
           bigScreenMargin={`${SIDE_NAV_PADDING}px ${SIDE_NAV_PADDING}px ${
             SIDE_NAV_PADDING + UL_MARGIN
           }px ${SIDE_NAV_MARGIN}px`}
