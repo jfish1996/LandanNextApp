@@ -13,6 +13,18 @@ import {
   MARGIN_BETWEEN_POSTS,
 } from "../../../../styles/constants";
 import Image from "next/image";
+function calcAspectRatio(aspectRatio) {
+  const defaultRatio = "16/9";
+  const ratiosArray = aspectRatio
+    ? aspectRatio.split("/")
+    : defaultRatio.split("/");
+  for (let i = 0; i < ratiosArray.length; i++) {
+    ratiosArray[i] = parseInt(ratiosArray[i]);
+  }
+  const divided = ratiosArray[1] / ratiosArray[0];
+  const paddingTop = (divided * 100).toFixed(2);
+  return paddingTop;
+}
 const CarouselContainer = styled.div`
   display: flex;
   margin-top: ${MARGIN_BETWEEN_POSTS}px;
@@ -53,18 +65,6 @@ const CarouselObj = ({ post, id }, ref) => {
   const [activeIdx, setActiveIdx] = useState(0);
   const imgData = post?.attributes?.Img?.data;
   const aspectRatio = post?.attributes?.aspectRatio;
-  const calcAspectRatio = (aspectRatio) => {
-    const defaultRatio = "16/9";
-    const ratiosArray = aspectRatio
-      ? aspectRatio.split("/")
-      : defaultRatio.split("/");
-    for (let i = 0; i < ratiosArray.length; i++) {
-      ratiosArray[i] = parseInt(ratiosArray[i]);
-    }
-    const divided = ratiosArray[1] / ratiosArray[0];
-    const paddingTop = (divided * 100).toFixed(2);
-    return paddingTop;
-  };
 
   const imageOrVideo = (item, idx) => {
     if (item.attributes.ext === ".mp4") {

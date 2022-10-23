@@ -67,7 +67,12 @@ const FeedItem = (
           transition={POST_TRANSITION_TIMES.transition}
         >
           <PostContainer item={item} id={id}>
-            <SingleImagePost src={smallURL || defaultURL} ref={ref} id={id} />
+            <SingleImagePost
+              src={smallURL || defaultURL}
+              ref={ref}
+              id={id}
+              post={item}
+            />
           </PostContainer>
         </motion.div>
       );

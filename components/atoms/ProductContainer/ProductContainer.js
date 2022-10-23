@@ -24,8 +24,8 @@ export default function ProductContainer({ children, item, id }) {
     <>
       {children}
       <Flex alignItems={"center"} gap={"10px"}>
-        <h3>{Title}</h3>
-        <p>${Price}</p>
+        <h3 style={{ margin: 0 }}>{Title}</h3>
+        <p style={{ margin: 0 }}>${Price}</p>
         {/* <AddToCart
           fill={theme.light.sidebar}
           hover="yellow"

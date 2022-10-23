@@ -36,22 +36,21 @@ const FeedItemIMG = styled.img`
   grid-row: ${(props) => props.gridRow};
   grid-column: ${(props) => props.gridColumn}; */
 `;
+function calcAspectRatio(aspectRatio) {
+  const defaultRatio = "16/9";
+  const ratiosArray = aspectRatio
+    ? aspectRatio.split("/")
+    : defaultRatio.split("/");
+  for (let i = 0; i < ratiosArray.length; i++) {
+    ratiosArray[i] = parseInt(ratiosArray[i]);
+  }
+  const divided = ratiosArray[1] / ratiosArray[0];
+  const paddingTop = (divided * 100).toFixed(2);
+  return paddingTop;
+}
 
 const SingleImagePost = ({ src, post, id, gridColumn, gridRow }, ref) => {
-  const aspectRatio = post?.attributes?.aspectRatio;
-  const calcAspectRatio = (aspectRatio) => {
-    const defaultRatio = "16/9";
-    const ratiosArray = aspectRatio
-      ? aspectRatio.split("/")
-      : defaultRatio.split("/");
-    for (let i = 0; i < ratiosArray.length; i++) {
-      ratiosArray[i] = parseInt(ratiosArray[i]);
-    }
-    const divided = ratiosArray[1] / ratiosArray[0];
-    const paddingTop = (divided * 100).toFixed(2);
-    return paddingTop;
-  };
-
+  const aspectRatio = post?.aspectRatio;
   const { darkMode } = useStateContext();
   return (
     <Container
@@ -65,7 +64,7 @@ const SingleImagePost = ({ src, post, id, gridColumn, gridRow }, ref) => {
         ref={ref}
         id={id}
         gridRow={gridRow}
-        aspectRatio={aspectRatio ? aspectRatio : "16/9"}
+        // aspectRatio={aspectRatio ? aspectRatio : "16/9"}
       />
     </Container>
   );
