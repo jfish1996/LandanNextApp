@@ -10,7 +10,7 @@ export default async function handler(req, res) {
         mode: "payment",
         payment_method_types: ["card"],
         shipping_address_collection: {
-          allowed_countries: ["US", "CA"],
+          allowed_countries: ["US"],
         },
 
         allow_promotion_codes: true,
@@ -22,6 +22,7 @@ export default async function handler(req, res) {
           return {
             price_data: {
               currency: "usd",
+              tax_behavior: "exclusive",
               product_data: {
                 name: item.Title,
                 images: [item.url],
@@ -37,6 +38,9 @@ export default async function handler(req, res) {
         }),
         success_url: `${req.headers.origin}/shop/cart/success`,
         cancel_url: `${req.headers.origin}/shop/cart?cancel`,
+        automatic_tax: {
+          enabled: true,
+        },
       });
       res.status(200).json(session);
     } catch (error) {

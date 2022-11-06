@@ -11,7 +11,7 @@ import Image from "next/image";
 import Flex from "../../components/atoms/Styled-Containers/Flex/Flex";
 
 export default function MailingList({ feedView }) {
-  const SECTION_NAME = "MailingList.links";
+  const SECTION_NAME = "Mailing List.links";
   const { activeModal, setActiveModal } = useStateContext();
   const activateModal = () => {
     setActiveModal(true);

@@ -84,6 +84,8 @@ const StyledCloseDiv = styled.button`
 
 export default function Modal({ modalActive, posts, onClickBackDrop }) {
   const [status, setStatus] = useState("");
+  const postURL =
+    "https://landypandyy.us14.list-manage.com/subscribe/post?u=47edb228aab91efcc10726395&id=6695168530";
   return modalActive ? (
     <>
       <StyledBackdrop onClick={onClickBackDrop} />
@@ -125,6 +127,7 @@ export default function Modal({ modalActive, posts, onClickBackDrop }) {
                 X
               </StyledCloseDiv>
               <MailchimpSubscribe
+                url={postURL}
                 render={({ subscribe, status, message }) => (
                   <CustomForm
                     setModalStatus={setStatus}
@@ -153,6 +156,7 @@ function CustomForm({ status, message, onValidated, setModalStatus }) {
       onValidated({
         EMAIL: email,
       });
+    setEmail("");
   };
 
   return (
