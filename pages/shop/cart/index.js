@@ -43,7 +43,17 @@ export default function Cart() {
           return <CartItem key={idx + "cartItem"} item={item} />;
         })}
       </>
-      <div style={{ gridColumn: "1/-1", marginLeft: "auto" }}>
+
+      <div
+        style={{
+          gridColumn: "1/-1",
+          marginLeft: "auto",
+          display: "flex",
+          flexDirection: "column",
+          gap: "5px",
+          alignItems: "end",
+        }}
+      >
         <span>Cart Total: ${cartItems ? totalCartPrice : 0}</span>
         <Checkout
           fill={theme.light.sidebar}
