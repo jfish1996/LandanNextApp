@@ -12,8 +12,8 @@ export default async function handler(req, res) {
         shipping_address_collection: {
           allowed_countries: ["US"],
         },
-
         allow_promotion_codes: true,
+        shipping_options: [{ shipping_rate: "shr_1M5MPaDfaAzXUTmgUgav2t3t" }],
         // shipping_options: [
         //   { shipping_rate: "shr_1L7HGSJvB7fsxaM1DbSs7DeV" },
         //   { shipping_rate: "shr_1L7HGyJvB7fsxaM1OpMXx2Fn" },
