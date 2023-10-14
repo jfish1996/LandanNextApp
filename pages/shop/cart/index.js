@@ -8,6 +8,7 @@ import { getStripe } from "../../../lib/getStripe";
 import { theme } from "../../../styles/constants";
 import { useRouter } from "next/router";
 import FailedCartItem from "../../../components/atoms/CartItem/FailedCartItem";
+import RichTextParagraph from "../../../components/atoms/RichTextParagraph/RichTextParagraph";
 export default function Cart() {
   const CATEGORY_NAME = "cart";
   const { cartItems, onAdd, onRemove } = useStateContext();
@@ -38,30 +39,31 @@ export default function Cart() {
       </Header>
       {isOnCancel ? <FailedCartItem failedText={failedText} /> : null}
       {!cartItems.length && <CartItem defaultItem={true} />}
+      <RichTextParagraph markup={""} />
       <>
         {cartItems.map((item, idx) => {
           return <CartItem key={idx + "cartItem"} item={item} />;
         })}
-      </>
 
-      <div
-        style={{
-          gridColumn: "1/-1",
-          marginLeft: "auto",
-          display: "flex",
-          flexDirection: "column",
-          gap: "5px",
-          alignItems: "end",
-        }}
-      >
-        <span>Cart Total: ${cartItems ? totalCartPrice : 0}</span>
-        <Checkout
-          fill={theme.light.sidebar}
-          hover="yellow"
-          active={"black"}
-          onClick={cartItems && getCheckout}
-        />
-      </div>
+        <div
+          style={{
+            gridColumn: "1/-1",
+            marginLeft: "auto",
+            display: "flex",
+            flexDirection: "column",
+            gap: "5px",
+            alignItems: "end",
+          }}
+        >
+          <span>Cart Total: ${cartItems ? totalCartPrice : 0}</span>
+          <Checkout
+            fill={theme.light.sidebar}
+            hover="yellow"
+            active={"black"}
+            onClick={cartItems && getCheckout}
+          />
+        </div>
+      </>
     </>
   );
 }
