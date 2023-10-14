@@ -6,10 +6,6 @@ export default function Document() {
       <Head>
         <link rel="apple-touch-icon" href="/"></link>
         <title>{"landypandyy"}</title>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1"
-        ></meta>
       </Head>
       <body>
         <Main />
