@@ -27,7 +27,8 @@ export const handleCart = (
   currentRoute,
   lowerCaseCategory,
   lowerCaseSubCategory,
-  mobile
+  mobile,
+  firstVisit
 ) => {
   const { cartItems } = useStateContext();
   let totalCartItems = cartItems.reduce((curNumber, item) => {
@@ -36,7 +37,10 @@ export const handleCart = (
 
   return (
     <>
-      <Subtitle textAlign={"right"}>
+      <Subtitle
+        textAlign={"right"}
+        smallScreenAnimation={firstVisit === true ? true : false}
+      >
         <Flex
           justifyContent={mobile ? "flex-start" : "flex-end"}
           gap={"10px"}
@@ -231,7 +235,8 @@ export const topBarSubSection = () => {
                   currentRoute,
                   lowerCaseCategory,
                   lowerCaseSubCategory,
-                  true
+                  true,
+                  firstVisit
                 )
               ) : (
                 <Subtitle

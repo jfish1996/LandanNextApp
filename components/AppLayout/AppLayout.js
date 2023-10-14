@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import GridView from "../templates/GridView";
 import Grid from "../atoms/Styled-Containers/Grid/Grid";
@@ -63,57 +63,64 @@ const Layout = styled.div`
 `;
 
 export default function AppLayout({ children, feedView, currentSection }) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   const { darkMode, setDarkMode } = useStateContext();
   return (
-    <>
-      <GlobalStyle darkMode={darkMode} />
-      <Layout darkMode={darkMode}>
-        <Sidebar
-          currentSection={currentSection}
-          display={"none"}
-          bigScreenDisplay={"flex"}
-        />
-
-        <Grid
-          width={`${MAX_WINDOW_WIDTH}px`}
-          smallDesktopGridWidth={`${MIN_WINDOW_WITH}px`}
-          mediumDesktopGridWith={`${
-            MIN_WINDOW_WITH + GRID_BOX_WIDTH + GRID_GAP
-          }px`}
-          fullDesktopGridWith={`${MAX_WINDOW_WIDTH}px`}
-          // margin={`0 ${WHOLE_BODY_MOBILE_MARGIN}px`}
-          minWidth={
-            feedView.feedViewProp
-              ? `${MIN_WINODW_THREAD_VIEW}px`
-              : `${MIN_WINDOW_WITH}px`
-          }
-          bigScreenMargin={`${SIDE_NAV_PADDING}px ${SIDE_NAV_PADDING}px ${
-            SIDE_NAV_PADDING + UL_MARGIN
-          }px ${SIDE_NAV_MARGIN}px`}
-        >
-          <Title
-            firstName={"LANDY"}
-            lastName={"PANDYY"}
-            fontSize={"2.5rem"}
-            padding={`0 0 ${BIG_NAME_BOTTOM_PADDING_BODY}px 0`}
-            hoverCursor={"pointer"}
-            onClick={() => {
-              localStorage.setItem("darkMode", !darkMode);
-              setDarkMode(!darkMode);
-            }}
-            smallMediaDisplay={"none"}
-            largeMediaDisplay={"block"}
+    mounted && (
+      <>
+        <GlobalStyle darkMode={darkMode} />
+        <Layout darkMode={darkMode}>
+          <Sidebar
+            currentSection={currentSection}
+            display={"none"}
+            bigScreenDisplay={"flex"}
           />
 
-          <GridView
-            feedView={feedView}
-            margin={`0 ${WHOLE_BODY_MOBILE_MARGIN}px 0 0`}
+          <Grid
+            width={`${MAX_WINDOW_WIDTH}px`}
+            smallDesktopGridWidth={`${MIN_WINDOW_WITH}px`}
+            mediumDesktopGridWith={`${
+              MIN_WINDOW_WITH + GRID_BOX_WIDTH + GRID_GAP
+            }px`}
+            fullDesktopGridWith={`${MAX_WINDOW_WIDTH}px`}
+            // margin={`0 ${WHOLE_BODY_MOBILE_MARGIN}px`}
+            minWidth={
+              feedView.feedViewProp
+                ? `${MIN_WINODW_THREAD_VIEW}px`
+                : `${MIN_WINDOW_WITH}px`
+            }
+            bigScreenMargin={`${SIDE_NAV_PADDING}px ${SIDE_NAV_PADDING}px ${
+              SIDE_NAV_PADDING + UL_MARGIN
+            }px ${SIDE_NAV_MARGIN}px`}
           >
-            <TopBar currentSection={currentSection} />
-            {children}
-          </GridView>
-        </Grid>
-      </Layout>
-    </>
+            <Title
+              firstName={"LANDY"}
+              lastName={"PANDYY"}
+              fontSize={"2.5rem"}
+              padding={`0 0 ${BIG_NAME_BOTTOM_PADDING_BODY}px 0`}
+              hoverCursor={"pointer"}
+              onClick={() => {
+                localStorage.setItem("darkMode", !darkMode);
+                setDarkMode(!darkMode);
+              }}
+              smallMediaDisplay={"none"}
+              largeMediaDisplay={"block"}
+            />
+
+            <GridView
+              feedView={feedView}
+              margin={`0 ${WHOLE_BODY_MOBILE_MARGIN}px 0 0`}
+            >
+              <TopBar currentSection={currentSection} />
+              {children}
+            </GridView>
+          </Grid>
+        </Layout>
+      </>
+    )
   );
 }
