@@ -5,6 +5,12 @@ const stripe = new Stripe(`${process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY}`);
 export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
+      const CART_HAS_BULK_ITEMS = Boolean(
+        req.body.find((item) => item.bulky_item === true)
+      );
+      const DEFAULT_SHIPPING_ID = "shr_1M5MPaDfaAzXUTmgUgav2t3t";
+      const BULKY_SHIPPING_ID = "shr_1O0zxPDfaAzXUTmgISYelj2G";
+
       const session = await stripe.checkout.sessions.create({
         submit_type: "pay",
         mode: "payment",
@@ -13,11 +19,13 @@ export default async function handler(req, res) {
           allowed_countries: ["US"],
         },
         allow_promotion_codes: true,
-        shipping_options: [{ shipping_rate: "shr_1M5MPaDfaAzXUTmgUgav2t3t" }],
-        // shipping_options: [
-        //   { shipping_rate: "shr_1L7HGSJvB7fsxaM1DbSs7DeV" },
-        //   { shipping_rate: "shr_1L7HGyJvB7fsxaM1OpMXx2Fn" },
-        // ],
+        shipping_options: [
+          {
+            shipping_rate: CART_HAS_BULK_ITEMS
+              ? BULKY_SHIPPING_ID
+              : DEFAULT_SHIPPING_ID,
+          },
+        ],
         line_items: req.body.map((item) => {
           return {
             price_data: {

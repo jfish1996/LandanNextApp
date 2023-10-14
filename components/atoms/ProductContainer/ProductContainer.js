@@ -6,7 +6,7 @@ import { theme } from "../../../styles/constants";
 import Flex from "../Styled-Containers/Flex/Flex";
 import toast from "react-hot-toast";
 export default function ProductContainer({ children, item, id }) {
-  const { Title, Price, Date, FullDescription } = item;
+  const { Title, Price, Date, FullDescription, bulky_item } = item;
   const { onAdd, onRemove, darkMode } = useStateContext();
   const img = item.Img.data[0].attributes.formats.small.url;
   const notify = (item) => {
@@ -46,7 +46,7 @@ export default function ProductContainer({ children, item, id }) {
         hover="yellow"
         active={"black"}
         onClick={() => {
-          onAdd({ Title, Price, Date, id, url: img });
+          onAdd({ Title, Price, Date, id, url: img, bulky_item });
           notify(Title);
         }}
       />
