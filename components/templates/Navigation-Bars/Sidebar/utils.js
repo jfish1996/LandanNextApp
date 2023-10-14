@@ -208,8 +208,17 @@ export const topBarSubSection = () => {
       {results?.map((mainCategory, idx2) => {
         const lowerCaseCategory = mainCategory.attributes.dataName;
         if (currentRoute.includes(lowerCaseCategory)) {
-          return mainCategory.attributes.sections?.data?.map(
-            (subCategory, idx) => {
+          return mainCategory.attributes.sections?.data
+            ?.sort((a, b) => {
+              const Aa = a?.attributes.SectionName.toLowerCase().split(".")[0];
+              const Bb = b?.attributes?.SectionName.toLowerCase().split(".")[0];
+              if (Aa === "cart") {
+                return -1;
+              } else {
+                return 0;
+              }
+            })
+            .map((subCategory, idx) => {
               const dataName = mainCategory.attributes.dataName.toLowerCase();
               const lowerCaseSubCategory =
                 subCategory.attributes.SectionName.toLowerCase().split(".")[0];
@@ -242,8 +251,7 @@ export const topBarSubSection = () => {
                   </Link>
                 </Subtitle>
               );
-            }
-          );
+            });
         }
       })}
     </TopBarSelctor>
