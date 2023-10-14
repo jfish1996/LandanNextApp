@@ -39,6 +39,7 @@ const MyApp = ({ Component, pageProps }) => {
       <Head>
         <link rel="apple-touch-icon" href="/"></link>
         <title>{"landypandyy"}</title>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1"></meta>
       </Head>
       <Toaster position="bottom-right" reverseOrder={false} />
       <ThemeProvider theme={theme}>
