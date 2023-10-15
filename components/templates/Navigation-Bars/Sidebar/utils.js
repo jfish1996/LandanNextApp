@@ -212,7 +212,11 @@ export const topBarSubSection = () => {
       {results?.map((mainCategory, idx2) => {
         const lowerCaseCategory = mainCategory.attributes.dataName;
         if (currentRoute.includes(lowerCaseCategory)) {
-          return mainCategory.attributes.sections?.data
+          // as sort is an inplace operation, making a copy to not mutate other areas of the code that use this data.
+          const mainCategoryCopy = [
+            ...mainCategory?.attributes?.sections?.data,
+          ];
+          return mainCategoryCopy
             ?.sort((a, b) => {
               const Aa = a?.attributes.SectionName.toLowerCase().split(".")[0];
               const Bb = b?.attributes?.SectionName.toLowerCase().split(".")[0];
