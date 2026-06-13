@@ -59,6 +59,16 @@ const CarouselContainer = styled.div`
   } */
 `;
 
+const VideoPlayer = styled.video`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% - 48px);
+  height: calc(100% - 48px);
+  object-fit: contain;
+`;
+
 const CarouselObj = ({ post, id }, ref) => {
   const { darkMode } = useStateContext();
   const imgData = post?.attributes?.Img?.data;
@@ -68,18 +78,9 @@ const CarouselObj = ({ post, id }, ref) => {
     if (item.attributes.ext === ".mp4") {
       return (
         <SwiperSlide key={`${id}-${idx}-video`}>
-          <iframe
-            src={item?.attributes?.url}
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              width: "100%",
-              height: "100%",
-            }}
-            type="video/mp4"
-          />
+          <VideoPlayer controls preload="metadata" playsInline>
+            <source src={item?.attributes?.url} type="video/mp4" />
+          </VideoPlayer>
         </SwiperSlide>
       );
     } else {

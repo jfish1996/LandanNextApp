@@ -7,11 +7,12 @@ const GridItemIMG = styled(motion.div)`
   width: ${(props) => (props.width ? props.width : `${GRID_BOX_WIDTH}px`)};
   height: ${(props) => (props.height ? props.height : `${GRID_BOX_HEIGHT}px`)};
   object-fit: cover;
-  border: ${(props) =>
-    props.active ? "2px solid yellow" : "2px solid transparent"};
+  position: relative;
   &:hover {
-    border: 2px solid yellow;
+    outline: 2px solid yellow;
   }
+  outline: ${(props) => (props.active ? "2px solid yellow" : "none")};
+  outline-offset: 0;
   padding: ${(props) => props.padding};
   margin: ${(props) => props.margin};
 `;
@@ -37,9 +38,9 @@ const GridItem = (
       <Image
         id={id}
         src={smallURL || defaultURL}
-        width={`${GRID_BOX_WIDTH}`}
-        objectFit={"cover"}
-        height={`${GRID_BOX_HEIGHT}`}
+        fill
+        style={{ objectFit: "cover" }}
+        alt=""
       />
     </GridItemIMG>
   );
