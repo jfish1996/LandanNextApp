@@ -37,7 +37,6 @@ const GlobalStyle = createGlobalStyle`
 
   a {
   color: ${(props) => (props.darkMode ? "white" : "black")};
-  text-decoration: none;
 }
 
 

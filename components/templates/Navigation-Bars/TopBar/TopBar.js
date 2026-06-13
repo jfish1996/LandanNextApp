@@ -27,6 +27,9 @@ const StyledTopBar = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   grid-row: 1;
   grid-column: 1 / -1;
+  a {
+    text-decoration: none;
+  }
   &::before {
     content: "";
     width: 100%;

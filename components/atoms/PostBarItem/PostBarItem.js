@@ -3,26 +3,22 @@ import styled from "styled-components";
 import Image from "next/image";
 import { GRID_BOX_WIDTH, GRID_BOX_HEIGHT } from "../../../styles/constants";
 const PostBarItemIMG = styled(Image)`
-  width: ${(props) => (props.width ? props.width : `${GRID_BOX_WIDTH}px`)};
-  height: ${(props) => (props.height ? props.height : `${GRID_BOX_HEIGHT}px`)};
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border: ${(props) =>
-    props.active ? "2px solid yellow" : "2px solid transparent"};
-  &:hover {
-    border: 2px solid yellow;
-  }
-  padding: ${(props) => props.padding};
-  margin: ${(props) => props.margin};
+  display: block;
 `;
 
 const StyledDiv = styled.div`
   width: ${(props) => (props.width ? props.width : `${GRID_BOX_WIDTH}px`)};
   height: ${(props) => (props.height ? props.height : `${GRID_BOX_HEIGHT}px`)};
-  border: ${(props) =>
-    props.active ? "2px solid yellow" : "2px solid transparent"};
+  position: relative;
+  flex-shrink: 0;
   &:hover {
-    border: 2px solid yellow;
+    outline: 2px solid yellow;
   }
+  outline: ${(props) => (props.active ? "2px solid yellow" : "none")};
+  outline-offset: 0;
   padding: ${(props) => props.padding};
   margin: ${(props) => props.margin};
   z-index: -1;

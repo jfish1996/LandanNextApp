@@ -21,6 +21,9 @@ export const StyledSidebar = styled.div`
   overflow: scroll;
   padding: 65px;
   position: fixed;
+  a {
+    text-decoration: none;
+  }
   @media (min-width: ${MAX_WINDOW_WIDTH}px) {
     display: ${(props) => props.bigScreenDisplay};
   }
