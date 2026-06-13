@@ -4,11 +4,10 @@ import Heart from "../SVGs/Heart";
 import Fart from "../SVGs/Fart";
 import AddToCart from "../SVGs/AddToCart";
 import Flex from "../Styled-Containers/Flex/Flex";
-import { useMutation } from "urql";
 import Checkout from "../SVGs/Checkout";
 import { ArrowLeft, ArrowRight } from "../SVGs/Arrows";
 import RichTextParagraph from "../RichTextParagraph/RichTextParagraph";
-import { LIKE_MUTATION, FART_MUTATION } from "../../../lib/mutation";
+import { useOptimisticPostMetrics } from "../../../hooks/useOptimisticPostMetrics";
 import { theme } from "../../../styles/constants";
 import styled from "styled-components";
 import { MAX_WINDOW_WIDTH } from "../../../styles/constants";
@@ -35,11 +34,9 @@ const StyledFlexTitleDate = styled.div`
 `;
 export default function PostContainer({ children, item, id }) {
   const { Title, FullDescription, Date } = item;
-  const [updateLikeResult, updateLike] = useMutation(LIKE_MUTATION);
-  const [updateFartResult, updateFart] = useMutation(FART_MUTATION);
   const category = item?.category?.data?.attributes.name;
-  const variables = { id, likes: item.likes + 1 };
-  const fartVariables = { id, farts: item.farts + 1 };
+  const { likes, farts, incrementLikes, incrementFarts } =
+    useOptimisticPostMetrics(id, item);
   return (
     <>
       {children}
@@ -50,18 +47,18 @@ export default function PostContainer({ children, item, id }) {
               fill={theme.light.sidebar}
               hover="yellow"
               active={"black"}
-              onClick={() => updateLike(variables)}
+              onClick={incrementLikes}
             />
-            <StyledP>{item.likes}</StyledP>
+            <StyledP>{likes}</StyledP>
           </Flex>
           <Flex alignItems={"center"}>
             <Fart
               fill={theme.light.sidebar}
               hover="yellow"
               active={"black"}
-              onClick={() => updateFart(fartVariables)}
+              onClick={incrementFarts}
             />
-            <StyledP>{item.farts || 0}</StyledP>
+            <StyledP>{farts}</StyledP>
           </Flex>
         </Flex>
       )}

@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 import {
-  sideBarBuilder,
-  SIDEBAR_DATA,
   topBarMainSection,
   topBarSubSection,
 } from "../Sidebar/utils";
@@ -110,12 +108,9 @@ export default function TopBar({ currentSection }) {
             padding={"10px 0"}
           />
         </TopBarSelctor>
-        {topBarMainSection(SIDEBAR_DATA, currentSection)}
-        {topBarSubSection(SIDEBAR_DATA, currentSection)}
+        {topBarMainSection(null, currentSection)}
+        {topBarSubSection(null, currentSection)}
       </StyledTopBar>
     </>
   );
-  //   {
-  //     topBarBuilder(SIDEBAR_DATA, currentSection);
-  //   }
 }

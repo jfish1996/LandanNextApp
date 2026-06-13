@@ -1,34 +1,57 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Landan Next App
+
+Next.js storefront/portfolio client for the Landan Strapi API.
 
 ## Getting Started
 
-First, run the development server:
+Use npm for this repo:
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+If Next 12 serves a blank page during local development, clear the dev cache and restart:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+```bash
+rm -rf .next
+npm run dev
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Environment
 
-## Learn More
+The frontend now talks to Strapi REST, not GraphQL.
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+NEXT_PUBLIC_BACK_END_URL=http://localhost:1337/api
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+For deployed environments, update `NEXT_PUBLIC_BACK_END_URL` from the old `/graphql` URL to the Strapi API base URL, for example:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```bash
+NEXT_PUBLIC_BACK_END_URL=https://<strapi-host>/api
+```
 
-## Deploy on Vercel
+The REST client also strips a trailing `/graphql` for local backwards compatibility, but production should be configured to `/api` explicitly.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Server-side Stripe code should use `STRIPE_SECRET_KEY`; do not expose secret keys through `NEXT_PUBLIC_*` in production.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Strapi 5 REST Migration Notes
+
+The client no longer uses `urql`, `next-urql`, GraphQL queries, or GraphQL mutations.
+
+Main changes:
+
+- `lib/strapiRest.js` contains the shared REST helpers and normalizes Strapi 5 flattened responses into the existing internal `attributes` shape.
+- `lib/returnData.js` maps the old GraphQL data helpers to REST endpoints with Strapi 5 `populate`, `filters`, `pagination`, and `documentId` behavior.
+- Category and section requests use different populate params. Categories can populate `sections`; `section-names` cannot.
+- Likes/farts now use `hooks/useOptimisticPostMetrics.js` for local optimistic UI updates and REST `PUT` requests.
+- `lib/query.js` and `lib/mutation.js` were removed with the GraphQL dependencies.
+
+Backend-side, the Strapi migration is mostly package/config work:
+
+- Strapi packages moved to v5.
+- GraphQL and unused i18n plugin dependencies/config were removed.
+- Cloudinary and users-permissions remain configured.
+- `TRANSFER_TOKEN_SALT` was added for Strapi v5 admin transfer-token config.

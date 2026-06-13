@@ -103,13 +103,13 @@ const PostBar = ({
                 item?.attributes?.Img?.data[0]?.attributes?.formats?.small?.url;
               return (
                 <Link
+                  key={idx + item?.attributes?.Title}
                   to={item?.attributes?.Title}
                   // smooth={true}
                   offset={-120}
                   style={{ display: "flex" }}
                 >
                   <PostBarItem
-                    key={idx + item?.attributes?.Title}
                     width={"50px"}
                     height={"50px"}
                     defaultURL={defaultURL}

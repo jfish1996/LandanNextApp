@@ -1,6 +1,5 @@
 import React from "react";
 import RichTextParagraph from "../RichTextParagraph/RichTextParagraph";
-import StarRatingComponent from "react-star-rating-component";
 import styled from "styled-components";
 
 const StyledContainer = styled.div`

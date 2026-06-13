@@ -1,5 +1,5 @@
 import React from "react";
-import { SIDEBAR_DATA, sideBarBuilder } from "./utils";
+import { sideBarBuilder } from "./utils";
 import { StyledSidebar } from "./styles";
 import { BIG_NAME_BOTTOM_PADDING_SIDEBAR } from "../../../../styles/constants";
 import { useStateContext } from "../../../../lib/context";
@@ -26,7 +26,7 @@ export default function Sidebar({ currentSection, display, bigScreenDisplay }) {
           padding={`0 0 ${BIG_NAME_BOTTOM_PADDING_SIDEBAR}px 0`}
         />
       </Link>
-      {sideBarBuilder(SIDEBAR_DATA, currentSection)}
+      {sideBarBuilder(null, currentSection)}
     </StyledSidebar>
   );
 }

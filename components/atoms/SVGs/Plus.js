@@ -54,9 +54,9 @@ export default function Plus({
         hover={hover}
         active={active}
       >
-        <rect class="cls-1" x="25.44" y="120.9" width="249.12" height="58.21" />
+        <rect className="cls-1" x="25.44" y="120.9" width="249.12" height="58.21" />
         <rect
-          class="cls-1"
+          className="cls-1"
           x="25.44"
           y="120.9"
           width="249.12"

@@ -1,15 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import {
-  MAX_WINDOW_WIDTH,
-  SECTION_LIST_ITEM_PADDING,
-} from "../../../styles/constants";
+import { MAX_WINDOW_WIDTH } from "../../../styles/constants";
 import { useStateContext } from "../../../lib/context";
 const StyledSubTitle = styled.li`
   color: ${(props) =>
     props.darkMode ? props.theme.dark.font : props.theme.light.font};
   list-style-type: none;
-  /* padding: ${SECTION_LIST_ITEM_PADDING}px 0; */
   font-size: ${(props) => props.smallScreenFont || `${1.3}rem`};
   text-align: ${(props) => (props.textAlign ? props.textAlign : "right")};
   font-weight: ${(props) => (props.active ? "bold" : null)};

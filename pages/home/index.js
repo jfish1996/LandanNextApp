@@ -63,7 +63,7 @@ const Home = ({ feedView }) => {
                   : "16/9"
               }
             />
-          ) || <Skeleton />}
+          ) || <SkeletonHome />}
         </Container>
       </Draggable>
       <EasterEgg imgSrc={hiddenImgSrc} text={hiddenImgText} />
