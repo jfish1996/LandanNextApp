@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { animate, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
 import { MAX_WINDOW_WIDTH } from "../../../styles/constants";
 import Flex from "../Styled-Containers/Flex/Flex";
@@ -83,7 +83,6 @@ const StyledCloseDiv = styled.button`
 `;
 
 export default function Modal({ modalActive, posts, onClickBackDrop }) {
-  const [status, setStatus] = useState("");
   const postURL =
     "https://landypandyy.us14.list-manage.com/subscribe/post?u=47edb228aab91efcc10726395&id=6695168530";
   return modalActive ? (
@@ -93,7 +92,6 @@ export default function Modal({ modalActive, posts, onClickBackDrop }) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.09 }}
-        backgroundColor={status === "error" ? "red" : null}
       >
         <StyledContentContainer>
           <StyledContentContainer>
@@ -128,11 +126,9 @@ export default function Modal({ modalActive, posts, onClickBackDrop }) {
               </StyledCloseDiv>
               <MailchimpSubscribe
                 url={postURL}
-                render={({ subscribe, status, message }) => (
+                render={({ subscribe, status }) => (
                   <CustomForm
-                    setModalStatus={setStatus}
                     status={status}
-                    message={message}
                     onValidated={(formData) => subscribe(formData)}
                   />
                 )}
@@ -144,10 +140,10 @@ export default function Modal({ modalActive, posts, onClickBackDrop }) {
     </>
   ) : null;
 }
-function CustomForm({ status, message, onValidated, setModalStatus }) {
+function CustomForm({ status, onValidated }) {
   const [email, setEmail] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [firstName] = useState("");
+  const [lastName] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();

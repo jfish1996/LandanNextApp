@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { animate, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { MAX_WINDOW_WIDTH } from "../../../../styles/constants";
 
 const StyledGrid = styled(motion.div)`

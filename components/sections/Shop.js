@@ -1,16 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
-import SkeletonTemplate from "../molecules/SkeletonTemplate/SkeletonTemplate";
 import Header from "../atoms/List-Items/Header";
 import PostBar from "../molecules/PostBar/PostBar";
-import Filterbar from "../molecules/Filterbar.js/Filterbar";
 import RichTextParagraph from "../atoms/RichTextParagraph/RichTextParagraph";
-import { portfolioPostToRender } from "../../lib/ternary-helper-functions";
 import { returnPosts } from "../../lib/returnposts";
 import { useIntersectionArray } from "../../hooks/useIntersectionArray";
-import {
-  returnFilteredCategory,
-  returnFilteredData,
-} from "../../lib/returnData";
+
+
 import {
   TOP_NAV_HEIGHT,
   TOP_PARAGRAPH_SECTION_PADDING,

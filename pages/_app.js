@@ -1,13 +1,12 @@
 import "../styles/globals.css";
 import Script from "next/script";
 import AppLayout from "../components/AppLayout/AppLayout";
-import React, { useState, useEffect, useRef } from "react";
-import { useRouter } from "next/router";
+import React, { useState } from "react";
 import { StateContext } from "../lib/context";
-import { ThemeProvider } from "styled-components";
+import isPropValid from "@emotion/is-prop-valid";
+import { StyleSheetManager, ThemeProvider } from "styled-components";
 import { theme } from "../styles/constants";
 import { Toaster } from "react-hot-toast";
-import Head from "next/head";
 
 const MyApp = ({ Component, pageProps }) => {
   const [feedView, setFeedView] = useState(false);
@@ -31,24 +30,26 @@ const MyApp = ({ Component, pageProps }) => {
     `}
       </Script>
       <Toaster position="bottom-right" reverseOrder={false} />
-      <ThemeProvider theme={theme}>
-        <AppLayout
-          feedView={{
-            feedViewProp: feedView,
-            setFeedViewProp: setFeedView,
-          }}
-          currentSection={{ currentSection, setCurrentSection }}
-        >
-          <Component
-            {...pageProps}
+      <StyleSheetManager shouldForwardProp={isPropValid}>
+        <ThemeProvider theme={theme}>
+          <AppLayout
             feedView={{
               feedViewProp: feedView,
               setFeedViewProp: setFeedView,
             }}
-            currentId={{ currentIdInView, setCurrentIdInView }}
-          />
-        </AppLayout>
-      </ThemeProvider>
+            currentSection={{ currentSection, setCurrentSection }}
+          >
+            <Component
+              {...pageProps}
+              feedView={{
+                feedViewProp: feedView,
+                setFeedViewProp: setFeedView,
+              }}
+              currentId={{ currentIdInView, setCurrentIdInView }}
+            />
+          </AppLayout>
+        </ThemeProvider>
+      </StyleSheetManager>
     </StateContext>
   );
 };

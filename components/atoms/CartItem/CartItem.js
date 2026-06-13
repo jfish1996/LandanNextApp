@@ -2,7 +2,7 @@ import React from "react";
 import { useStateContext } from "../../../lib/context";
 import styled from "styled-components";
 import Flex from "../Styled-Containers/Flex/Flex";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import Plus from "../SVGs/Plus";
 import Minus from "../SVGs/Minus";
 import { theme } from "../../../styles/constants";
@@ -31,11 +31,7 @@ const StyledCartItemContainer = styled.div`
 `;
 
 export default function CartItem({ item, defaultItem }) {
-  const { cartItems, onAdd, onRemove, darkMode } = useStateContext();
-
-  const notify = () => {
-    toast("Hi");
-  };
+  const { onAdd, onRemove, darkMode } = useStateContext();
   if (defaultItem) {
     return (
       <>

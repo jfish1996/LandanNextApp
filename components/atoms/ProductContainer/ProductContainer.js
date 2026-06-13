@@ -7,7 +7,7 @@ import Flex from "../Styled-Containers/Flex/Flex";
 import toast from "react-hot-toast";
 export default function ProductContainer({ children, item, id }) {
   const { Title, Price, Date, FullDescription, bulky_item } = item;
-  const { onAdd, onRemove, darkMode } = useStateContext();
+  const { onAdd, darkMode } = useStateContext();
   const img = item.Img.data[0].attributes.formats.small.url;
   const notify = (item) => {
     toast.success(`${item} added to cart!`, {

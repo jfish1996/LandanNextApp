@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import {
-  MAX_WINDOW_WIDTH,
   GRID_BOX_HEIGHT,
   GRID_BOX_WIDTH,
 } from "../../../styles/constants";

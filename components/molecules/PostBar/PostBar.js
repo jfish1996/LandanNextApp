@@ -1,8 +1,6 @@
 import React, { useEffect, useRef } from "react";
-import { TOP_NAV_HEIGHT } from "../../../styles/constants";
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import GridItem from "../../atoms/GridItem/GridItem";
 import PostBarItem from "../../atoms/PostBarItem/PostBarItem";
 import Flex from "../../atoms/Styled-Containers/Flex/Flex";
 import {
@@ -129,5 +127,4 @@ const PostBar = ({
   );
 };
 
-const forwardPostBar = React.forwardRef(PostBar);
-export default forwardPostBar;
+export default PostBar;

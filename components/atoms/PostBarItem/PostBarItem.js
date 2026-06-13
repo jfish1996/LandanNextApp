@@ -28,10 +28,19 @@ const StyledDiv = styled.div`
   z-index: -1;
 `;
 
+const toImageDimension = (value, fallback) => {
+  if (typeof value === "number") return value;
+  const parsed = parseInt(value, 10);
+  return Number.isFinite(parsed) ? parsed : fallback;
+};
+
 const PostBarItem = (
   { smallURL, defaultURL, onClick, width, height, padding, margin, id, active },
   ref
 ) => {
+  const imageWidth = toImageDimension(width, GRID_BOX_WIDTH);
+  const imageHeight = toImageDimension(height, GRID_BOX_HEIGHT);
+
   return (
     <StyledDiv
       id={id}
@@ -45,9 +54,10 @@ const PostBarItem = (
       <PostBarItemIMG
         onClick={onClick}
         src={smallURL || defaultURL}
-        width={width}
-        height={height}
+        width={imageWidth}
+        height={imageHeight}
         loading="lazy"
+        alt=""
       />
     </StyledDiv>
   );

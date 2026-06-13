@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 
 import Grid from "../../atoms/Styled-Containers/Grid/Grid";
 import {
@@ -8,7 +7,6 @@ import {
   MIN_WINDOW_WITH,
   GRID_GAP,
 } from "../../../styles/constants";
-import PostBar from "../../molecules/PostBar/PostBar";
 
 export default function GridView({ children, feedView }) {
   const feedViewProp = feedView.feedViewProp;

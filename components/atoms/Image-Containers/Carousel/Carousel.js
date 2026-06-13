@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import Flex from "../../Styled-Containers/Flex/Flex";
+import React from "react";
 import styled from "styled-components";
 import { useStateContext } from "../../../../lib/context";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -62,16 +61,14 @@ const CarouselContainer = styled.div`
 
 const CarouselObj = ({ post, id }, ref) => {
   const { darkMode } = useStateContext();
-  const [activeIdx, setActiveIdx] = useState(0);
   const imgData = post?.attributes?.Img?.data;
   const aspectRatio = post?.attributes?.aspectRatio;
 
   const imageOrVideo = (item, idx) => {
     if (item.attributes.ext === ".mp4") {
       return (
-        <SwiperSlide>
+        <SwiperSlide key={`${id}-${idx}-video`}>
           <iframe
-            key={id + ".mp4"}
             src={item?.attributes?.url}
             style={{
               position: "absolute",
@@ -87,30 +84,21 @@ const CarouselObj = ({ post, id }, ref) => {
       );
     } else {
       return (
-        <SwiperSlide>
+        <SwiperSlide key={`${id}-${idx}-image`}>
           <Image
-            key={id + ".img"}
             loading="lazy"
-            layout="fill"
-            width={"100%"}
-            objectFit={"contain"}
-            maxHeight={"100%"}
+            fill
+            style={{ objectFit: "contain", maxHeight: "100%" }}
             src={
               item?.attributes?.formats?.medium?.url || item?.attributes?.url
             }
+            alt={post?.attributes?.Title || ""}
           />
         </SwiperSlide>
       );
     }
   };
 
-  const settings = {
-    dots: false,
-    centerMode: false,
-    adaptiveHeight: false,
-    arrows: false,
-    // sliderPerView: 1,
-  };
   return (
     <>
       <CarouselContainer

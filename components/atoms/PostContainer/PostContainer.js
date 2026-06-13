@@ -1,17 +1,12 @@
 import React from "react";
-import GridBox from "../SVGs/GridBox";
 import Heart from "../SVGs/Heart";
 import Fart from "../SVGs/Fart";
-import AddToCart from "../SVGs/AddToCart";
 import Flex from "../Styled-Containers/Flex/Flex";
-import Checkout from "../SVGs/Checkout";
-import { ArrowLeft, ArrowRight } from "../SVGs/Arrows";
 import RichTextParagraph from "../RichTextParagraph/RichTextParagraph";
 import { useOptimisticPostMetrics } from "../../../hooks/useOptimisticPostMetrics";
 import { theme } from "../../../styles/constants";
 import styled from "styled-components";
 import { MAX_WINDOW_WIDTH } from "../../../styles/constants";
-const { motion } = require("framer-motion");
 const StyledP = styled.p`
   font-weight: ${(props) => props.fontWeight || "bold"};
   margin: 0;
@@ -34,7 +29,6 @@ const StyledFlexTitleDate = styled.div`
 `;
 export default function PostContainer({ children, item, id }) {
   const { Title, FullDescription, Date } = item;
-  const category = item?.category?.data?.attributes.name;
   const { likes, farts, incrementLikes, incrementFarts } =
     useOptimisticPostMetrics(id, item);
   return (

@@ -1,14 +1,12 @@
 import React from "react";
-import styled from "styled-components";
 import Carousel from "../Image-Containers/Carousel/Carousel";
 import SingleImagePost from "../Image-Containers/SingleImagePost/SingleImagePost";
 import PostContainer from "../PostContainer/PostContainer";
 import ProductContainer from "../ProductContainer/ProductContainer";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { POST_TRANSITION_TIMES } from "../../../styles/constants";
 const FeedItem = (
-  { smallURL, defaultURL, onClick, carouselItem, id, product, item },
+  { smallURL, defaultURL, carouselItem, id, product, item },
   ref
 ) => {
   //product returns

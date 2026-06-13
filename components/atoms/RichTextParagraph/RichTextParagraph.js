@@ -1,12 +1,10 @@
 import React from "react";
+import parse from "html-react-parser";
+import DOMPurify from "isomorphic-dompurify";
 import styled from "styled-components";
-import { Markup } from "react-render-markup";
 import {
-  SMALL_SCREEN_FONTS,
   LARGE_SCREEN_FONTS,
   MAX_WINDOW_WIDTH,
-  TOP_PARAGRAPH_SECTION_PADDING,
-  GAP_BETWEEN_UL_ITEMS,
   HEADER_AND_SCROLLBAR_PADDING,
 } from "../../../styles/constants";
 
@@ -34,13 +32,15 @@ export default function RichTextParagraph({
   borderBottom,
   bigScreenPadding,
 }) {
+  const sanitizedMarkup = DOMPurify.sanitize(markup || "");
+
   return (
     <GridMap
       margin={margin}
       borderBottom={borderBottom}
       bigScreenPadding={bigScreenPadding}
     >
-      <Markup markup={markup} />
+      {parse(sanitizedMarkup)}
     </GridMap>
   );
 }

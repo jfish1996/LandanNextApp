@@ -1,6 +1,5 @@
 import React from "react";
 import StyledSvgContainer from "./StyledSvgContainer";
-import styled from "styled-components";
 
 export function ArrowRight({ onClick }) {
   return (

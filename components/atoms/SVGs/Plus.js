@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import StyledSvgContainer from "./StyledSvgContainer";
 const { motion } = require("framer-motion");
 
 const StyledDiv = styled(motion.div)`
@@ -10,16 +9,6 @@ const StyledDiv = styled(motion.div)`
 `;
 
 const StyledSVG = styled(motion.svg)`
-  fill: ${(props) => props.fill};
-  &:hover {
-    fill: ${(props) => props.hover};
-  }
-  &:active {
-    fill: ${(props) => props.active};
-  }
-`;
-
-const StyledRect = styled.rect`
   fill: ${(props) => props.fill};
   &:hover {
     fill: ${(props) => props.hover};

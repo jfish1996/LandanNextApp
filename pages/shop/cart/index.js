@@ -11,7 +11,7 @@ import FailedCartItem from "../../../components/atoms/CartItem/FailedCartItem";
 import RichTextParagraph from "../../../components/atoms/RichTextParagraph/RichTextParagraph";
 export default function Cart() {
   const CATEGORY_NAME = "cart";
-  const { cartItems, onAdd, onRemove } = useStateContext();
+  const { cartItems } = useStateContext();
   const { failed } = returnShoppingStatus();
   const failedText = failed?.attributes?.message;
   const getCheckout = async () => {

@@ -5,7 +5,6 @@ import { BIG_NAME_BOTTOM_PADDING_SIDEBAR } from "../../../../styles/constants";
 import { useStateContext } from "../../../../lib/context";
 import Title from "../../../atoms/Title/Title";
 import Link from "next/link";
-const { motion } = require("framer-motion");
 
 export default function Sidebar({ currentSection, display, bigScreenDisplay }) {
   const { darkMode } = useStateContext();

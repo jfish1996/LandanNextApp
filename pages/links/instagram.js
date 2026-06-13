@@ -1,6 +1,5 @@
 import React from "react";
 import { returnSectionData } from "../../lib/returnData";
-import { returnPosts } from "../../lib/returnposts";
 import RichTextParagraph from "../../components/atoms/RichTextParagraph/RichTextParagraph";
 import { returnLinks } from "../../lib/returnLinks";
 import { TOP_PARAGRAPH_SECTION_PADDING } from "../../styles/constants";

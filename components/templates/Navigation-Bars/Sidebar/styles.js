@@ -3,7 +3,6 @@ import styled from "styled-components";
 import {
   MAX_WINDOW_WIDTH,
   SIDE_NAV_WIDTH,
-  SIDE_NAV_PADDING,
   TRANSITION_TIMES,
   Z_INDEXS,
   GAP_BETWEEN_UL_ITEMS,

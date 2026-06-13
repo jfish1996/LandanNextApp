@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import Flex from "../Styled-Containers/Flex/Flex";
-import { useStateContext } from "../../../lib/context";
-import Image from "next/image";
 
 const StyledCartItemContainer = styled.div`
   grid-column: 1/-1;
@@ -14,7 +12,6 @@ const StyledCartItemContainer = styled.div`
   background-color: #fff100;
 `;
 export default function FailedCartItem({ failedText }) {
-  const { darkMode } = useStateContext();
   return (
     <>
       <StyledCartItemContainer>

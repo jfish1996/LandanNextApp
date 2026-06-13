@@ -27,10 +27,10 @@ export const handleCart = (
   currentRoute,
   lowerCaseCategory,
   lowerCaseSubCategory,
+  cartItems,
   mobile,
   firstVisit
 ) => {
-  const { cartItems } = useStateContext();
   let totalCartItems = cartItems.reduce((curNumber, item) => {
     return curNumber + item.quantity;
   }, 0);
@@ -81,10 +81,7 @@ export const handleCart = (
 
 export const sideBarBuilder = (data, currentSection) => {
   const { results, fetching } = returnNavData();
-  const resultsFiltered = results?.filter((item) => {
-    return item.attributes.name !== "Home" && item.attributes.name !== "Links";
-  });
-  const { darkMode } = useStateContext();
+  const { cartItems, darkMode } = useStateContext();
   const router = useRouter();
   const currentRoute = router.asPath;
 
@@ -97,8 +94,7 @@ export const sideBarBuilder = (data, currentSection) => {
           const lowerCaseCategory = mainCategory.attributes.name.toLowerCase();
           const dataName = mainCategory.attributes.dataName.toLowerCase();
           return (
-            <>
-              <StyledUl key={idx + "UL"} margin={`${UL_MARGIN}px 0`}>
+            <StyledUl key={idx + "UL"} margin={`${UL_MARGIN}px 0`}>
                 <Header
                   darkMode={darkMode}
                   active={currentRoute === `/${dataName}`}
@@ -129,7 +125,8 @@ export const sideBarBuilder = (data, currentSection) => {
                         darkMode,
                         currentRoute,
                         lowerCaseCategory,
-                        lowerCaseSubCategory
+                        lowerCaseSubCategory,
+                        cartItems
                       )
                     ) : (
                       <Subtitle
@@ -151,8 +148,7 @@ export const sideBarBuilder = (data, currentSection) => {
                     );
                   }
                 )}
-              </StyledUl>
-            </>
+            </StyledUl>
           );
         })
       )}
@@ -200,7 +196,7 @@ export const topBarMainSection = (data, currentSection) => {
 };
 export const topBarSubSection = () => {
   const { results } = returnNavData();
-  const { darkMode, firstVisit } = useStateContext();
+  const { cartItems, darkMode, firstVisit } = useStateContext();
   const router = useRouter();
   const currentRoute = router.asPath;
   return (
@@ -219,7 +215,6 @@ export const topBarSubSection = () => {
           return mainCategoryCopy
             ?.sort((a, b) => {
               const Aa = a?.attributes.SectionName.toLowerCase().split(".")[0];
-              const Bb = b?.attributes?.SectionName.toLowerCase().split(".")[0];
               if (Aa === "cart") {
                 return -1;
               } else {
@@ -239,6 +234,7 @@ export const topBarSubSection = () => {
                   currentRoute,
                   lowerCaseCategory,
                   lowerCaseSubCategory,
+                  cartItems,
                   true,
                   firstVisit
                 )

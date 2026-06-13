@@ -1,12 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import FilterItem from "../../atoms/List-Items/FilterItem";
 import {
   MAX_WINDOW_WIDTH,
   TOP_NAV_HEIGHT,
-  TRANSITION_TIMES,
   Z_INDEXS,
-  TOP_PARAGRAPH_SECTION_PADDING,
   HEADER_AND_SCROLLBAR_PADDING,
 } from "../../../styles/constants";
 import { motion } from "framer-motion";

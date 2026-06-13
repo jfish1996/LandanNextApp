@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import Draggable from "react-draggable"; // The default
 import {
   returnHomePageImage,
@@ -6,8 +6,6 @@ import {
   returnHiddenHomeImage,
 } from "../../lib/returnData";
 import RichTextParagraph from "../../components/atoms/RichTextParagraph/RichTextParagraph";
-import Flex from "../../components/atoms/Styled-Containers/Flex/Flex";
-import SingleImagePost from "../../components/atoms/Image-Containers/SingleImagePost/SingleImagePost";
 import Header from "../../components/atoms/List-Items/Header";
 import styled from "styled-components";
 import SkeletonHome from "../../components/molecules/SkeletonTemplate/SkeletonHome";
@@ -38,6 +36,7 @@ const Home = ({ feedView }) => {
   const { fetching, posts } = returnHomePageImage();
   const { hiddenImgSrc, hiddenImgText } = returnHiddenHomeImage();
   const { darkMode } = useStateContext();
+  const draggableNodeRef = useRef(null);
   const CATEGORY_NAME = "Home";
   const { markup } = returnCategoryData(CATEGORY_NAME);
 
@@ -52,8 +51,8 @@ const Home = ({ feedView }) => {
         {CATEGORY_NAME.toUpperCase()}
       </Header>
       <RichTextParagraph markup={markup} />
-      <Draggable>
-        <Container darkMode={darkMode}>
+      <Draggable nodeRef={draggableNodeRef}>
+        <Container ref={draggableNodeRef} darkMode={darkMode}>
           {(
             <HomeItemIMG
               src={posts[0]?.attributes?.Img?.data[0]?.attributes?.url}

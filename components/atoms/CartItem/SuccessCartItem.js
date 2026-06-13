@@ -1,19 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Flex from "../Styled-Containers/Flex/Flex";
-import { useStateContext } from "../../../lib/context";
 import Image from "next/image";
-const StyledImgContainer = styled.img`
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-`;
-const StyledPlaceHolderContainer = styled.div`
-  width: 80px;
-  height: 80px;
-  background-color: ${(props) =>
-    props.darkMode ? props.theme.dark.sidebar : props.theme.light.sidebar};
-`;
 
 const StyledCartItemContainer = styled.div`
   grid-column: 1/-1;
@@ -26,7 +14,6 @@ const StyledCartItemContainer = styled.div`
   align-items: flex-start;
 `;
 export default function SuccessCartItem({ successText }) {
-  const { darkMode } = useStateContext();
   return (
     <>
       <StyledCartItemContainer>
@@ -35,7 +22,8 @@ export default function SuccessCartItem({ successText }) {
             src="/assets/checkout-success.png"
             width={"80px"}
             height={"80px"}
-          ></Image>
+            alt=""
+          />
           <p>{successText}</p>
         </Flex>
       </StyledCartItemContainer>

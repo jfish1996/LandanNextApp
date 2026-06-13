@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { GRID_BOX_WIDTH, GRID_BOX_HEIGHT } from "../../../styles/constants";
-import { POST_TRANSITION_TIMES } from "../../../styles/constants";
 import Image from "next/image";
 const GridItemIMG = styled(motion.div)`
   width: ${(props) => (props.width ? props.width : `${GRID_BOX_WIDTH}px`)};

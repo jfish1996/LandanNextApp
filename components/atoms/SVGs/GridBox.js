@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import StyledSvgContainer from "./StyledSvgContainer";
-const { motion } = require("framer-motion");
 import { TRANSITION_TIMES } from "../../../styles/constants";
 
 const HelperContainer = styled.div`
@@ -20,21 +19,7 @@ const HelperContainer = styled.div`
   margin-right: 8px;
 `;
 
-export default function GridBox({
-  width,
-  height,
-  stroke,
-  margin,
-  hover,
-  fill,
-  active,
-  scale,
-  flexShrink,
-  position,
-  left,
-  darkMode,
-  onClick,
-}) {
+export default function GridBox({ darkMode, onClick }) {
   return (
     <HelperContainer darkMode={darkMode}>
       <StyledSvgContainer

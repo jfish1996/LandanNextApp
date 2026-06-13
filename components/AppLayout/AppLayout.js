@@ -5,26 +5,21 @@ import Grid from "../atoms/Styled-Containers/Grid/Grid";
 import Sidebar from "../templates/Navigation-Bars/Sidebar/index";
 import TopBar from "../templates/Navigation-Bars/TopBar/TopBar";
 import Title from "../atoms/Title/Title";
-import Flex from "../atoms/Styled-Containers/Flex/Flex";
 import { useStateContext } from "../../lib/context";
 import { createGlobalStyle } from "styled-components";
 import {
   MAX_WINDOW_WIDTH,
   MIN_WINDOW_WITH,
   MIN_WINODW_THREAD_VIEW,
-  SIDE_NAV_WIDTH,
   SIDE_NAV_MARGIN,
   SIDE_NAV_PADDING,
   TRANSITION_TIMES,
   GRID_BOX_WIDTH,
   GRID_GAP,
-  MAIN_NAME_CONTENT_PADDING,
   BIG_NAME_BOTTOM_PADDING_BODY,
   UL_MARGIN,
   WHOLE_BODY_MOBILE_MARGIN,
 } from "../../styles/constants";
-import MediaQuery from "react-responsive";
-import Link from "next/link";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -42,7 +37,7 @@ const GlobalStyle = createGlobalStyle`
 
   a {
   color: ${(props) => (props.darkMode ? "white" : "black")};
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 

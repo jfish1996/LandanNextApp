@@ -1,16 +1,14 @@
 import React from "react";
 import { returnSectionData } from "../../lib/returnData";
-import { returnPosts } from "../../lib/returnposts";
 import { returnLegitReviews } from "../../lib/returnData";
 import RichTextParagraph from "../../components/atoms/RichTextParagraph/RichTextParagraph";
 import LegitReview from "../../components/atoms/LegitReview/LegitReview";
-import Flex from "../../components/atoms/Styled-Containers/Flex/Flex";
 import { TOP_PARAGRAPH_SECTION_PADDING } from "../../styles/constants";
 import Header from "../../components/atoms/List-Items/Header";
 export default function TotallyLegitReviews({ feedView }) {
   const SECTION_NAME = "Totally Legit Reviews.links";
   const SECTION_DISPLAY_NAME = "totally legit reviews";
-  const { posts, markup } = returnSectionData(SECTION_NAME);
+  const { markup } = returnSectionData(SECTION_NAME);
   const { reviews } = returnLegitReviews();
 
   return (

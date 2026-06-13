@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { MAX_WINDOW_WIDTH } from "../../../styles/constants";
-import { useStateContext } from "../../../lib/context";
 const StyledSubTitle = styled.li`
   color: ${(props) =>
     props.darkMode ? props.theme.dark.font : props.theme.light.font};
@@ -36,7 +35,6 @@ export default function Subtitle({
   largeScreenFont,
   textAlign,
 }) {
-  const { firstVisit } = useStateContext();
   return (
     <StyledSubTitle
       onClick={onClick}

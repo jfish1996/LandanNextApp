@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { returnPosts } from "../../lib/returnposts";
 import {
-  returnCategoryData,
   returnHomeArchiveData,
 } from "../../lib/returnData";
 import RichTextParagraph from "../../components/atoms/RichTextParagraph/RichTextParagraph";

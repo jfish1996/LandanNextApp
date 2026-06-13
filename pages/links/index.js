@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { returnCategoryData } from "../../lib/returnData";
-import { returnPosts } from "../../lib/returnposts";
 import { returnLinks } from "../../lib/returnLinks";
 import { TOP_PARAGRAPH_SECTION_PADDING } from "../../styles/constants";
 import Header from "../../components/atoms/List-Items/Header";

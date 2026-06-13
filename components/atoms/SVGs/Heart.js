@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import StyledSvgContainer from "./StyledSvgContainer";
 const { motion } = require("framer-motion");
 
 const StyledDiv = styled(motion.div)`
@@ -27,7 +26,6 @@ export default function Heart({
   active,
   strokeWidth,
   onClick,
-  scale = { scale },
 }) {
   return (
     // <StyledSvgContainer

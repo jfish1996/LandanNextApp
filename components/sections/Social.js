@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
 import { returnPosts } from "../../lib/returnposts";
-import { returnCategoryData } from "../../lib/returnData";
 import RichTextParagraph from "../../components/atoms/RichTextParagraph/RichTextParagraph";
 import Header from "../../components/atoms/List-Items/Header";
 import PostBar from "../../components/molecules/PostBar/PostBar";
@@ -9,7 +8,6 @@ import {
   TOP_NAV_HEIGHT,
   TOP_PARAGRAPH_SECTION_PADDING,
 } from "../../styles/constants";
-import SkeletonTemplate from "../../components/molecules/SkeletonTemplate/SkeletonTemplate";
 export default function SocialPage({
   fetching,
   feedView,

@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import SkeletonTemplate from "../../components/molecules/SkeletonTemplate/SkeletonTemplate";
 import PortfolioPage from "../../components/sections/Portfolio";
 import { returnPageType } from "../../lib/returnpageToRender";
