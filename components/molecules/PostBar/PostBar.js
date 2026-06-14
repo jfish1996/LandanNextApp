@@ -24,20 +24,8 @@ const StyledPostBar = styled.div`
   top: ${(props) => props.topMobile};
   width: 100%;
   box-sizing: border-box;
-  isolation: isolate;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: -1px;
-    bottom: -1px;
-    left: -4px;
-    right: -4px;
-    background-color: ${(props) =>
-      props.darkMode ? props.theme.dark.body : props.theme.light.body};
-    z-index: -1;
-    pointer-events: none;
-  }
+  background-color: ${(props) =>
+    props.darkMode ? props.theme.dark.body : props.theme.light.body};
 
   @media (min-width: ${MAX_WINDOW_WIDTH}px) {
     top: ${(props) => props.topDesktop};

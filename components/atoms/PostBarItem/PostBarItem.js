@@ -15,7 +15,7 @@ const StyledDiv = styled.div`
   outline-offset: 0;
   padding: ${(props) => props.padding};
   margin: ${(props) => props.margin};
-  z-index: -1;
+  z-index: 0;
 `;
 
 const toImageDimension = (value, fallback) => {
