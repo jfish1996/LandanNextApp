@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, { useLayoutEffect, useState } from "react";
+import styled, { css, keyframes } from "styled-components";
 import FilterItem from "../../atoms/List-Items/FilterItem";
 import {
   MAX_WINDOW_WIDTH,
@@ -7,17 +7,26 @@ import {
   Z_INDEXS,
   HEADER_AND_SCROLLBAR_PADDING,
 } from "../../../styles/constants";
-import { motion } from "framer-motion";
 import { returnSubSections } from "../../../lib/returnData";
 import { useStateContext } from "../../../lib/context";
 
-const StyledUL = styled(motion.ul)`
+const filterBarFlow = keyframes`
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-60px);
+  }
+`;
+
+const StyledUL = styled.ul`
   position: sticky;
   z-index: ${Z_INDEXS.scrollBars};
   margin: 0 0 ${HEADER_AND_SCROLLBAR_PADDING}px 0;
   display: flex;
   grid-column: 1/-1;
-  overflow-x: scroll;
+  overflow-x: auto;
   width: 100%;
   box-sizing: border-box;
   isolation: isolate;
@@ -25,6 +34,14 @@ const StyledUL = styled(motion.ul)`
   border-bottom: 1px solid lightgrey;
   padding: 10px 0;
   top: ${TOP_NAV_HEIGHT}px;
+
+  ${(props) =>
+    props.$animate &&
+    css`
+      & > li {
+        animation: ${filterBarFlow} 0.5s ease-in-out 0.6s both;
+      }
+    `}
 
   &::before {
     content: "";
@@ -47,14 +64,19 @@ const StyledUL = styled(motion.ul)`
 export default function Filterbar({
   setCurrentSubSection,
   setFiltering,
-  filtering,
   currentSubSection,
 }) {
-  const { data } = returnSubSections();
+  const { data, fetching } = returnSubSections();
   const [currentListItem, setCurrentListItem] = useState(null);
-  const { darkMode } = useStateContext();
-
+  const { darkMode, filterBarAnimated, setFilterBarAnimated } = useStateContext();
+  const [shouldAnimate] = useState(() => !filterBarAnimated);
   const sub_sections = data?.subSections?.data;
+
+  useLayoutEffect(() => {
+    if (shouldAnimate && sub_sections?.length) {
+      setFilterBarAnimated(true);
+    }
+  }, [shouldAnimate, sub_sections, setFilterBarAnimated]);
 
   const onClick = (subSectionName, idx) => {
     if (currentSubSection === subSectionName) {
@@ -68,22 +90,24 @@ export default function Filterbar({
     }
   };
 
+  const clearFilters = () => {
+    setFiltering(false);
+    setCurrentSubSection("");
+    setCurrentListItem(null);
+  };
+
+  if (fetching || !sub_sections?.length) return null;
+
   return (
-    <StyledUL darkMode={darkMode}>
-      <FilterItem
-        onClick={() => {
-          setFiltering(false), setCurrentListItem(null);
-        }}
-      >
-        X
-      </FilterItem>
-      {sub_sections?.map((title, idx) => {
+    <StyledUL darkMode={darkMode} $animate={shouldAnimate}>
+      <FilterItem onClick={clearFilters}>X</FilterItem>
+      {sub_sections.map((title, idx) => {
         const cleanedTitle = title.attributes.Name.split(".")[0];
 
         return (
           <FilterItem
-            key={idx + title.attributes.Name}
-            active={idx === currentListItem ? true : false}
+            key={title.attributes.Name}
+            active={idx === currentListItem}
             onClick={() => onClick(title.attributes.Name, idx)}
           >
             {cleanedTitle}
