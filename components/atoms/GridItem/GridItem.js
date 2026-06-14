@@ -8,13 +8,24 @@ const GridItemIMG = styled(motion.div)`
   height: ${(props) => (props.height ? props.height : `${GRID_BOX_HEIGHT}px`)};
   object-fit: cover;
   position: relative;
-  &:hover {
-    outline: 2px solid yellow;
-  }
-  outline: ${(props) => (props.active ? "2px solid yellow" : "none")};
-  outline-offset: 0;
+  z-index: 0;
+  overflow: hidden;
   padding: ${(props) => props.padding};
   margin: ${(props) => props.margin};
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    box-shadow: ${(props) =>
+      props.active ? "inset 0 0 0 2px yellow" : "inset 0 0 0 2px transparent"};
+  }
+
+  &:hover::after {
+    box-shadow: inset 0 0 0 2px yellow;
+  }
 `;
 
 const GridItem = (

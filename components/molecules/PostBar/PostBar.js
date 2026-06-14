@@ -13,6 +13,7 @@ import { useStateContext } from "../../../lib/context";
 import GridBox from "../../atoms/SVGs/GridBox";
 import { getFirstImageUrl } from "../../../lib/media";
 const StyledPostBar = styled.div`
+  position: sticky;
   z-index: ${Z_INDEXS.scrollBars};
   grid-row: ${(props) => (props.gridRow ? props.gridRow : 5)};
   overflow-y: scroll;
@@ -20,10 +21,24 @@ const StyledPostBar = styled.div`
   padding: ${(props) => (props.withFilter ? "10px 0 10px 0" : "10px 0px")};
   border-top: ${(props) => (props.withFilter ? null : "1px solid lightgrey")};
   border-bottom: 1px solid lightgrey;
-  position: sticky;
   top: ${(props) => props.topMobile};
-  background-color: ${(props) =>
-    props.darkMode ? props.theme.dark.body : props.theme.light.body};
+  width: 100%;
+  box-sizing: border-box;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    bottom: -1px;
+    left: -4px;
+    right: -4px;
+    background-color: ${(props) =>
+      props.darkMode ? props.theme.dark.body : props.theme.light.body};
+    z-index: -1;
+    pointer-events: none;
+  }
+
   @media (min-width: ${MAX_WINDOW_WIDTH}px) {
     top: ${(props) => props.topDesktop};
     grid-row: ${(props) => props.gridRowDesktop};

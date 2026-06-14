@@ -12,23 +12,35 @@ import { returnSubSections } from "../../../lib/returnData";
 import { useStateContext } from "../../../lib/context";
 
 const StyledUL = styled(motion.ul)`
+  position: sticky;
   z-index: ${Z_INDEXS.scrollBars};
   margin: 0 0 ${HEADER_AND_SCROLLBAR_PADDING}px 0;
-  margin-right: 2px;
   display: flex;
   grid-column: 1/-1;
   overflow-x: scroll;
-  background-color: ${(props) =>
-    props.darkMode ? props.theme.dark.body : props.theme.light.body};
-  /* transition: ease-in 300ms; */
+  width: 100%;
+  box-sizing: border-box;
+  isolation: isolate;
   border-top: 1px solid lightgrey;
   border-bottom: 1px solid lightgrey;
   padding: 10px 0;
-  position: sticky;
   top: ${TOP_NAV_HEIGHT}px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    bottom: -1px;
+    left: -4px;
+    right: -4px;
+    background-color: ${(props) =>
+      props.darkMode ? props.theme.dark.body : props.theme.light.body};
+    z-index: -1;
+    pointer-events: none;
+  }
+
   @media (min-width: ${MAX_WINDOW_WIDTH}px) {
     top: 0;
-    margin-right: 0;
   }
 `;
 
