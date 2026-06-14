@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { GRID_BOX_WIDTH, GRID_BOX_HEIGHT } from "../../../styles/constants";
-import Image from "next/image";
+import ImageWithSkeleton from "../ImageWithSkeleton/ImageWithSkeleton";
 const GridItemIMG = styled(motion.div)`
   width: ${(props) => (props.width ? props.width : `${GRID_BOX_WIDTH}px`)};
   height: ${(props) => (props.height ? props.height : `${GRID_BOX_HEIGHT}px`)};
@@ -35,11 +35,12 @@ const GridItem = (
       transition={{ delay: 0.09 }}
       active={active}
     >
-      <Image
+      <ImageWithSkeleton
         id={id}
         src={smallURL || defaultURL}
         fill
-        style={{ objectFit: "cover" }}
+        sizes="200px"
+        style={{ objectFit: "cover", zIndex: 1 }}
         alt=""
       />
     </GridItemIMG>

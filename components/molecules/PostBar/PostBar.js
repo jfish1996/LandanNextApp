@@ -11,6 +11,7 @@ import {
 import { Link } from "react-scroll";
 import { useStateContext } from "../../../lib/context";
 import GridBox from "../../atoms/SVGs/GridBox";
+import { getFirstImageUrl } from "../../../lib/media";
 const StyledPostBar = styled.div`
   z-index: ${Z_INDEXS.scrollBars};
   grid-row: ${(props) => (props.gridRow ? props.gridRow : 5)};
@@ -52,7 +53,7 @@ const PostBar = ({
   const feedRefs = useRef([]);
   useEffect(() => {
     let feedToScroll = feedRefs.current.filter(
-      (value) => value.id === currentId
+      (value) => String(value.id) === String(currentId)
     );
     feedToScroll[0]?.scrollIntoView({
       block: "nearest",
@@ -95,10 +96,7 @@ const PostBar = ({
             />
 
             {posts?.map((item, idx) => {
-              const defaultURL =
-                item?.attributes?.Img?.data[0]?.attributes?.url;
-              const smallImgURL =
-                item?.attributes?.Img?.data[0]?.attributes?.formats?.small?.url;
+              const thumbnailURL = getFirstImageUrl(item, "thumbnail");
               return (
                 <Link
                   key={idx + item?.attributes?.Title}
@@ -110,12 +108,11 @@ const PostBar = ({
                   <PostBarItem
                     width={"50px"}
                     height={"50px"}
-                    defaultURL={defaultURL}
-                    smallURL={smallImgURL}
+                    defaultURL={thumbnailURL}
                     margin={"0 5px"}
                     id={item.id}
                     ref={addToRefs}
-                    active={item.id === currentId}
+                    active={String(item.id) === String(currentId)}
                   />
                 </Link>
               );
